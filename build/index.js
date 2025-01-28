@@ -30,8 +30,7 @@ function requestPermission() {
 InicializarServiceWorkerNotif();
 
 
-// Navegar.dashboard();
-Navegar.servicios();
+Navegar.dashboard();
 /* F.loadScript('./views/dashboard.js.js','root')
 .then(()=>{
   initView();
