@@ -1,34 +1,26 @@
-let Navegar = {
-    dashboard:() => {
-        F.loadScript('./views/dashboard.js', 'root')
-        .then(() => {
-            initView();
-        })
-    },
-    inicio:() => {
-        F.loadScript('./views/inicio.js', 'root')
-        .then(() => {
-            initView();
-        })
-    },
-    about:() => {
-        F.loadScript('./views/about.js', 'root')
-        .then(() => {
-            initView();
-        })
-    },
-    servicios:() => {
-        F.loadScript('./views/servicios.js', 'root')
-        .then(() => {
-            initView();
-        })
-    },
-    contacto:() => {
-        F.loadScript('./views/contacto.js', 'root')
-        .then(() => {
-            initView();
-        })
+// Función auxiliar para cerrar el navbar
+const closeNavbar = () => {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+        bsCollapse.hide();
     }
+};
 
+// Función auxiliar para cargar vista
+const loadView = (viewPath) => {
+    return F.loadScript(viewPath, 'root')
+        .then(() => {
+            initView();
+            closeNavbar();
+        });
+};
 
-}
+let Navegar = {
+    dashboard: () => loadView('./views/dashboard.js'),
+    inicio: () => loadView('./views/inicio.js'),
+    about: () => loadView('./views/about.js'),
+    servicios: () => loadView('./views/servicios.js'),
+    contacto: () => loadView('./views/contacto.js'),
+    home: () => loadView('./views/home.js')
+};

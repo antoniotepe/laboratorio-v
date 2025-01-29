@@ -6,7 +6,7 @@ function getView(){
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                            ${view.vista_listado()}
+                            ${view.vista_listado() + view.vista_modal_crear_usuario()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                            
@@ -37,60 +37,83 @@ function getView(){
         },
         vista_listado:()=>{
             return `
+            <div class="card card-rounded shadow">
+                <div class="card-body p-2">
+                    <div class="table-responsive col-12">
+                        <table class="table table-responsive table-hover col-12">
+                            <thead class="bg-naranja text-white">
+                                <tr>
+                                    <td>NOMBRE</td>
+                                    <td>CLAVE</td>
+                                    <td>TIPO</td>
+                                    <td>ACCION</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tblUsuarios">
+                            </tbody>
+                        </table>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="jumbotron jumbotron-fluid bg-white">
-                                <img src="../img/laboratorio_horizontal.png" alt="Imagen" class="rounded-3 mw-100 mh-100 service-card" />
+                        <button class="btn btn-circle btn-xl btn-success btn-bottom-r hand shadow" id="btnAgregarUsuario">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `
+        },
+        vista_modal_crear_usuario:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent  modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_nuevo_usuario">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+
+
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
+                                        
+                                       <h1 style="font-size:280%" class="negrita text-left">Agregar Usuario</h1>
+
+                                        <div class="form-group">
+                                            <label>Tipo:</label>
+                                            <select class="form-control negrita text-danger" id="cmbTipoUsuario">
+                                                <option value="GERENTE">GERENTE</option>
+                                                <option value="LABORATORIO">LABORATORIO</option>
+                                                <option value="JORNADA">JORNADA</option>
+                                            </select>
+                                        </div>
+
+                                       <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombreUsuario"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Clave:</label>
+                                            <input type="text" class="form-control" id="txtClaveUsuario"/>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            
+                                
+                                
+                                
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-times"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpleado">
+                                    <i class="fal fa-save"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="container my-5">
-                    <div class="row align-items-center">
-
-                        <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 service-card">
-                                <img src="../img/appointment.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
-                                <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Appointment</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 service-card">
-                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
-                                <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Laboratory Analysis</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 service-card">
-                                <img src="../img/enjoy_life.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
-                                <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Enjoy life</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>    
-
-            
-
-                
-
-            `
-        },
-        vista_nuevo:()=>{
+            `;
 
         }
     }
@@ -100,6 +123,10 @@ function getView(){
 };
 
 function addListeners(){
+
+    document.getElementById('btnAgregarUsuario').addEventListener('click', () => {
+        $("#modal_nuevo_usuario").modal('show');
+    })
 
 };
 
