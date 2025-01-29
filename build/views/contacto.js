@@ -45,30 +45,30 @@ function getView(){
                     <p class="text-center text-muted">Get in touch with us</p>
                     <form>
                         <div class="form-group mb-3">
-                        <label for="nombreUsuarioR" class="font-weight-bold">Name</label>
+                        <label for="nombreUsuarioR" class="font-weight-bold">Nombre completo</label>
                         <input
                             type="text"
                             class="form-control py-3"
                             id="nombreUsuarioR"
-                            placeholder="Your name"
+                            placeholder="Nombre completo..."
                         />
                         </div>
                         <div class="form-group mb-3">
-                        <label for="emailUsuarioR" class="font-weight-bold">Email</label>
+                        <label for="emailUsuarioR" class="font-weight-bold">Correo electronico</label>
                         <input
                             type="email"
                             class="form-control py-3"
                             id="emailUsuarioR"
-                            placeholder="Your email"
+                            placeholder="Correo electronico..."
                         />
                         </div>
                         <div class="form-group mb-4">
-                        <label for="exampleFormControlTextarea1" class="font-weight-bold">Message</label>
+                        <label for="exampleFormControlTextarea1" class="font-weight-bold">Mensaje</label>
                         <textarea
                             class="form-control py-3"
                             id="exampleFormControlTextarea1"
                             rows="4"
-                            placeholder="Your message"
+                            placeholder="Mensaje..."
                         ></textarea>
                         </div>
                         <div class="text-center">
@@ -77,7 +77,7 @@ function getView(){
                             class="btn btn-primary btn-lg px-5 py-2 shadow"
                             id="btnRegistroUsuarioR"
                         >
-                            Send Message
+                            Enviar Mensaje
                         </button>
                         </div>
                     </form>

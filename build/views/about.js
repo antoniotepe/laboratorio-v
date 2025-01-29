@@ -37,11 +37,37 @@ function getView(){
         },
         vista_listado:()=>{
             return `
-            <div class="card card-rounded shadow">
-                <div class="card-body p-2">
-                    <h2>En construcción</h2>
+                <div class="container-fluid">
+                    <div class="row mt-4">
+                        <div class="col-12 col-md-6">
+                            
+                            <h2 class="text-center negrita">Our history</h2>
+                            <img src="../img/imagen_fondo_history.jpg" class="card-img-top mt-5">
+                            <h3 class="mt-3">Mirum est notare quam littera gothica</h3>
+                            <p class="mt-4">Dolor in hen drerit in vul putate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto dio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming</p>
+                            <h3 class="mt-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus.</h3>
+                            <p class="mt-3">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lector</p>
+
+                            <ul>
+                                <li>In pede mi, aliquet sit amet, euismod in,auctor ut, ligula</li>
+                                <li>Aliquam dapibus tincidunt metus</li>
+                                <li>Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem</li>
+                                <li>Vestibulum sed ante</li>
+                            </ul>
+
+                            <p class="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean    nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio.
+                            Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem. Duis ultricies pharetra magna. Donec accumsan malesuada orci.</p>
+
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <h2 class="text-center m-4 negrita">Our mission</h2>
+                            <p class="mt-3"><i class="fal fa-quote-left" style="font-size: 30px;"></i> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem.</p>
+                            <p class="mt-2 text-end">Mark Johnson / legentis iniis qui</p>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
             `
         },
         vista_nuevo:()=>{

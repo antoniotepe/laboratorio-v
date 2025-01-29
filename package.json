@@ -23,7 +23,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "Alexis Burgos",
+  "author": "Antonio Tepe",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.19.4"
