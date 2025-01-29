@@ -42,7 +42,7 @@ function getView(){
                     <div class="row">
                         <div class="col-12">
                             <div class="jumbotron jumbotron-fluid bg-white">
-                                <img src="../img/laboratorio_horizontal.png" alt="Imagen" class="rounded-3 mw-100 mh-100" />
+                                <img src="../img/laboratorio_horizontal.png" alt="Imagen" class="rounded-3 mw-100 mh-100 service-card" />
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ function getView(){
                     <div class="row align-items-center">
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3">
+                            <div class="card align-items-center m-2 p-3 service-card">
                                 <img src="../img/appointment.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Appointment</h5>
@@ -62,7 +62,7 @@ function getView(){
                         </div>
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3">
+                            <div class="card align-items-center m-2 p-3 service-card">
                                 <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Laboratory Analysis</h5>
@@ -72,7 +72,7 @@ function getView(){
                         </div>
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3">
+                            <div class="card align-items-center m-2 p-3 service-card">
                                 <img src="../img/enjoy_life.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Enjoy life</h5>

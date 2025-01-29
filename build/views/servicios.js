@@ -38,16 +38,17 @@ function getView(){
         vista_listado:()=>{
             return `
 
+                    
             <div class="container-fluid mt-5 text-center">
-                <h5 class="negdrita text-info">CUSTOMER SERVICE</h5>
-                <h2 class="negrita">High Quality Services</h2>
+                <h5 class="subtitle">CUSTOMER SERVICE</h5>
+                <h2 class="section-title">High Quality Services</h2>
             </div>
 
             <div class="container my-5">
                 <div class="row mt-5">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/naturapathic.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Naturapathic</h5>
@@ -55,9 +56,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/microbiology.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Microbiolgy</h5>
@@ -65,9 +66,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
 
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/biochemistry.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Biochemistry</h5>
@@ -75,9 +76,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                     
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/diagnostic.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Diagnostic</h5>
@@ -85,9 +86,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/hormonal.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Hormonal</h5>
@@ -95,9 +96,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/paternity_test.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Paternity Test</h5>
@@ -105,9 +106,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/biochemistry_2.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Biochemistry</h5>
@@ -115,9 +116,9 @@ function getView(){
                         </div>
 
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         
-                        <div class="card rounded align-items-center m-2 p-3">
+                        <div class="card rounded align-items-center m-2 p-3 service-card">
                             <img src="../img/biochemistry.png" alt="Aqui va una imagen para la tarjeta" class="card-img-top" style="max-width: 80px; max-height: 80px">
                             <div class="card-body">
                                 <h5 class="card-title negrita">Cytopathology</h5>
@@ -127,6 +128,7 @@ function getView(){
                     </div>
                 </div>
             </div>
+        </section>
             
             `
         },
