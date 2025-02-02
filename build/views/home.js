@@ -38,15 +38,29 @@ function getView(){
         vista_listado:()=>{
             return `
 
-                <div class="container">
+                <div class="container-fluid p-2 mt-5">
+                    <!-- Banner principal -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="jumbotron jumbotron-fluid bg-white">
-                                <img src="../img/Lab01_001.png" alt="Imagen" class="rounded-3 img-fluid" style="max-width: 100%; height: auto; width: 1200px; height: 400px;"/>
+                            <div class="banner-container" style="height: 400px; overflow: hidden; position: relative;">
+                                <img src="../img/Lab01_001.png" 
+                                    alt="Imagen" 
+                                    class="img-fluid banner-image" 
+                                    style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+                                
+                                <div class="banner-overlay" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+                                            display: flex; flex-direction: column; justify-content: center; 
+                                            align-items: center; text-align: center; padding: 20px;">
+                                    
+                                    <h1 class="banner-title display-4 text-white">Bienvenido a Laboratorio Clínico Bio-Química</h1>
+                                    <p class="banner-subtitle lead text-white" style="margin-bottom: 10px;">Expertos en análisis clínicos y cuidado de tu salud</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="container my-5">
                     <div class="row align-items-center">
