@@ -76,6 +76,45 @@
     color: #555; /* Color del texto */
 }
 
+    /* Media query para pantallas pequeñas */
+    @media (max-width: 768px) {
+        .banner-container {
+            height: 60vh; /* Reduce la altura para pantallas más pequeñas */
+        }
+        .banner-title {
+            font-size: 2.5rem; /* Ajusta el tamaño del título */
+        }
+        .banner-subtitle {
+            font-size: 1.2rem; /* Ajusta el tamaño del subtítulo */
+        }
+    }
+
+    /* Media query para pantallas medianas */
+    @media (max-width: 1024px) {
+        .banner-container {
+            height: 50vh; /* Ajusta la altura para pantallas medianas */
+        }
+        .banner-title {
+            font-size: 3rem; /* Ajusta el tamaño del título */
+        }
+        .banner-subtitle {
+            font-size: 1.5rem; /* Ajusta el tamaño del subtítulo */
+        }
+    }
+
+    /* Media query para pantallas grandes */
+    @media (min-width: 1200px) {
+        .banner-container {
+            height: 80vh; /* Ajusta la altura para pantallas grandes */
+        }
+        .banner-title {
+            font-size: 4rem; /* Ajusta el tamaño del título */
+        }
+        .banner-subtitle {
+            font-size: 1.8rem; /* Ajusta el tamaño del subtítulo */
+        }
+    }
+
 .efect-hover:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
