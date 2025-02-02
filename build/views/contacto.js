@@ -1,7 +1,6 @@
-
-function getView(){
+function getView() {
     let view = {
-        body:()=>{
+        body: () => {
             return `
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
@@ -33,77 +32,117 @@ function getView(){
                     
                 </div>
                
-            `
+            `;
         },
-        vista_listado:()=>{
+        vista_listado: () => {
             return `
+            
+            
+            <div class="container-fluid fondo-contenedor mt-5">
+                <h2 class="font-weight-bold text-center mb-4">Contacto</h2>
+                <div class="row mt-5">
+                <div class="col-12 col-md-6 col-lg-6 p-2">
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-12 col-md-6">
-                    <div class="container p-4 rounded shadow-lg bg-white">
-                    <h2 class="font-weight-bold text-center mb-4">Contact Us</h2>
-                    <p class="text-center text-muted">Get in touch with us</p>
-                    <form>
-                        <div class="form-group mb-3">
-                        <label for="nombreUsuarioR" class="font-weight-bold">Nombre completo</label>
-                        <input
-                            type="text"
-                            class="form-control py-3"
-                            id="nombreUsuarioR"
-                            placeholder="Nombre completo..."
-                        />
-                        </div>
-                        <div class="form-group mb-3">
-                        <label for="emailUsuarioR" class="font-weight-bold">Correo electronico</label>
-                        <input
-                            type="email"
-                            class="form-control py-3"
-                            id="emailUsuarioR"
-                            placeholder="Correo electronico..."
-                        />
-                        </div>
-                        <div class="form-group mb-4">
-                        <label for="exampleFormControlTextarea1" class="font-weight-bold">Mensaje</label>
-                        <textarea
-                            class="form-control py-3"
-                            id="exampleFormControlTextarea1"
-                            rows="4"
-                            placeholder="Mensaje..."
-                        ></textarea>
-                        </div>
-                        <div class="text-center">
-                        <button
-                            type="button"
-                            class="btn btn-primary btn-lg px-5 py-2 shadow"
-                            id="btnRegistroUsuarioR"
-                        >
-                            Enviar Mensaje
-                        </button>
-                        </div>
-                    </form>
+                            
+                                <h3 class="negrita text-center">LABORATORIO CLÍNICO BIO-QUÍMICA</h3>
+                                <h4 class="negrita text-left">Contactos</h4>
+                                <p>
+                                    <i class="fal fa-phone text-primary"></i> 
+                                    <strong style="color: #0e6ec5;">Teléfonos:</strong> 7872-6113 | 4754-3975
+                                </p>
+                                <p>
+                                    <i class="fal fa-envelope text-primary"></i> 
+                                    <strong style="color: #0e6ec5;">Correo electrónico:</strong> laboratorioclinicobioquimica@gmail.com
+                                </p>
+                                <p>
+                                    <i class="fal fa-clock text-primary"></i> 
+                                    <strong style="color: #0e6ec5;">Horarios de atención:</strong> LUNES A DOMINGO DE 06:00 AM A 7:00 PM
+                                </p>
+
+                                <h4 class="negrita text-left">Dirección</h4>
+                                
+                                <p class="mt-3">
+                                    <i class="fal fa-map-marker-alt text-primary"></i> 
+                                    <strong style="color: #0e6ec5;">Ubicación:</strong> LOCAL NO. 03 C.C. PASEO CARNAVAL, MAZATENANGO, SUCHITEPEQUEZ
+                                </p>
+                                
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-6 p-2">
+                                
+                                
+                                <form>
+                                    <div class="form-group mb-3">
+                                        
+                                        <input
+                                            type="text"
+                                            class="form-control py-3 rounded-input"
+                                            id="nombreUsuarioR"
+                                            placeholder="Nombre completo..."
+                                        />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                       
+                                        <input
+                                            type="email"
+                                            class="form-control py-3 rounded-input"
+                                            id="emailUsuarioR"
+                                            placeholder="Correo electrónico..."
+                                        />
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        
+                                        <textarea
+                                            class="form-control py-3 rounded-input"
+                                            id="exampleFormControlTextarea1"
+                                            rows="4"
+                                            placeholder="Mensaje..."
+                                        ></textarea>
+                                    </div>
+                                    <div class="text-left">
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-lg px-5 py-2 shadow rounded-3"
+                                            id="btnRegistroUsuarioR"
+                                        >
+                                            Enviar Mensaje
+                                        </button>
+                                    </div>
+                                </form>             
                     </div>
                 </div>
             </div>
 
+               
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-12">
+                      
+                        
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.6789!2d-91.123456!3d14.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzI0LjQiTiA5McKwMDcnMjQuNCJX!5e0!3m2!1sen!2sgt!4v1234567890123!5m2!1sen!2sgt" 
+                                width="100%" 
+                                height="400" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        
+                    </div>
+                </div>
+            </div>
+                       
 
-            `
+            `;
         },
-        vista_nuevo:()=>{
-
-        }
-    }
+        vista_nuevo: () => {}
+    };
 
     root.innerHTML = view.body();
+}
 
-};
+function addListeners() {}
 
-function addListeners(){
-
-};
-
-function initView(){
-
+function initView() {
     getView();
     addListeners();
-
-};
+}

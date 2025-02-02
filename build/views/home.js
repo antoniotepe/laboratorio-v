@@ -38,11 +38,11 @@ function getView(){
         vista_listado:()=>{
             return `
 
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="jumbotron jumbotron-fluid bg-white">
-                                <img src="../img/laboratorio_horizontal.png" alt="Imagen" class="rounded-3 mw-100 mh-100 rounded"/>
+                                <img src="../img/Lab01_001.png" alt="Imagen" class="rounded-3 img-fluid" style="max-width: 100%; height: auto; width: 1200px; height: 400px;"/>
                             </div>
                         </div>
                     </div>

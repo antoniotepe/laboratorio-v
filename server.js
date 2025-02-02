@@ -274,32 +274,43 @@ app.post("/update_fotos_cliente",function(req,res){
 
 app.post("/lista_usuarios", function(req, res) {
 
-  let qry = `SELECT NOMBRE, CLAVE, TIPO
+  let qry = `SELECT CODUSUARIO, NOMBRE, CLAVE, TIPO
               FROM LAB_USUARIOS`;
               
   execute.Query(res, qry);
-  console.log(res);
-  console.log(qry);
-
 })
 
 app.post("/crear_usuarios", function(req, res) {
   
-  const { nombre, clave, tipo } = req.body;
+  const { codusuario, nombre, clave, tipo } = req.body;
 
   let qry = `
       INSERT INTO LAB_USUARIOS
-        (NOMBRE, CLAVE, TIPO)
+        (CODUSUARIO, NOMBRE, CLAVE, TIPO)
         VALUES
-        ('${nombre}','${clave}','${tipo}')
+        ('${codusuario}','${nombre}','${clave}','${tipo}')
   `;
   
-    console.log(qry);
-
     execute.Query(res, qry);
 
 });
 
+app.post("/update_usuario", function(req, res) {
+
+  const { codusuario, nombre, clave, tipo } = req.body;
+
+  let qry = `
+        UPDATE LAB_USUARIOS
+        SET TIPO='${tipo}',
+            NOMBRE='${nombre}',
+            CLAVE='${clave}'
+          WHERE CODUSUARIO='${codusuario}'
+  `;
+
+
+  execute.Query(res, qry);
+
+})
 
 app.use("/",router);
 

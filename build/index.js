@@ -31,6 +31,8 @@ InicializarServiceWorkerNotif();
 
 
 Navegar.home();
+// Navegar.dashboard();
+
 /* F.loadScript('./views/dashboard.js.js','root')
 .then(()=>{
   initView();

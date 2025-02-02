@@ -6,7 +6,7 @@ function getView(){
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                            ${view.vista_listado() + view.vista_modal_crear_usuario()}
+                            ${view.vista_listado() + view.vista_modal_crear_usuario() + view.vista_modal_editar_usuario()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                            
@@ -75,6 +75,11 @@ function getView(){
                                         
                                        <h1 style="font-size:280%" class="negrita text-left">Agregar Usuario</h1>
 
+                                       <div class="form-group">
+                                            <label>CODIGO USUARIO</label>
+                                            <input type="text" class="form-control" id="txtCodigoUsuario">
+                                       </div>
+
                                         <div class="form-group">
                                             <label>Tipo:</label>
                                             <select class="form-control negrita text-danger" id="cmbTipoUsuario">
@@ -114,8 +119,69 @@ function getView(){
                     </div>
                 </div>
             `;
+        },
 
+        vista_modal_editar_usuario:() => {
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent  modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_editar_usuario">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+
+
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
+                                        
+                                       <h1 style="font-size:280%" class="negrita text-left">Editar Usuario</h1>
+
+                                       <div class="form-group">
+                                            <label>CODIGO USUARIO</label>
+                                            <input type="text" class="form-control" id="txtCodigoUsuarioUpdate">
+                                       </div>
+
+                                        <div class="form-group">
+                                            <label>Tipo:</label>
+                                            <select class="form-control negrita text-danger" id="cmbTipoUsuarioUpdate">
+                                                <option value="GERENTE">GERENTE</option>
+                                                <option value="LABORATORIO">LABORATORIO</option>
+                                                <option value="JORNADA">JORNADA</option>
+                                            </select>
+                                        </div>
+
+                                       <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombreUsuarioUpdate">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Clave:</label>
+                                            <input type="text" class="form-control" id="txtClaveUsuarioUpdate">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            
+                                
+                                
+                                
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-times"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnEditarUsuario">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            `;
         }
+
     }
 
     root.innerHTML = view.body();
@@ -136,14 +202,15 @@ function addListeners(){
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
         .then((value) => {
             if(value==true) {
-                let tipo = document.getElementById('cmbTipoUsuario').value;
-                let nombre = document.getElementById('txtNombreUsuario').value;
-                let clave = document.getElementById('txtClaveUsuario').value;
+                let codusuario = document.getElementById('txtCodigoUsuarioUpdate').value;
+                let tipo = document.getElementById('cmbTipoUsuarioUpdate').value;
+                let nombre = document.getElementById('txtNombreUsuarioUpdate').value;
+                let clave = document.getElementById('txtClaveUsuarioUpdate').value;
 
                 btnGuardarUsuario.disabled = true;
                 btnGuardarUsuario.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
 
-                crear_usuarios(nombre, clave, tipo)
+                crear_usuarios(codusuario, nombre, clave, tipo)
                 .then(() => {
 
                     F.Aviso('Usuario creado exitosamente');
@@ -174,6 +241,7 @@ function initView(){
 };
 
 function limpiar_datos_usuario() {
+    document.getElementById('txtCodigoUsuario').value = '';
     document.getElementById('cmbTipoUsuario').value = '';
     document.getElementById('txtNombreUsuario').value = '';
     document.getElementById('txtClaveUsuario').value = '';
@@ -190,14 +258,14 @@ function get_lista_usuarios() {
     .then((response) => {
         let data = response.data; 
         if (Array.isArray(data) && data.length > 0) { 
-            data.forEach((usuario) => { 
+            data.map((usuario) => { 
                 str += `
                     <tr>
                         <td>${usuario.NOMBRE}</td>
                         <td>${usuario.CLAVE}</td>
                         <td>${usuario.TIPO}</td>
                         <td>
-                            <button class="btn btn-info btn-circle btn-md hand shadow" onclick="">
+                            <button class="btn btn-info btn-circle btn-md hand shadow" onclick="get_datos_update_usuario('${usuario.CODUSUARIO}', '${usuario.NOMBRE}', '${usuario.CLAVE}', '${usuario.TIPO}')">
                                 <i class="fal fa-edit"></i>
                             </button>
                         </td>
@@ -214,10 +282,52 @@ function get_lista_usuarios() {
     });
 }
 
+function get_datos_update_usuario(codusuario, nombre, clave, tipo) {
+    $("#modal_editar_usuario").modal('show');
 
-function crear_usuarios(nombre, clave, tipo) {
+    // Asignar los valores a los campos del modal
+    document.getElementById('txtCodigoUsuarioUpdate').value = codusuario;
+    document.getElementById('cmbTipoUsuarioUpdate').value = tipo;
+    document.getElementById('txtNombreUsuarioUpdate').value = nombre;
+    document.getElementById('txtClaveUsuarioUpdate').value = clave;
+
+    let btnEditarUsuario = document.getElementById('btnEditarUsuario');
+    btnEditarUsuario.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro que desea editar el usuario?")
+        .then((value) => {
+            if(value==true) {
+                let codusuarioUpdate = document.getElementById('txtCodigoUsuarioUpdate').value;
+                let tipoUpdate = document.getElementById('cmbTipoUsuarioUpdate').value;
+                let nombreUpdate = document.getElementById('txtNombreUsuarioUpdate').value;
+                let claveUpdate = document.getElementById('txtClaveUsuarioUpdate').value;
+
+                btnEditarUsuario.disabled = true;
+                btnEditarUsuario.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                update_usuario(codusuarioUpdate, nombreUpdate, claveUpdate, tipoUpdate)
+                .then(() => {
+                    F.Aviso('Usuario actualizado exitosamente!!!');
+                    get_lista_usuarios();
+                    $("#modal_editar_usuario").modal('hide');
+                    limpiar_datos_usuario();
+
+                    btnEditarUsuario.disabled = false;
+                    btnEditarUsuario.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError('No se pudo actualizar el usuario: ' + e.message);
+                    btnEditarUsuario.disabled = false;
+                    btnEditarUsuario.innerHTML = `<i class="fal fa-save"></i>`;
+                });
+            }
+        });
+    });
+}
+
+function crear_usuarios(codusuario ,nombre, clave, tipo) {
     return new Promise((resolve, reject) => {
         axios.post("/crear_usuarios", {
+            codusuario: codusuario,
             nombre: nombre,
             clave: clave,
             tipo: tipo
@@ -227,6 +337,30 @@ function crear_usuarios(nombre, clave, tipo) {
             if (data && data.affectedRows > 0) { // Verifica affectedRows
                 resolve(data);
             } else {
+                reject();
+            }
+        })
+        .catch((error) => {
+            reject();
+        });
+    });
+}
+
+
+function update_usuario(codusuario, nombre, clave, tipo) {
+    return new Promise((resolve, reject) => {
+
+        axios.post('/update_usuario', {
+            codusuario: codusuario,
+            nombre: nombre,
+            clave: clave,
+            tipo: tipo
+        })
+        .then((response) => {
+            let data = response.data;
+            if (data && data.affectedRows > 0) {
+                resolve(data);
+            }else {
                 reject();
             }
         })

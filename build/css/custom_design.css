@@ -58,3 +58,16 @@
     font-size: 0.9rem;
     line-height: 1.6;
 }
+
+.logo {
+    max-width: 150px; /* Ajusta el tamaño según lo necesites */
+    height: auto; /* Mantiene la proporción */
+}
+
+.rounded-input {
+    border-radius: 8px;
+}
+
+.fondo-contenedor {
+    background-color: #F5F5F5;
+}
