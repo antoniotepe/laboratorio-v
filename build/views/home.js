@@ -133,7 +133,7 @@ function getView(){
                     <h2 class="font-weight-bold text-center mb-4 display-4">Contacto</h2>
                     <div class="row mt-5">
                         <!-- Información de contacto -->
-                        <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 col-md-6">
                             <div class="card-rounded shadow-lg p-4 bg-white ">
                                 <h3 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">LABORATORIO CLÍNICO BIO-QUÍMICA</h3>
                                 <h4 class="mb-3" style="color: #0e6ec5; font-weight: bold;">Contactos</h4>
