@@ -162,7 +162,7 @@ function getView(){
                         </div>
 
                         <!-- Formulario de contacto -->
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 mt-3">
                             <div class="card-rounded shadow-lg p-4 bg-white rounded-3">
                                 <h4 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">Envíanos un mensaje</h4>
                                 <form>
@@ -251,7 +251,7 @@ function getView(){
                                     class="rounded-3"
                                 ></iframe>
                             </div>
-                            <button type="button" class="btn btn-primary btn-lg px-5 py-2 shadow rounded-3" onclick="F.gotoGoogleMaps(14.53579, -91.52220)">Map</button>
+                            <button type="button" class="btn btn-primary btn-lg px-5 py-2 shadow rounded-3 justify-content-md-end" onclick="F.gotoGoogleMaps(14.53579, -91.52220)">Map</button>
                         </div>
                     </div>
                 </div>
