@@ -251,6 +251,7 @@ function getView(){
                                     class="rounded-3"
                                 ></iframe>
                             </div>
+                            <button type="button" class="btn btn-primary btn-lg px-5 py-2 shadow rounded-3" onclick="F.gotoGoogleMaps(14.53579, -91.52220)">Map</button>
                         </div>
                     </div>
                 </div>
