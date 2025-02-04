@@ -48,11 +48,14 @@ function getView() {
                                 <h4 class="mb-3" style="color: #0e6ec5; font-weight: bold;">Contactos</h4>
                                 <p class="mb-3">
                                     <i class="fal fa-phone text-primary me-2"></i> 
-                                    <strong>Teléfonos:</strong> 7872-6113 | 4754-3975
+                                    <strong>Teléfonos:</strong> 
+                                    <a href="tel:+50278726113">7872-6113</a> | 
+                                    <a href="tel:+50247543975">4754-3975</a>
                                 </p>
-                                <p class="mb-3">
+                               <p class="mb-3">
                                     <i class="fal fa-envelope text-primary me-2"></i> 
-                                    <strong>Correo:</strong> laboratorioclinicobioquimica@gmail.com
+                                    <strong>Correo:</strong> 
+                                    <a href="mailto:laboratorioclinicobioquimica@gmail.com">laboratorioclinicobioquimica@gmail.com</a>
                                 </p>
                                 <p class="mb-4">
                                     <i class="fal fa-clock text-primary me-2"></i> 
@@ -80,14 +83,7 @@ function getView() {
                                             placeholder="Nombre completo..."
                                         />
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <input
-                                            type="email"
-                                            class="form-control py-3 rounded-3"
-                                            id="emailUsuarioR"
-                                            placeholder="Correo electrónico..."
-                                        />
-                                    </div>
+                                    
                                     <div class="form-group mb-4">
                                         <textarea
                                             class="form-control py-3 rounded-3"

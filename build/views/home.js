@@ -43,7 +43,7 @@ function getView(){
             <div class="row">
                 <div class="col-12">
                     <div class="banner-container" style="height: 600px; overflow: hidden; position: relative;">
-                        <img src="../img/foto_local_1.jpg" 
+                        <img src="../img/foto_local_1.webp" 
                             alt="Imagen" 
                             class="img-fluid banner-image" 
                             style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
@@ -53,13 +53,13 @@ function getView(){
                                     display: flex; flex-direction: column; justify-content: center; 
                                     align-items: center; text-align: center; padding: 20px;">
                             
-                            <h1 class="banner-title display-4 text-white">Bienvenido a Laboratorio Clínico Bio-Química</h1>
-                            <p class="banner-subtitle lead text-white" style="margin-bottom: 10px;">Expertos en análisis clínicos y cuidado de tu salud</p>
+                            <h1 class="banner-title display-4 ">Bienvenido a Laboratorio Clínico Bio-Química</h1>
+                            <p class="banner-subtitle lead " style="margin-bottom: 10px;">Expertos en análisis clínicos y cuidado de tu salud</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
                 <div class="container my-5">
@@ -69,8 +69,8 @@ function getView(){
                             <div class="card align-items-center m-2 p-3 efect-hover hand">
                                 <img src="../img/appointment.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Appointment</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                                    <h5 class="card-title text-center negrita">Análisis Microbiológicos de Agua</h5>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +79,8 @@ function getView(){
                             <div class="card align-items-center m-2 p-3 efect-hover hand">
                                 <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Laboratory Analysis</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                                    <h5 class="card-title text-center negrita">Análisis Fisicoquímicos de Agua</h5>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
@@ -89,12 +89,42 @@ function getView(){
                             <div class="card align-items-center m-2 p-3 efect-hover hand">
                                 <img src="../img/enjoy_life.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Enjoy life</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                                    <h5 class="card-title text-center negrita">Análisis clínicos</h5>
+                                    <p class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                         
+                         <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">Coprología (Heces)</h5>
+                                    <p class="card-text"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">Urología (Orina)</h5>
+                                    <p class="card-text"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">Hematología completa</h5>
+                                    <p class="card-text"></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <small class="negrita text-naranja text-end">By ${byAuthor} (${versionapp})</small>    
