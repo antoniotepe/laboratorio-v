@@ -42,10 +42,10 @@ function getView(){
             <!-- Banner principal -->
             <div class="row">
                 <div class="col-12">
-                    <div class="banner-container card-rounded shadow" style="height: 600px; overflow: hidden; position: relative;">
+                    <div class=" card-rounded shadow" style="height: 600px; overflow: hidden; position: relative;">
                         <img src="../img/foto_local_1.webp" 
                             alt="Imagen" 
-                            class="img-fluid banner-image" 
+                            class="img-fluid" 
                             style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
                         
                         <div class="banner-overlay" 
