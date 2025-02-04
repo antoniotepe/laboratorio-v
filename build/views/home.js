@@ -126,7 +126,7 @@ function getView(){
 
                     </div>
                 </div>
-                <small class="negrita text-naranja text-end">By ${byAuthor} (${versionapp})</small>    
+                    
 
 
                 <div class="container-fluid fondo-contenedor mt-5">
@@ -256,7 +256,7 @@ function getView(){
                 </div>
 
 
-
+            <small class="negrita text-naranja text-end">By ${byAuthor} (${versionapp})</small>
 
                 
 
