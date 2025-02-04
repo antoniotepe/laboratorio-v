@@ -38,29 +38,28 @@ function getView(){
         vista_listado:()=>{
             return `
 
-        <div class="container-fluid p-2 mt-5">
-            <!-- Banner principal -->
-            <div class="row">
-                <div class="col-12">
-                    <div class=" card-rounded shadow" style="height: 600px; overflow: hidden; position: relative;">
-                        <img src="../img/foto_local_1.webp" 
-                            alt="Imagen" 
-                            class="img-fluid" 
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
-                        
-                        <div class="banner-overlay" 
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-                                    display: flex; flex-direction: column; justify-content: center; 
-                                    align-items: center; text-align: center; padding: 20px;">
+            <div class="container-fluid p-2 mt-5">
+                <!-- Banner principal -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class=" card-rounded shadow" style="height: 600px; overflow: hidden; position: relative;">
+                            <img src="../img/foto_local_1.webp" 
+                                alt="Imagen" 
+                                class="img-fluid" 
+                                style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
                             
-                            <h1 class="banner-title display-4 ">Bienvenido a Laboratorio Clínico Bio-Química</h1>
-                            <p class="banner-subtitle lead " style="margin-bottom: 10px;">Expertos en análisis clínicos y cuidado de tu salud</p>
+                            <div class="banner-overlay" 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+                                        display: flex; flex-direction: column; justify-content: center; 
+                                        align-items: center; text-align: center; padding: 20px;">
+                                
+                                <h1 class="banner-title display-4 ">Bienvenido a Laboratorio Clínico Bio-Química</h1>
+                                <p class="banner-subtitle lead " style="margin-bottom: 10px;">Expertos en análisis clínicos y cuidado de tu salud</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
 
                 <div class="container my-5">
                     <div class="row align-items-center">
@@ -129,7 +128,8 @@ function getView(){
                 </div>
                 <small class="negrita text-naranja text-end">By ${byAuthor} (${versionapp})</small>    
 
-            
+
+                <div class="container"></div>
 
                 
 

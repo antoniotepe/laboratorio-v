@@ -79,7 +79,7 @@ function getView() {
                                         <input
                                             type="text"
                                             class="form-control py-3 rounded-3"
-                                            id="nombreUsuarioR"
+                                            id="nombreUsuarioW"
                                             placeholder="Nombre completo..."
                                         />
                                     </div>
@@ -87,7 +87,7 @@ function getView() {
                                     <div class="form-group mb-4">
                                         <textarea
                                             class="form-control py-3 rounded-3"
-                                            id="exampleFormControlTextarea1"
+                                            id="mensajeUsuarioW"
                                             rows="4"
                                             placeholder="Mensaje..."
                                         ></textarea>
@@ -96,7 +96,7 @@ function getView() {
                                         <button
                                             type="button"
                                             class="btn btn-primary btn-lg px-5 py-2 shadow rounded-3"
-                                            id="btnRegistroUsuarioR"
+                                            id="btnRegistroUsuarioW"
                                             style="background-color: #0e6ec5; border: none;"
                                         >
                                             Enviar Mensaje
@@ -141,9 +141,34 @@ function getView() {
     root.innerHTML = view.body();
 }
 
-function addListeners() {}
+function addListeners() {
+
+   
+    document.getElementById("btnRegistroUsuarioW").addEventListener("click", () => {
+        // Obtener los valores de los campos
+        const nombre = document.getElementById("nombreUsuarioW").value.trim();
+        const mensaje = document.getElementById("mensajeUsuarioW").value.trim();
+        
+        // Validar que los campos no estén vacíos
+        if (!nombre || !mensaje) {
+            alert("Por favor, ingresa tu nombre y un mensaje.");
+            return;
+        }
+    
+        // Formatear el mensaje para WhatsApp
+        const numeroWhatsApp = "+50247543985";
+        const mensajeWhatsApp = `Hola, mi nombre es ${nombre}. ${mensaje}`;
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+    
+        // Redirigir a WhatsApp
+        window.open(url, "_blank");
+    });
+    
+
+}
 
 function initView() {
     getView();
     addListeners();
 }
+
