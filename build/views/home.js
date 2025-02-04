@@ -134,7 +134,7 @@ function getView(){
                     <div class="row mt-5">
                         <!-- Información de contacto -->
                         <div class="col-12 col-md-6 p-4">
-                            <div class="card shadow-lg p-4 bg-white rounded-3">
+                            <div class="card-rounded shadow-lg p-4 bg-white rounded-3">
                                 <h3 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">LABORATORIO CLÍNICO BIO-QUÍMICA</h3>
                                 <h4 class="mb-3" style="color: #0e6ec5; font-weight: bold;">Contactos</h4>
                                 <p class="mb-3">
@@ -163,7 +163,7 @@ function getView(){
 
                         <!-- Formulario de contacto -->
                         <div class="col-12 col-md-6 p-4">
-                            <div class="card shadow-lg p-4 bg-white rounded-3">
+                            <div class="card-rounded shadow-lg p-4 bg-white rounded-3">
                                 <h4 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">Envíanos un mensaje</h4>
                                 <form>
                                     <div class="form-group mb-3">
@@ -204,7 +204,7 @@ function getView(){
                         <div class="col-12 col-md-6">
                             
                             <h2 class="text-center negrita">Our history</h2>
-                            <img src="../img/imagen_fondo_history.jpg" class="card-img-top mt-5">
+                            <img src="../img/imagen_fondo_history.jpg" class="card-img-top card-rounded mt-5">
                             <h3 class="mt-3">Mirum est notare quam littera gothica</h3>
                             <p class="mt-4">Dolor in hen drerit in vul putate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto dio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming</p>
                             <h3 class="mt-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus.</h3>
@@ -239,7 +239,7 @@ function getView(){
                 <div class="container-fluid mt-5">
                     <div class="row">
                         <div class="col-12 p-0">
-                            <div class="card shadow-lg bg-white rounded-3">
+                            <div class="card-rounded shadow-lg bg-white rounded-3">
                                 <iframe 
                                     src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d123552.76564763446!2d-91.736317!3d14.5977125!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1ses-419!2sgt!4v1738532088834!5m2!1ses-419!2sgt" 
                                     width="100%" 
