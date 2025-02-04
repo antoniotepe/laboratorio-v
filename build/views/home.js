@@ -66,7 +66,7 @@ function getView(){
                     <div class="row align-items-center">
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                            <div class="card-rounded text-center m-2 p-3 hand shadow">
                                 <img src="../img/appointment.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Análisis Microbiológicos de Agua</h5>
@@ -76,7 +76,7 @@ function getView(){
                         </div>
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                            <div class="card-rounded text-center m-2 p-3 hand shadow">
                                 <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Análisis Fisicoquímicos de Agua</h5>
@@ -86,7 +86,7 @@ function getView(){
                         </div>
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                            <div class="card-rounded text-center m-2 p-3 hand shadow">
                                 <img src="../img/enjoy_life.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Análisis clínicos</h5>
@@ -96,7 +96,7 @@ function getView(){
                         </div>
                         
                          <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                            <div class="card-rounded text-center m-2 p-3 hand shadow">
                                 <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Coprología (Heces)</h5>
@@ -106,7 +106,7 @@ function getView(){
                         </div>
 
                          <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                            <div class="card-rounded text-center m-2 p-3 hand shadow">
                                 <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Urología (Orina)</h5>
@@ -116,7 +116,7 @@ function getView(){
                         </div>
 
                          <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card align-items-center m-2 p-3 efect-hover hand">
+                            <div class="card-rounded text-center m-2 p-3 hand shadow">
                                 <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">Hematología completa</h5>
