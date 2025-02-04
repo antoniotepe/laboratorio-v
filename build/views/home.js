@@ -162,7 +162,7 @@ function getView(){
                         </div>
 
                         <!-- Formulario de contacto -->
-                        <div class="col-12 col-md-6 p-4">
+                        <div class="col-12 col-md-6">
                             <div class="card-rounded shadow-lg p-4 bg-white rounded-3">
                                 <h4 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">Envíanos un mensaje</h4>
                                 <form>
