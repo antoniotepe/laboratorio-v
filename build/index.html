@@ -470,10 +470,37 @@
         </div>
       
    
-      
-        
-        
+        <!-- Botón flotante para ir arriba -->
+        <div id="scrollToTopButton" class="cmn-divfloat">
+            <a href="#" class="btn btn-primary cmn-btncircle">
+                <i class="fal fa-arrow-up"></i>
+            </a>
+        </div>
 
+        
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const scrollToTopButton = document.getElementById("scrollToTopButton");
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 300) {
+                    scrollToTopButton.style.display = "block"; // Mostrar el botón
+                } else {
+                    scrollToTopButton.style.display = "none"; // Ocultar el botón
+                }
+            });
+
+            scrollToTopButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth" // Desplazamiento suave
+                });
+            });
+        });
+
+        </script>
 
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
