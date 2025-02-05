@@ -65,64 +65,372 @@ function getView(){
                     <div class="row align-items-center">
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card-rounded text-center m-2 p-3 hand shadow">
-                                <img src="../img/appointment.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
+                            <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Análisis Microbiológicos de Agua</h5>
-                                    <p class="card-text"></p>
+                                    <h5 class="card-title text-center negrita">HEMATOLOGÍA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Hermatología completa</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Hermoglobina-Hematocrito</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Recuento de Glóbulos Rojos</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Recuento de Reticulocitos</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Recuento de Eosinófilos</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Recuento de Plaquetas</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Clasificación de Anemia</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Gota gruesa</small>
+                                            </li>
+
+                                        </ul>
+                                    
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card-rounded text-center m-2 p-3 hand shadow">
-                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                            <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Análisis Fisicoquímicos de Agua</h5>
-                                    <p class="card-text"></p>
+                                    <h5 class="card-title text-center negrita">HECES</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Examen de Heces Completo</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Pylori Cuantitativo</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Azul de metileno</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Sangre oculta</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Rotavirus</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Pylori en Heces</small>
+                                            </li>
+
+                                        </ul>
+                                    
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card-rounded text-center m-2 p-3 hand shadow">
-                                <img src="../img/enjoy_life.png" class="card-img-top" style="max-width: 73px; max-height: 75px;" />
+                            <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Análisis clínicos</h5>
-                                    <p class="card-text"></p>
+                                    <h5 class="card-title text-center negrita">ORINA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Examen Completo de Orina</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Creatinina (orina 24 Hrs.)</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Azul de metileno</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Sangre oculta</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Rotavirus</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Pylori en Heces</small>
+                                            </li>
+
+                                        </ul>
+                                    
                                 </div>
                             </div>
                         </div>
                         
                          <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card-rounded text-center m-2 p-3 hand shadow">
-                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                            <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Coprología (Heces)</h5>
-                                    <p class="card-text"></p>
+                                    <h5 class="card-title text-center negrita">ENFERMEDADES INFECCIOSAS</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Hepatitis A: Anticuerpo IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Hepatitis B: HBsAg. Antigeno de superficie australiano</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Hepatitis B: HBc-IgM. anticuerpos contra el anligeno central Core</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Hepatitis C: Anticuerpos IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">HIV 1 / HIV 2</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Reacción de Widal</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Helicobacter pylori</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">VDRL (Cardiolipina)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Anticuerpos Anti-M Tuberculosis (IgM-IgG)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Dengue IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Dengue IgG</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">TORCH IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">TORCH IgG</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Toxoplasma, anticuerpos IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Toxoplasma, anticuerpos IgG</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Citomegalovirus, anticuerpos IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Citomegalovirus, anticuerpos IgG</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Rubeola, anticuerpos IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Rubeola, anticuerpos IgG</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Herpes, anticuerpo IgM</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Herpes, anticuerpos IgG</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Pylory cuantitativo</small>
+                                            </li>
+
+                                        </ul>
+                                    
                                 </div>
                             </div>
                         </div>
 
                          <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card-rounded text-center m-2 p-3 hand shadow">
-                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                            <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Urología (Orina)</h5>
-                                    <p class="card-text"></p>
+                                    <h5 class="card-title text-center negrita">COAGULACIÓN</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Tiempo de Sangría</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Tiempo de Coagulación</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Tiempo de Protrombina (TP)</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Tiempo Parcial de Tromboplastina (TPT)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">INR</small>
+                                            </li>
+
+                                        </ul>
+                                    
                                 </div>
                             </div>
                         </div>
 
-                         <div class="col-12 col-md-4 col-lg-4">
-                            <div class="card-rounded text-center m-2 p-3 hand shadow">
-                                <img src="../img/laboratory_analysis.png" class="card-img-top" style="max-height: 75; width: 73px" />
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">Hematología completa</h5>
-                                    <p class="card-text"></p>
+                                    <h5 class="card-title text-center negrita">REUMATOLOGIA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Antiestreptolisina "O"</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Factor Reumatoide</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Proteína "C" Reactiva</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">C3-C4</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Anticuerpos antinucleares (FANA)</small>
+                                            </li>
+
+                                        </ul>
+                                    
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">INMUNOHEMATOLOGIA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Grupo Sanguíneo y Factor Rh</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Compatibilidad</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Coombs Directo</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Coombs Indirecto</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">QUIMICA SANGUINEA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Glucosa Pre-prandial</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Glucosa Post-prandial</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Hemoglobina glicosilada</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Acido úrico</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Creatinina</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Nitrógeno de urea</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Proteínas totales</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Albúmina Sérica</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Relación A/G</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Electrolitos Na+, K+, Calcio</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">HORMONAS</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Hormonas Estimulantes de la Tiroides (TSH)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">T3-T4</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Prólactina (PRL)</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Hormona Folículo Estimulante (FSH)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Hormona Luteinizante LH</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">HCG subunidad beta cuantitiva</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">HCG cualitativa</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Estradiol</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">REUMATOLOGIA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Antiestreptolisina "O"</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Factor Reumatoide</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Proteína "C" Reactiva</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">C3-C4</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Anticuerpos antinucleares (FANA)</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>

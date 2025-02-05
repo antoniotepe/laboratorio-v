@@ -150,3 +150,7 @@
 .cmn-btncircle:hover {
     background-color: #084c94;
 }
+
+.convertir_de_linea_a_bloque {
+    display: inline-block;
+}
