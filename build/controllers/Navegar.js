@@ -21,6 +21,8 @@ let Navegar = {
     // about: () => loadView('./views/about.js'),
     // servicios: () => loadView('./views/servicios.js'),
     // contacto: () => loadView('./views/contacto.js'),
+    registroPruebas: () => loadView('./views/registroPruebas.js'),
+    jornada: () => loadView('./views/jornada.js'),
     inicio: () => loadView('./views/inicio.js'),
     login:() => loadView('./views/login.js'),
 };

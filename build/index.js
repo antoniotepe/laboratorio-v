@@ -34,7 +34,6 @@ Navegar.inicio();
 // Navegar.login();
 
 
-// Navegar.dashboard();
 
 /* F.loadScript('./views/dashboard.js.js','root')
 .then(()=>{

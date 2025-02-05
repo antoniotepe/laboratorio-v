@@ -119,7 +119,7 @@ function loginValidacion() {
                 GlobalRolUsuario = datosObtenidos.TIPO;
                 if(datosObtenidos.TIPO === "GERENTE") {
                     Navegar.dashboard();
-                } else if(datosObtenidos.TIPO === "LABORATORISTA") {
+                } else if(datosObtenidos.TIPO === "LABORATORIO") {
                     Navegar.registroPruebas();
                 } else if(datosObtenidos.TIPO === "JORNADA") {
                     Navegar.jornada();

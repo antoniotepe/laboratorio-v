@@ -37,25 +37,7 @@ function getView(){
         },
         vista_listado:()=>{
             return `
-            <div class="card card-rounded shadow">
-                <div class="card-body p-2">
-                    <div class="table-responsive col-12">
-                        <table class="table table-responsive table-hover col-12">
-                            <thead class="bg-naranja text-white">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody id="tblPedidos">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                <div class="text-center">La vista de laboratorista en construccion</div>
             `
         },
         vista_nuevo:()=>{

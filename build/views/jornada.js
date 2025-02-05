@@ -2,11 +2,12 @@
 function getView(){
     let view = {
         body:()=>{
+            // ${view.vista_login()}
             return `
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                           ${view.vista_login()}
+                           ${view.vista_listado()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_listado() + view.modal_fotos() + view.modal_datos()}
