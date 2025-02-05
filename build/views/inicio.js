@@ -62,8 +62,8 @@ function getView(){
                 </div>
 
                 <div class="container my-5">
+                <h2 class="font-weight-bold text-center mb-4 display-4">Servicios</h2>
                     <div class="row align-items-center">
-
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
