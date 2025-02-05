@@ -406,6 +406,74 @@ function getView(){
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
+                                    <h5 class="card-title text-center negrita">MARCADORES TUMORALES</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Afa-fetoproteína (AFP)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Antigeno Carcinoembrionario/Colon (CEA)</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Antígeno Protático Específico (PSA)</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Antígeno CA 125-Ovario</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Antígeno CEA-19-9</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Antígeno PSA libre</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">MICROBIOLOGIA</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Gram</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Baciloscopía</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Orocultivo</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Urocultivo</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Coprocultivo</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Cultivo de Secreciones</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">KOH</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Esperograma</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
                                     <h5 class="card-title text-center negrita">REUMATOLOGIA</h5>
                                     
                                         <ul>
