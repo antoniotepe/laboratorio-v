@@ -474,23 +474,148 @@ function getView(){
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">REUMATOLOGIA</h5>
+                                    <h5 class="card-title text-center negrita">PERFIL HEPATICO</h5>
                                     
                                         <ul>
                                             <li>
-                                                <small class="negrita">Antiestreptolisina "O"</small>
+                                                <small class="negrita">Bilirrubinas</small>
                                             </li>
                                             <li>
-                                                <small class="negrita">Factor Reumatoide</small>
+                                                <small class="negrita">Trans. Glutámico Pirúvica (TGP)</small>
                                             </li>
                                             <li>
-                                                <small class=" negrita">Proteína "C" Reactiva</small>
+                                                <small class=" negrita">Trans. Glutámico Oxalacética (TGO)</small>
                                             </li>
                                             <li>
-                                                <small class=" negrita">C3-C4</small>
+                                                <small class=" negrita">Fosfatasa Alcalina (FA)</small>
+                                            </li>
+                                            
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PERFIL DE LIPIDOS</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Colesterol Total</small>
                                             </li>
                                             <li>
-                                                <small class="negrita">Anticuerpos antinucleares (FANA)</small>
+                                                <small class="negrita">Colesterol HDL</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Colesterol LDL</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Triglicéridos</small>
+                                            </li>
+                                            
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PERFIL PANCREATICO</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Amilasa Sérica</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Lipasa Sérica</small>
+                                            </li>
+                                                                                      
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PERFIL PROSTATICO</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Fosfatasa Acida Total</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Fosfatasa Acida Prostática</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Antigeno Prostático Especifico</small>
+                                            </li>
+                                            
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PERFIL CARDIACO</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Creatin Kinasa total (CK)</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Creatin Kinasa Fracción MB</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Deshidrogenasa Láctina (LDH)</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">TGO</small>
+                                            </li>
+                                            
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PAQUETE PRENATAL I</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Hematología</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Grupo y Rh</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Glucosa</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">VDRL</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Heces</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Orina</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">HIV</small>
                                             </li>
 
                                         </ul>
@@ -499,6 +624,82 @@ function getView(){
                             </div>
                         </div>
 
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PAQUETE PRENATAL II</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Hematología</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Grupo y Rh</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Glucosa</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">VDRL</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Heces</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Orina</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">HIV</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Toxoplasma</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <div class="card-rounded m-2 p-3 hand shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PAQUETE PRENATAL III</h5>
+                                    
+                                        <ul>
+                                            <li>
+                                                <small class="negrita">Hematología</small>
+                                            </li>
+                                            <li>
+                                                <small class="negrita">Grupo y Rh</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Glucosa</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">VDRL</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Heces</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">Orina</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">HIV</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">TORCH</small>
+                                            </li>
+                                            <li>
+                                                <small class=" negrita">OTROS</small>
+                                            </li>
+
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
