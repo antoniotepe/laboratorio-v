@@ -306,7 +306,18 @@ app.post("/update_usuario", function(req, res) {
             CLAVE='${clave}'
           WHERE CODUSUARIO='${codusuario}'
   `;
+  execute.Query(res, qry);
 
+})
+
+// Login de usuarios
+app.post("/loginLaboratorio", function(req, res) {
+  const { nombre, clave } = req.body;
+
+  let qry = `
+    SELECT CODUSUARIO, NOMBRE, CLAVE, TIPO FROM LAB_USUARIOS
+    WHERE NOMBRE='${nombre}' AND CLAVE='${clave}'
+  `;
 
   execute.Query(res, qry);
 

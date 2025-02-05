@@ -58,7 +58,7 @@ let F = {
         return swal({
             title: 'Confirme',
             text: msn,
-            icon: 'success',
+            icon: 'warning',
             buttons: {
                 cancel: true,
                 confirm: true,
@@ -67,7 +67,7 @@ let F = {
     Aviso: function(msn){
         swal(msn, {
             timer: 1500,
-            icon: "warning",
+            icon: "success",
             buttons: false
             });
 

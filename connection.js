@@ -9,12 +9,22 @@
 // };
 
 
+// let config = {
+// 	user: 'a6478c_laborat',
+// 	password: 'razors1805',
+// 	host: 'mysql5050.site4now.net',
+// 	database: 'db_a6478c_laborat',
+// 	pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+// };
+
 let config = {
-	user: 'a6478c_laborat',
-	password: 'razors1805',
-	host: 'mysql5050.site4now.net',
-	database: 'db_a6478c_laborat',
-	pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+    user: 'a6478c_laborat',
+    password: 'razors1805',
+    host: 'mysql5050.site4now.net',
+    database: 'db_a6478c_laborat',
+    waitForConnections: true,
+    connectionLimit: 10,  // Ajustar según el límite del servidor
+    queueLimit: 0
 };
 
 let configx = {
@@ -58,6 +68,7 @@ let configx = {
 // 		}
 // 	}
 // }
+
 
 const mysql = require('mysql2');
 

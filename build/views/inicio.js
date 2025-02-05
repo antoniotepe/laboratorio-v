@@ -158,7 +158,7 @@ function getView(){
                                     <i class="fal fa-map-marker-alt text-primary me-2"></i> 
                                     <strong>Ubicación:</strong> LOCAL NO. 03 C.C. PASEO CARNAVAL, MAZATENANGO, SUCHITEPEQUEZ
                                     <div class="d-flex justify-content-start m-2">
-                                        <button type="button" class="btn btn-primary btn-md px-5 py-2 shadow rounded-3 " onclick="F.gotoGoogleMaps(14.53579, -91.52220)">Map</button>
+                                        <button type="button" class="btn btn-primary btn-xs shadow" style="background-color: #0e6ec5;" onclick="F.gotoGoogleMaps(14.53579, -91.52220)">Ir</button>
                                     </div>
                                 </p>
                             </div>

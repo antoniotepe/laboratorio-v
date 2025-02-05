@@ -202,10 +202,10 @@ function addListeners(){
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
         .then((value) => {
             if(value==true) {
-                let codusuario = document.getElementById('txtCodigoUsuarioUpdate').value;
-                let tipo = document.getElementById('cmbTipoUsuarioUpdate').value;
-                let nombre = document.getElementById('txtNombreUsuarioUpdate').value;
-                let clave = document.getElementById('txtClaveUsuarioUpdate').value;
+                let codusuario = document.getElementById('txtCodigoUsuario').value;
+                let tipo = document.getElementById('cmbTipoUsuario').value;
+                let nombre = document.getElementById('txtNombreUsuario').value;
+                let clave = document.getElementById('txtClaveUsuario').value;
 
                 btnGuardarUsuario.disabled = true;
                 btnGuardarUsuario.innerHTML = `<i class="fal fa-save fa-spin"></i>`;

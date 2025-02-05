@@ -11,9 +11,11 @@ let map; //mapa de leaflet
 let GlobalUrlCalls = '';
 let GlobalUrlServicioLocal = 'http://192.168.1.16:8080'
 
+let GlobalCodigoUsuario = '';
 let GlobalUsuario = '';
 let GlobalPass = '';
 let GlobalNivelUsuario = 0;
+let GlobalRolUsuario = '';
 
 
 let selected_codcliente = 0;
