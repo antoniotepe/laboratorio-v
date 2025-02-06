@@ -129,12 +129,12 @@ function loginValidacion() {
                         Navegar.jornada();
                         break;
                     default:
-                        throw new Error("Usuario no registrado");
+                        F.AvisoError("Usuario no registrado");
                 }
 
                 resolve(data);
             } else {
-                throw new Error("Usuario no registrado");
+                F.AvisoError("Usuario no registrado");
             }
         })
         .catch((err) => {
