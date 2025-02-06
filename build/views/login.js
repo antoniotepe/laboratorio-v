@@ -123,7 +123,7 @@ function loginValidacion() {
                         Navegar.dashboard();
                         break;
                     case "LABORATORIO":
-                        Navegar.registroPruebas();
+                        Navegar.laboratorista();
                         break;
                     case "JORNADA":
                         Navegar.jornada();

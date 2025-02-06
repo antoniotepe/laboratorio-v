@@ -38,24 +38,24 @@ function getView(){
         vista_listado:()=>{
             return `
 
-<div class="container-fluid p-2 mt-5">
-    <!-- Banner principal -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card-rounded shadow banner-container">
-                
-                <img src="../img/foto_local_1.webp" 
-                    alt="Imagen" 
-                    class="img-fluid w-100 banner-image" />
+                <div class="container-fluid p-2 mt-5">
+                    <!-- Banner principal -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-rounded shadow banner-container">
+                                
+                                <img src="../img/foto_local_1.webp" 
+                                    alt="Imagen" 
+                                    class="img-fluid w-100 banner-image" />
 
-                <div class="banner-overlay">
-                    <h1 class="banner-title display-4">Bienvenido a Laboratorio Clínico Bio-Química</h1>
-                    <p class="banner-subtitle lead">Expertos en análisis clínicos y cuidado de tu salud</p>
+                                <div class="banner-overlay">
+                                    <h1 class="banner-title display-4">Bienvenido a Laboratorio Clínico Bio-Química</h1>
+                                    <p class="banner-subtitle lead">Expertos en análisis clínicos y cuidado de tu salud</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
                 <div class="container my-5">
@@ -63,6 +63,7 @@ function getView(){
                     <div class="row align-items-center">
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                                <img src="../img/hematology.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">HEMATOLOGÍA</h5>
                                     
@@ -100,6 +101,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/heces.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">HECES</h5>
                                     
@@ -131,6 +133,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/orina.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">ORINA</h5>
                                     
@@ -162,6 +165,7 @@ function getView(){
                         
                          <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/enfermedades_infecciosas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">ENFERMEDADES INFECCIOSAS</h5>
                                     
@@ -241,6 +245,7 @@ function getView(){
 
                          <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/coagulacion.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">COAGULACIÓN</h5>
                                     
@@ -269,6 +274,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/REUMATOLOGIA.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">REUMATOLOGIA</h5>
                                     
@@ -297,6 +303,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/IMMUNOHEMATOLOGY.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">INMUNOHEMATOLOGIA</h5>
                                     
@@ -322,6 +329,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/QUIMICA_SANGUINEA.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">QUIMICA SANGUINEA</h5>
                                     
@@ -365,6 +373,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/hormonas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">HORMONAS</h5>
                                     
@@ -402,6 +411,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/marcadores_tumorales.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">MARCADORES TUMORALES</h5>
                                     
@@ -433,6 +443,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/microbiology.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">MICROBIOLOGIA</h5>
                                     
@@ -470,6 +481,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_hepatico.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PERFIL HEPATICO</h5>
                                     
@@ -496,6 +508,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_lipidos.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PERFIL DE LIPIDOS</h5>
                                     
@@ -521,6 +534,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_pancreatico.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PERFIL PANCREATICO</h5>
                                     
@@ -541,6 +555,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_prostata.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PERFIL PROSTATICO</h5>
                                     
@@ -564,6 +579,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_cardiaco.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PERFIL CARDIACO</h5>
                                     
@@ -589,6 +605,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_prenatal_1.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PAQUETE PRENATAL I</h5>
                                     
@@ -623,6 +640,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_prenatal_2.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PAQUETE PRENATAL II</h5>
                                     
@@ -660,6 +678,7 @@ function getView(){
 
                         <div class="col-12 col-md-4 col-lg-4">
                             <div class="card-rounded m-2 p-3 hand shadow">
+                            <img src="../img/perfil_prenatal_3.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" />
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">PAQUETE PRENATAL III</h5>
                                     

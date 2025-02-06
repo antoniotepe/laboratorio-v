@@ -37,7 +37,14 @@ function getView(){
         },
         vista_listado:()=>{
             return `
-                <div class="text-center">La vista de laboratorista en construccion</div>
+                <div class="container-fluid bg-primary">
+                    <div clas="row">
+                        <div class="col-12">Hola</div>
+                    </div>
+                </div>
+
+                <div class="container">
+                </div>
             `
         },
         vista_nuevo:()=>{
