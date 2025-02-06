@@ -90,57 +90,63 @@ function initView(){
 };
 
 function loginValidacion() {
-    let nombreUsuario = document.getElementById('nombreUsuario').value;
-    let claveUsuario = document.getElementById('claveUsuario').value;
+    return new Promise((resolve, reject) => {
+        let nombreUsuario = document.getElementById('nombreUsuario').value;
+        let claveUsuario = document.getElementById('claveUsuario').value;
 
-    F.limpiarTexto(nombreUsuario);
-    F.limpiarTexto(claveUsuario);
+        F.limpiarTexto(nombreUsuario);
+        F.limpiarTexto(claveUsuario);
 
-    if(!nombreUsuario || !claveUsuario) {
-        return F.AvisoError("Debe ingresar su nombre y clave");
-        
-    }
+        if (!nombreUsuario || !claveUsuario) {
+            return reject(F.AvisoError("Debe ingresar su nombre y clave"));
+        }
 
-        btnLoginUsuario.disabled= true;
-        btnLoginUsuario.innerHTML = `<i class="fal fa-unlock fa-spin">`;
-    
+        btnLoginUsuario.disabled = true;
+        btnLoginUsuario.innerHTML = `<i class="fal fa-unlock fa-spin"></i>`;
+
         axios.post("/loginLaboratorio", {
             nombre: nombreUsuario,
             clave: claveUsuario
         })
         .then((response) => {
             let data = response.data;
-            
-            if(data && data.length > 0) {
+
+            if (data && data.length > 0) {
                 let datosObtenidos = data[0];
                 GlobalCodigoUsuario = datosObtenidos.CODUSUARIO;
                 GlobalUsuario = datosObtenidos.NOMBRE;
                 GlobalPass = datosObtenidos.CLAVE;
                 GlobalRolUsuario = datosObtenidos.TIPO;
-                if(datosObtenidos.TIPO === "GERENTE") {
-                    Navegar.dashboard();
-                } else if(datosObtenidos.TIPO === "LABORATORIO") {
-                    Navegar.registroPruebas();
-                } else if(datosObtenidos.TIPO === "JORNADA") {
-                    Navegar.jornada();
-                } else {
-                    F.AvisoError("Usuario no registrado");
-                    btnLoginUsuario.disabled= false;
-                    btnLoginUsuario.innerHTML = `<i class="fal fa-unlock fa-spin">`;
-                }              
-            } 
-            
-    
+
+                switch (datosObtenidos.TIPO) {
+                    case "GERENTE":
+                        Navegar.dashboard();
+                        break;
+                    case "LABORATORIO":
+                        Navegar.registroPruebas();
+                        break;
+                    case "JORNADA":
+                        Navegar.jornada();
+                        break;
+                    default:
+                        throw new Error("Usuario no registrado");
+                }
+
+                resolve(data);
+            } else {
+                throw new Error("Usuario no registrado");
+            }
         })
         .catch((err) => {
-    
-            btnLoginUsuario.disabled= false;
-            btnLoginUsuario.innerHTML = `<i class="fal fa-unlock fa-spin">`;
-            console.error(`Hubo un error al iniciar sesion ${err}`);
-            F.AvisoError(`Hubo un error al iniciar sesion ${err}`);
+            console.error(`Hubo un error al iniciar sesión: ${err.message}`);
+            F.AvisoError(`Hubo un error al iniciar sesión: ${err.message}`);
+            reject(err);
         })
- 
-
-
+        .finally(() => {
+            btnLoginUsuario.disabled = false;
+            btnLoginUsuario.innerHTML = `<i class="fal fa-unlock"></i>`;
+        });
+    });
 }
+
 
