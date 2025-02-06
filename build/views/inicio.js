@@ -71,10 +71,10 @@ function getView(){
                                     
                                         <ul>
                                             <li>
-                                                <small class="negrita">Hermatología completa</small>
+                                                <small class="negrita">Hematología completa</small>
                                             </li>
                                             <li>
-                                                <small class="negrita">Hermoglobina-Hematocrito</small>
+                                                <small class="negrita">Hemoglobina-Hematocrito</small>
                                             </li>
                                             <li>
                                                 <small class="negrita">Recuento de Glóbulos Rojos</small>
