@@ -223,52 +223,52 @@ function getView(){
                                 <div class="card-header bg-info text-center text-white">Químico</div>
                                 <div class="card-body">
                                     <label class="form-label text-info">Leucocitos:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idLeucitosQuimico" placeholder="...." />
+                                    <datalist id="idLeucitosQuimico">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Células Vegetales:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idCelulasQuimico" placeholder="...." />
+                                    <datalist id="idCelulasQuimico">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Almidones:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idAlmidonesQuimico" placeholder="...." />
+                                    <datalist id="idAlmidonesQuimico">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">levaduras:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idLevadurasQuimico" placeholder="...." />
+                                    <datalist id="idLevadurasQuimico">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Huevo:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idHuevoQuimico" placeholder="...." />
+                                    <datalist id="idHuevoQuimico">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Quistes:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idQuistesQuimico" placeholder="...." />
+                                    <datalist id="idQuistesQuimico">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     
                                 </div>
@@ -279,36 +279,36 @@ function getView(){
                                 <div class="card-header bg-info text-center text-white">Microscopio</div>
                                 <div class="card-body">
                                     <label class="form-label text-info">Eritrocitos:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idEritrocitosMicro" placeholder="...." />
+                                    <datalist id="idEritrocitosMicro">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Grasas:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idGrasasMicro" placeholder="...." />
+                                    <datalist id="idGrasasMicro">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Jabón:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idJabonMicro" placeholder="...." />
+                                    <datalist id="idJabonMicro">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Bacterias:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idBacteriasMicro" placeholder="...." />
+                                    <datalist id="idBacteriasMicro">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                             </div>
@@ -509,12 +509,11 @@ function getView(){
                                 
                                 <div class="mb-3">
                                     <label class="form-label text-info">Hemoglobina:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idHemoglobinaUrologia" placeholder="...." />
+                                    <datalist id="idHemoglobinaUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
@@ -537,12 +536,11 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Ácido Ascórbico:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idAcidoAscorbicoUrologia" placeholder="...." />
+                                    <datalist id="idAcidoAscorbicoUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
@@ -578,62 +576,56 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Eritocitos:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idEritocitosUrologia" placeholder="...." />
+                                    <datalist id="idEritocitosUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">C. Epiteliales:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idEpitelialesUrologia" placeholder="...." />
+                                    <datalist id="idEpitelialesUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Bacterias:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idBacteriasUrologia" placeholder="...." />
+                                    <datalist id="idBacteriasUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Cristales:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idCristalesUrologia" placeholder="...." />
+                                    <datalist id="idCristalUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Cilindros:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idCilindrosUrologia" placeholder="...." />
+                                    <datalist id="idCilindrosUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Otros:</label>
-                                    <input type="search" class="form-control" list="" placeholder="...." />
-                                    <datalist id="">
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
-                                        <option value="" />
+                                    <input type="search" class="form-control" list="idOtrosUrologia" placeholder="...." />
+                                    <datalist id="idOtrosUrologia">
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
+                                        <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                 </div>
                             </div>
