@@ -1050,18 +1050,22 @@ function getView(){
 
 function addListeners(){
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
         document.getElementById("tab-dos").click();
     });
 
     document.getElementById("card_uroanalisis").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
         document.getElementById("tab-tres").click()
     });
 
     document.getElementById("enfermedades_infecciosas").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
         document.getElementById("tab-cuatro").click();
     })
 
     document.getElementById("card_hematologia").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
         document.getElementById("tab-cinco").click();
     })
 };
