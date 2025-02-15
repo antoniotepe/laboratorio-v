@@ -31,8 +31,10 @@ InicializarServiceWorkerNotif();
 
 
 Navegar.inicio();
+
 // Navegar.login();
 // Navegar.laboratorista();
+
 
 
 /* F.loadScript('./views/dashboard.js.js','root')
