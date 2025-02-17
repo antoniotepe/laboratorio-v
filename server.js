@@ -320,6 +320,81 @@ app.post("/loginLaboratorio", function(req, res) {
   `;
 
   execute.Query(res, qry);
+});
+
+// Registro de examenes
+// app.post("/regitro_ciprologia", function(req, res) {
+//   const {  } = req.body;
+// })
+
+// Pacientes
+app.post("/insert_paciente", function(req, res) {
+
+  const {id_paciente, nombre, fecha_nacimiento, empresa, tratante } = req.body;
+
+  const calcularEdad = (fecha) => {
+    const nacimiento = new Date(fecha);
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const mes = hoy.getMonth() - nacimiento.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--;
+    }
+    return edad;
+  };
+
+  const edad = calcularEdad(fecha_nacimiento);
+
+  let qry = `
+    INSERT INTO PACIENTES
+      (ID_PACIENTE, NOMBRE, EDAD, TRATANTE, EMPRESA_ID)
+        VALUES
+      ('${id_paciente}','${nombre}',${edad},'${tratante}',${empresa})
+  `;
+  execute.Query(res, qry);
+  console.log(qry);
+
+})
+
+app.post("/lista_pacientes", function (req, res) {
+  let qry = `
+      SELECT 
+          p.id_paciente, 
+          p.nombre AS nombre_paciente, 
+          p.edad, 
+          p.tratante, 
+          e.nombre AS nombre_empresa
+      FROM Pacientes p
+      LEFT JOIN Empresas e ON p.empresa_id = e.id;
+  `;
+
+  execute.Query(res, qry);
+});
+
+
+// obtener empresas
+app.post("/catalogo_empresas_pacientes", (req, res) => {
+  let qry = `
+    SELECT ID, NOMBRE 
+      FROM EMPRESAS
+  `
+
+  execute.Query(res, qry)
+})
+
+// enviar datos para crear nueva empresa
+app.post("/insert_empresa_paciente", (req, res) => {
+  
+  const { nombreEmpresa } = req.body;
+
+  let qry = `
+    INSERT INTO EMPRESAS
+    (NOMBRE)
+      VALUES
+    ('${nombreEmpresa}') `;
+
+    execute.Query(res, qry);
 
 })
 

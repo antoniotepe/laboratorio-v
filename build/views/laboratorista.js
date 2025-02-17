@@ -20,6 +20,10 @@ function getView(){
                         <div class="tab-pane fade" id="cinco" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_hematologia()}
                         </div>
+                        <div class="tab-pane fade" id="seis" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_examenes()}
+                        </div>
+                        
                     </div>
 
                     <ul class="nav nav-tabs hidden" id="myTabHome" role="tablist">
@@ -42,7 +46,11 @@ function getView(){
                         <li class="nav-item">
                             <a class="nav-link negrita text-danger" id="tab-cinco" data-toggle="tab" href="#cinco" role="tab" aria-controls="home" aria-selected="true">
                                 <i class="fal fa-comments"></i></a>
-                        </li>         
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-seis" data-toggle="tab" href="#seis" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li>           
                     </ul>
                     
                 </div>
@@ -85,6 +93,15 @@ function getView(){
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_tbla_examenes">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">TABLA DE EXAMENES</h5>
+                                    <img src="../img/icon_examen.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Hematología" />
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             `
@@ -128,11 +145,7 @@ function getView(){
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <button class="btn btn-outline-light">
-                                <i class="bi bi-printer"></i> Re-Imprimir
-                            </button>
-                        </div>
+                        
                     </div>
 
                     <div class="row mb-4">
@@ -141,11 +154,11 @@ function getView(){
                                 <label class="col-sm-3 col-form-label text-info">Nombre:</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <select class="form-control"></select>
-                                        <button class="btn btn-outline-secondary">
+                                        <input class="form-control" type="search" placeholder="Buscar Paciente" autocomplete="off" id="txtFiltrarPacientesCiprologia">
+                                        <button class="btn btn-info btn-sm hand shadow" id="btnBuscarPaciente" onclick="get_lista_clientes()">
                                             <i class="fal fa-search"></i>
                                         </button>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -366,11 +379,7 @@ function getView(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-outline-light">
-                            <i class="fal fa-printer"></i> Re-Imprimir
-                        </button>
-                    </div>
+                   
                 </div>
 
                
@@ -687,11 +696,7 @@ function getView(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-outline-light">
-                            <i class="fal fa-printer"></i> Re-Imprimir
-                        </button>
-                    </div>
+                   
                 </div>
 
                 
@@ -818,26 +823,22 @@ function getView(){
                     <div class="col-auto">
                         <div class="row align-items-center">
                             <div class="col-auto">
-                                <label class="form-label mb-0 text-white">No. Ref:</label>
+                                <label class="form-label mb-0 text-white">REF:</label>
                             </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" value="373" readonly>
+                            <div class="col-6">
+                                <input type="text" class="form-control" value="FEB25-001" readonly>
                             </div>
                         </div>
                         <div class="row align-items-center mt-2">
                             <div class="col-auto">
                                 <label class="form-label mb-0 text-white">Fecha:</label>
                             </div>
-                            <div class="col-auto">
+                            <div class="col-6">
                                 <input type="text" class="form-control" value="6/02/2025" readonly>
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-outline-light">
-                            <i class="fal fa-printer"></i> Re-Imprimir
-                        </button>
-                    </div>
+                    
                 </div>
 
                 
@@ -1033,6 +1034,9 @@ function getView(){
                 </div>
             </div>
             `;
+        },
+        vista_examenes:()=> {
+            return ``;
         }
     }
 
@@ -1041,6 +1045,9 @@ function getView(){
 };
 
 function addListeners(){
+
+    
+
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
         document.getElementById("tab-dos").click();
@@ -1059,7 +1066,20 @@ function addListeners(){
     document.getElementById("card_hematologia").addEventListener('click', ()=> {
         F.slideAnimationTabs();
         document.getElementById("tab-cinco").click();
+    });
+
+    document.getElementById("card_tbla_usuarios").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-siete").click();
     })
+
+    
+ 
+    
+
+    
+    
+
 };
 
 function initView(){
@@ -1068,3 +1088,4 @@ function initView(){
     addListeners();
 
 };
+

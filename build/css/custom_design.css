@@ -182,3 +182,24 @@
     color: white;
 
 }
+
+
+.table {
+    min-width: 1000px !important;
+    width: 100%;
+    background: #fff; }
+    .table thead.thead-primary {
+      background: #1089ff; }
+    .table thead th {
+      border: none;
+      padding: 20px 30px;
+      font-size: 14px;
+      color: #fff; }
+    .table tbody tr {
+      margin-bottom: 10px; }
+    .table tbody th, .table tbody td {
+      border: none;
+      padding: 20px 30px;
+      border-bottom: 3px solid #f8f9fd;
+      font-size: 14px; }
+

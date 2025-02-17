@@ -34,6 +34,7 @@ Navegar.inicio();
 
 // Navegar.login();
 // Navegar.laboratorista();
+// Navegar.registroPacientes();
 
 
 
