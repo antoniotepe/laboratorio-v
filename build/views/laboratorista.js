@@ -101,7 +101,14 @@ function getView(){
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_tbla_pacientes">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">REGISTRO DE PACIENTES</h5>
+                                    <img src="../img/icon_user.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Usuarios" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `
@@ -1068,16 +1075,10 @@ function addListeners(){
         document.getElementById("tab-cinco").click();
     });
 
-    document.getElementById("card_tbla_usuarios").addEventListener('click', () => {
+    document.getElementById("card_tbla_pacientes").addEventListener('click', () => {
         F.slideAnimationTabs();
-        document.getElementById("tab-siete").click();
+        Navegar.registroPacientes()
     })
-
-    
- 
-    
-
-    
     
 
 };
