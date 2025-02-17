@@ -44,8 +44,8 @@ function getView(){
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <button class="btn btn-info btn-sm mb-3" onclick="Navegar.laboratorista()">Regresar</button>
                                 <div class="table-wrap">
-                                
                                     <table class="table">
                                         <thead class="thead-primary">
                                             <tr>
