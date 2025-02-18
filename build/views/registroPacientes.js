@@ -38,22 +38,21 @@ function getView(){
             return `
                     <div class="container-fluid">
                         <div class="row justify-content-center">
-                            <div class="col-md-6 text-center mb-5">
-                                <h2 class="text-center mt-5">Registro de Pacientes</h2>
+                            <div class="col-md-6 text-center mt-2">
+                                <h3 class="text-center mt-5">Registro de Pacientes</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-info btn-sm mb-3" onclick="Navegar.laboratorista()">Regresar</button>
                                 <div class="table-wrap">
                                     <table class="table">
-                                        <thead class="thead-primary">
+                                        <thead class="thead-primary text-white">
                                             <tr>
-                                                <th>COD PACIENTE</th>
-                                                <th>NOMBRE</th>
-                                                <th>EDAD</th>
-                                                <th>EMPRESA</th>
-                                                <th>ACCIONES</th>
+                                                <td>COD PACIENTE</td>
+                                                <td>NOMBRE</td>
+                                                <td>EDAD</td>
+                                                <td>EMPRESA</td>
+                                                <td>ACCIONES</td>
                                             </tr>
                                             </thead>
                                             <tbody id="tblDePacientes">
@@ -63,6 +62,9 @@ function getView(){
                             </div>
                         </div>
                     </div>
+                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" onclick="Navegar.laboratorista()">
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
                     <button class="btn btn-circle btn-xl btn-success btn-bottom-r   hand shadow" id="btnAgregarPacienteModal">
                         <i class="fal fa-plus"></i>
                     </button> 
@@ -89,8 +91,8 @@ function getView(){
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Edad:</label>
-                                            <input type="date" class="form-control" id="txtEdadPaciente"/>
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control" id="txtFechaNacimiento"/>
                                         </div>
                                         
                                         <div class="form-group">
@@ -106,10 +108,7 @@ function getView(){
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Médico Tratante</label>
-                                            <input type="text" class="form-control" id="txtTratantePaciente" />
-                                        </div>
+
                                     </div>
                                 </div>                               
                             </div>
@@ -198,6 +197,8 @@ function addListeners(){
     pintarEmpresasEnSelect();
     pintarEmpresasEnTabla();
 
+    document.getElementById("txtFechaNacimiento").value = F.getFecha();
+
     // Abrir modal para guardar empresa
     document.getElementById("btnAbrirModalEmpresa").addEventListener("click", () => {
         $("#modal_agregar_empresa").modal('show'); 
@@ -217,15 +218,15 @@ function addListeners(){
             if(value==true) {
                 let codPaciente = document.getElementById("txtCodigoPaciente").value;
                 let nombrePaciente = document.getElementById("txtNombrePaciente").value;
-                let fecha_nacimiento = document.getElementById("txtEdadPaciente").value;
+                let fecha_nacimiento = document.getElementById("txtFechaNacimiento").value;
                 let empresaPaciente = document.getElementById("selectEmpresaPaciente").value;
-                let tratanteDePaciente = document.getElementById("txtTratantePaciente").value;
+
                 
                 btnGuardarPaciente.disabled = true;
                 btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                 
 
-                insert_paciente(F.limpiarTexto(codPaciente), F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente, F.limpiarTexto(tratanteDePaciente))
+                insert_paciente(F.limpiarTexto(codPaciente), F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                 .then(() => {
                     F.Aviso("Paciente guardado exitosamente!!!");
                     // document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
@@ -311,8 +312,8 @@ function get_listado_pacientes() {
                         <td>${r.nombre_empresa || 'Sin empresa'}
                         <td>
                             <br>
-                            <button class="btn btn-info btn-sm rounded-pill shadow" onclick="">
-                                <i class="fal fa-edit"></i> Editar Paciente
+                            <button class="btn btn-info btn-sm btn-circle shadow" onclick="">
+                                <i class="fal fa-edit"></i>
                             </button>
                         </td>
                     </tr>
@@ -332,16 +333,15 @@ function get_listado_pacientes() {
 function limpiar_datos_pacientes() {
     document.getElementById("txtCodigoPaciente").value = '';
     document.getElementById("txtNombrePaciente").value = '';
-    document.getElementById("txtEdadPaciente").value = '';
+    document.getElementById("txtFechaNacimiento").value = '';
     document.getElementById("selectEmpresaPaciente").value = '';
-    document.getElementById("txtTratantePaciente").value = '';
 }
 
 function limpiar_datos_empresas(){
     document.getElementById("txtNombreEmpresa").value = '';
 }
 
-function insert_paciente(codPaciente, nombre, fecha_nacimiento, empresa, tratante) {
+function insert_paciente(codPaciente, nombre, fecha_nacimiento, empresa) {
     return new Promise((resolve, reject) => {
 
         axios.post("/insert_paciente", {
@@ -349,7 +349,6 @@ function insert_paciente(codPaciente, nombre, fecha_nacimiento, empresa, tratant
             nombre: nombre,
             fecha_nacimiento: fecha_nacimiento,
             empresa: empresa,
-            tratante: tratante
         })
         .then((response) => {
             let data = response.data;

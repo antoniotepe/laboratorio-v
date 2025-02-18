@@ -330,7 +330,7 @@ app.post("/loginLaboratorio", function(req, res) {
 // Pacientes
 app.post("/insert_paciente", function(req, res) {
 
-  const {id_paciente, nombre, fecha_nacimiento, empresa, tratante } = req.body;
+  const {id_paciente, nombre, fecha_nacimiento, empresa } = req.body;
 
   const calcularEdad = (fecha) => {
     const nacimiento = new Date(fecha);
@@ -348,9 +348,9 @@ app.post("/insert_paciente", function(req, res) {
 
   let qry = `
     INSERT INTO PACIENTES
-      (ID_PACIENTE, NOMBRE, EDAD, TRATANTE, EMPRESA_ID)
+      (ID_PACIENTE, NOMBRE, EDAD, EMPRESA_ID)
         VALUES
-      ('${id_paciente}','${nombre}',${edad},'${tratante}',${empresa})
+      ('${id_paciente}','${nombre}',${edad},${empresa})
   `;
   execute.Query(res, qry);
   console.log(qry);
@@ -360,10 +360,10 @@ app.post("/insert_paciente", function(req, res) {
 app.post("/lista_pacientes", function (req, res) {
   let qry = `
       SELECT 
+          p.id,
           p.id_paciente, 
           p.nombre AS nombre_paciente, 
-          p.edad, 
-          p.tratante, 
+          p.edad,  
           e.nombre AS nombre_empresa
       FROM Pacientes p
       LEFT JOIN Empresas e ON p.empresa_id = e.id;
@@ -395,6 +395,37 @@ app.post("/insert_empresa_paciente", (req, res) => {
     ('${nombreEmpresa}') `;
 
     execute.Query(res, qry);
+
+})
+
+
+// Insertar datos de examen ciprologia
+app.post("/insert_examen_ciprologia", function(req, res) {
+  const { paciente_id, medico_tratante, fecha_nacimiento, macroscopio_color, macroscopio_restos_alimenticios, macroscopio_sangre, macroscopio_consistencia, Moco, PH, quimico_leucocitos, quimico_celulas_vegetales, quimico_almidones, quimico_levaduras, quimico_huevo, quimico_quistes, microscopio_eritrocitos, microscopio_grasas, microscopio_jabon, microscopio_bacterias } = req.body;
+
+  const calcularEdad = (fecha) => {
+    const nacimiento = new Date(fecha);
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const mes = hoy.getMonth() - nacimiento.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--;
+    }
+    return edad;
+  };
+
+  const edad = calcularEdad(fecha_nacimiento);
+
+  let qry = `
+      INSERT INTO EXAMENCIPROLOGIA
+      (PACIENTE_ID, MEDICO_TRATANTE, EDAD, MACROSCOPIO_COLOR, MACROSCOPIO_RESTOS_ALIMENTICIOS, MACROSCOPIO_SANGRE, MACROSCOPIO_CONSISTENCIA, MOCO, PH, QUIMICO_LEUCOCITOS, QUIMICO_CELULAS_VEGETALES, QUIMICO_ALMIDONES, QUIMICO_LEVADURAS, QUIMICO_HUEVO, QUIMICO_QUISTES, MICROSCOPIO_ERITROCITOS, MICROSCOPIO_GRASAS, MICROSCOPIO_JABON, MICROSCOPIO_BACTERIAS)
+        VALUES
+      (${paciente_id}, '${medico_tratante}', ${edad}, '${macroscopio_color}', '${macroscopio_restos_alimenticios}', '${macroscopio_sangre}', '${macroscopio_consistencia}', '${Moco}', '${PH}', '${quimico_leucocitos}', '${quimico_celulas_vegetales}', '${quimico_almidones}', '${quimico_levaduras}', '${quimico_huevo}', '${quimico_quistes}', '${microscopio_eritrocitos}', '${microscopio_grasas}', '${microscopio_jabon}', '${microscopio_bacterias}')
+  `;
+
+  execute.Query(res, qry);
+  console.log(qry);
 
 })
 

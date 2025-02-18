@@ -9,7 +9,7 @@ function getView(){
                             ${view.vista_listado()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ciproanalisis()}
+                            ${view.vista_ciproanalisis() + view.vista_modal_pacientes()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_uroanalisis()}
@@ -115,41 +115,22 @@ function getView(){
         },
         vista_ciproanalisis:()=>{
             return `
-                <div class="container-fluid py-3">
-                    <div class="row bg-info text-white p-3 align-items-center mb-4">
-                        <div class="col-3 col-md-2">
-                            <button class="btn btn-outline-light" onclick="Navegar.laboratorista()">&lt;&lt;</button>
+                <div class="container-fluid mt-4">
+                    <div class="row bg-info text-white p-2 align-items-center mb-2 rounded">                        
+                        <div class="col-12 col-md-6">
+                            <h1 class="mb-0 text-start">COPROLOGÍA</h1>
                         </div>
-                        
-                        <div class="col">
-                            <h1 class="mb-0">COPROLOGÍA</h1>
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <label class="form-label mb-0 text-white">Tipo:</label>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    <select class="form-control">
-                                        <option>COPROLOGÍA</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="mb-2">
                                     <label class="form-label mb-0 text-white">REF:</label>
-                                </div>
-                                <div class="col-6">
                                     <input type="text" class="form-control" value="FEB25-001" readonly>
                                 </div>
-                            </div>
-                            <div class="row align-items-center mt-2">
-                                <div class="col-auto">
+                                <div>
                                     <label class="form-label mb-0 text-white">Fecha:</label>
-                                </div>
-                                <div class="col-6">
                                     <input type="text" class="form-control" value="6/02/2025" readonly>
                                 </div>
+                                
                             </div>
                         </div>
                         
@@ -161,17 +142,17 @@ function getView(){
                                 <label class="col-sm-3 col-form-label text-info">Nombre:</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Buscar Paciente" autocomplete="off" id="txtFiltrarPacientesCiprologia">
-                                        <button class="btn btn-info btn-sm hand shadow" id="btnBuscarPaciente" onclick="get_lista_clientes()">
+                                        <input class="form-control" type="search" placeholder="Buscar paciente" autocomplete="off" id="txtFiltrarPacientesCiprologia">
+                                        <button class="btn btn-info btn-sm hand shadow" id="btnBuscarPaciente" onclick="">
                                             <i class="fal fa-search"></i>
                                         </button>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-3 col-form-label text-info">Edad:</label>
+                                <label class="col-sm-3 col-form-label text-info">Fecha de nacimiento:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control">
+                                    <input type="date" class="form-control" id="fechaNacimientoPacienteCiprologia">
                                 </div>
                             </div>
                         </div>
@@ -179,7 +160,9 @@ function getView(){
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label text-info">Tratante:</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control"></select>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" placeholder="Buscar tratante" autocomplete="off" id="txtMedicoCiprologia">
+                                    </div>
                                 </div>
                             </div>
                         
@@ -192,7 +175,7 @@ function getView(){
                                 <div class="card-header bg-info text-center text-white">Macroscopio</div>
                                 <div class="card-body">
                                     <label class="form-label text-info">Color:</label>
-                                    <input type="search" class="form-control" list="colorHecesListCoprologia" placeholder="...." />
+                                    <input type="search" class="form-control" id="colorHecesMacroscopio" list="colorHecesListCoprologia" placeholder="...." />
                                     <datalist id="colorHecesListCoprologia">
                                         <option value="CAFE"/>
                                         <option value="VERDE"/>
@@ -201,19 +184,19 @@ function getView(){
                                         <option value="NEGRAS" />
                                     </datalist>
                                     <label class="form-label text-info">Restos Alimenticios:</label>
-                                    <input type="search" class="form-control" list="restoAlimenticiosListCoprologia" placeholder="..."/>
+                                    <input type="search" class="form-control" id="restoAlimenticiosMacro" list="restoAlimenticiosListCoprologia" placeholder="..."/>
                                     <datalist id="restoAlimenticiosListCoprologia">
                                         <option value="POSITIVO" />
                                         <option value="NEGATIVO" />
                                     </datalist>
                                     <label class="form-label text-info">Sangre:</label>
-                                    <input type="search" class="form-control" list="sangreListCoprologia" placeholder="..."/>
+                                    <input type="search" class="form-control" id="sangreMacro" list="sangreListCoprologia" placeholder="..."/>
                                     <datalist id="sangreListCoprologia">
                                         <option value="POSITIVO" />
                                         <option value="NEGATIVO" />
                                     </datalist>
                                     <label class="form-label text-info">Consistencia:</label>
-                                    <input type="search" class="form-control" list="consistenciaListCoprologia" placeholder="..."/>
+                                    <input type="search" class="form-control" id="consistenciaMacro" list="consistenciaListCoprologia" placeholder="..."/>
                                     <datalist id="consistenciaListCoprologia">
                                         <option value="FORMADO" />
                                         <option value="SEMI_FORMADO" />
@@ -221,13 +204,13 @@ function getView(){
                                         <option value="SEMI_DIARREICO" />
                                     </datalist>
                                     <label class="form-label text-info">Moco:</label>
-                                    <input type="search" class="form-control" list="mocoListCoprologia" placeholder="..."/>
+                                    <input type="search" class="form-control" id="mocoMacro" list="mocoListCoprologia" placeholder="..."/>
                                     <datalist id="mocoListCoprologia">
                                         <option value="POSITIVO" />
                                         <option value="NEGATIVO" />
                                     </datalist>
                                     <label class="form-label text-info">PH:</label>
-                                    <input type="search" class="form-control" list="phListCoprologia" placeholder="..."/>
+                                    <input type="search" class="form-control" id="phMacro" list="phListCoprologia" placeholder="..."/>
                                     <datalist id="phListCoprologia">
                                         <option value="6"  />
                                         <option value="5" />
@@ -243,7 +226,7 @@ function getView(){
                                 <div class="card-header bg-info text-center text-white">Químico</div>
                                 <div class="card-body">
                                     <label class="form-label text-info">Leucocitos:</label>
-                                    <input type="search" class="form-control" list="idLeucitosQuimico" placeholder="...." />
+                                    <input type="search" class="form-control" id="leucocitosQuimico" list="idLeucitosQuimico" placeholder="...." />
                                     <datalist id="idLeucitosQuimico">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -251,7 +234,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Células Vegetales:</label>
-                                    <input type="search" class="form-control" list="idCelulasQuimico" placeholder="...." />
+                                    <input type="search" class="form-control" id="celulasVegQuimico" list="idCelulasQuimico" placeholder="...." />
                                     <datalist id="idCelulasQuimico">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -259,7 +242,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Almidones:</label>
-                                    <input type="search" class="form-control" list="idAlmidonesQuimico" placeholder="...." />
+                                    <input type="search" class="form-control" id="almidonesQuimico" list="idAlmidonesQuimico" placeholder="...." />
                                     <datalist id="idAlmidonesQuimico">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -267,7 +250,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">levaduras:</label>
-                                    <input type="search" class="form-control" list="idLevadurasQuimico" placeholder="...." />
+                                    <input type="search" class="form-control" id="levadurasQuimico" list="idLevadurasQuimico" placeholder="...." />
                                     <datalist id="idLevadurasQuimico">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -275,7 +258,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Huevo:</label>
-                                    <input type="search" class="form-control" list="idHuevoQuimico" placeholder="...." />
+                                    <input type="search" class="form-control" id="huevoQuimico" list="idHuevoQuimico" placeholder="...." />
                                     <datalist id="idHuevoQuimico">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -283,7 +266,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Quistes:</label>
-                                    <input type="search" class="form-control" list="idQuistesQuimico" placeholder="...." />
+                                    <input type="search" class="form-control" id="quistesQuimico" list="idQuistesQuimico" placeholder="...." />
                                     <datalist id="idQuistesQuimico">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -299,7 +282,7 @@ function getView(){
                                 <div class="card-header bg-info text-center text-white">Microscopio</div>
                                 <div class="card-body">
                                     <label class="form-label text-info">Eritrocitos:</label>
-                                    <input type="search" class="form-control" list="idEritrocitosMicro" placeholder="...." />
+                                    <input type="search" class="form-control" id="eritrocitosMicro" list="idEritrocitosMicro" placeholder="...." />
                                     <datalist id="idEritrocitosMicro">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -307,7 +290,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Grasas:</label>
-                                    <input type="search" class="form-control" list="idGrasasMicro" placeholder="...." />
+                                    <input type="search" class="form-control" id="grasasMicro" list="idGrasasMicro" placeholder="...." />
                                     <datalist id="idGrasasMicro">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -315,7 +298,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Jabón:</label>
-                                    <input type="search" class="form-control" list="idJabonMicro" placeholder="...." />
+                                    <input type="search" class="form-control" id="jabonMicro" list="idJabonMicro" placeholder="...." />
                                     <datalist id="idJabonMicro">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -323,7 +306,7 @@ function getView(){
                                         <option value="VALOR DE EJEMPLO" />
                                     </datalist>
                                     <label class="form-label text-info">Bacterias:</label>
-                                    <input type="search" class="form-control" list="idBacteriasMicro" placeholder="...." />
+                                    <input type="search" class="form-control" id="bacteriasMicro" list="idBacteriasMicro" placeholder="...." />
                                     <datalist id="idBacteriasMicro">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -335,53 +318,35 @@ function getView(){
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12 text-end">
-                            <button class="btn btn-info btn-lg">
-                                <i class="fal fa-save"></i> Guardar
-                            </button>
-                        </div>
-                    </div>
+                    
+                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenCipro">
+                        <i class="fal fa-save"></i>
+                    </button>
+                      
+                  
                 </div>
                 
             `;
         },
         vista_uroanalisis:()=> {
             return `
-                <div class="container-fluid py-3">
+                <div class="container-fluid mt-4">
                 
-                <div class="row bg-info text-white p-3 align-items-center mb-4">
-                    <div class="col-3 col-md-2">
-                        <button class="btn btn-outline-light" onclick="Navegar.laboratorista()">&lt;&lt;</button>
+                <div class="row bg-info text-white p-2 align-items-center mb-2 rounded">
+                    <div class="col-12 col-md-6">
+                        <h1 class="mb-0 text-start">UROLOGÍA</h1>
                     </div>
-                    
-                    <div class="col">
-                        <h1 class="mb-0">UROLOGÍA</h1>
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <label class="form-label mb-0 text-white">Tipo:</label>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <select class="form-control">
-                                    <option>UROLOGÍA</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex flex-column align-items-end mb-4 rounded-top">
+                            <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                            </div>
-                            <div class="col-6">
                                 <input type="text" class="form-control" value="FEB25-001" readonly>
                             </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-auto">
+                            <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                            </div>
-                            <div class="col-6">
                                 <input type="text" class="form-control" value="6/02/2025" readonly>
                             </div>
                         </div>
@@ -395,13 +360,18 @@ function getView(){
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-info">Nombre:</label>
                             <div class="col-sm-9">
-                                <select class="form-control"></select>
+                                <div class="input-group">
+                                    <input class="form-control" type="search" placeholder="Buscar paciente" autcomplete="off" id="">
+                                    <button class="btn btn-info btn-sm hand shadow">
+                                        <i class="fal fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 col-form-label text-info">Edad:</label>
+                            <label class="col-sm-3 col-form-label text-info">Fecha nacimiento:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="date" class="form-control" id="fechaNacimientoPacienteUrologia">
                             </div>
                         </div>
                     </div>
@@ -409,7 +379,7 @@ function getView(){
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-info">Tratante:</label>
                             <div class="col-sm-9">
-                                <select class="form-control"></select>
+                                <input type="text" class="form-control" placeholder="Buscar medico" />
                             </div>
                         </div>
 
@@ -653,53 +623,35 @@ function getView(){
                 </div>
 
               
-                <div class="row">
-                    <div class="col-12 align-items-end">
-                        <button class="btn btn-info btn-lg">
-                            <i class="fal fa-save"></i> Guardar
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="">
+                        <i class="fal fa-save"></i>
+                    </button>
             </div>
             `;
         },
         vista_enfermedades_infecciosas:()=> {
             return `
-                <div class="container-fluid py-3">
+                <div class="container-fluid mt-4">
                
-                <div class="row bg-info text-white p-3 align-items-center mb-4">
-                    <div class="col-3 col-md-2">
-                        <button class="btn btn-outline-light" onclick="Navegar.laboratorista()">&lt;&lt;</button>
-                    </div>
+                <div class="row bg-info text-white p-2 align-items-center mb-2 rounded">
                    
-                    <div class="col">
+                    <div class="col-12 col-md-6">
                         <h1 class="mb-0">ENFERMEDADES INFECCIOSAS</h1>
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <label class="form-label mb-0 text-white">Tipo:</label>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <select class="form-control">
-                                    <option>ENFERMEDADES INFECCIOSAS</option>
-                                </select>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-auto">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex flex-column align-items-end">
+                            <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                            </div>
-                            <div class="col-6">
                                 <input type="text" class="form-control" value="FEB25-001" readonly>
                             </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-auto">
+                        
+                            <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                            </div>
-                            <div class="col-6">
                                 <input type="text" class="form-control" value="6/02/2025" readonly>
+                            
                             </div>
                         </div>
                     </div>
@@ -713,17 +665,17 @@ function getView(){
                             <label class="col-sm-3 col-form-label text-info">Nombre:</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <select class="form-control"></select>
-                                    <button class="btn btn-outline-secondary">
+                                    <input type="search" class="form-control" placeholder="Buscar paciente" autocomplete="off" />
+                                    <button class="btn btn-info btn-sm hand shadow" id="">
                                         <i class="fal fa-search"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 col-form-label text-info">Edad:</label>
+                            <label class="col-sm-3 col-form-label text-info">Fecha nacimiento:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="date" class="form-control" id="fechaNacimientoPacienteEnfermedadesInfec">
                             </div>
                         </div>
                     </div>
@@ -731,7 +683,7 @@ function getView(){
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label text-info">Tratante:</label>
                             <div class="col-sm-9">
-                                <select class="form-control"></select>
+                                <input type="text" class="form-control" placeholder="Buscar medico" />
                             </div>
                         </div>
                        
@@ -1044,7 +996,93 @@ function getView(){
         },
         vista_examenes:()=> {
             return ``;
-        }
+        },
+        vista_modal_pacientes() {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_catalogo_pacientes">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body p-2">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-wrap">
+                                            
+                                                <table class="table">
+                                                    <thead class="thead-primary">
+                                                        <tr>
+                                                            <th>ID PACIENTE</th>
+                                                            <th>NOMBRE</th>
+                                                            <th>ACCIONES</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblCatalogoPacientes">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
+        vista_modal_tratantes() {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_tratantes">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Nombre Empresa:</label>
+                                            <input type="text" class="form-control" id="txtNombreEmpresa"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-wrap">
+                                            
+                                                <table class="table">
+                                                    <thead class="thead-primary">
+                                                        <tr>
+                                                            <th>ID EMPRESA</th>
+                                                            <th>NOMBRE</th>
+                                                            <th>ACCIONES</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblDeEmpresasPacientes">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPaciente">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
     }
 
     root.innerHTML = view.body();
@@ -1053,7 +1091,13 @@ function getView(){
 
 function addListeners(){
 
-    
+    obtenerCatalagoPacientes();
+
+    document.getElementById("fechaNacimientoPacienteCiprologia").value = F.getFecha();
+
+    document.getElementById("fechaNacimientoPacienteUrologia").value = F.getFecha();
+
+    document.getElementById("fechaNacimientoPacienteEnfermedadesInfec").value = F.getFecha();
 
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
@@ -1080,6 +1124,71 @@ function addListeners(){
         Navegar.registroPacientes()
     })
     
+    retrocederVistaLaboratorista();
+    
+
+    document.getElementById("btnBuscarPaciente").addEventListener('click', () => {
+        $("#modal_catalogo_pacientes").modal("show");
+    });
+    
+    // Forzar la recarga de datos cuando el modal se muestra
+    $('#modal_catalogo_pacientes').on('shown.bs.modal', function () {
+        modalPacientesCiprologia();
+    });
+
+    // Guardar examen
+    let btnGuardarExamenCipro = document.getElementById('btnGuardarExamenCipro');
+    btnGuardarExamenCipro.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value == true) {
+                
+                let nombreMedico = document.getElementById("txtMedicoCiprologia").value;
+                let fechaNacimiento = document.getElementById("fechaNacimientoPacienteCiprologia").value;
+                let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value;
+                let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value;
+                let sangreMacro = document.getElementById("sangreMacro").value;
+                let consistenciaMacro = document.getElementById("consistenciaMacro").value;
+                let mocoMacro = document.getElementById("mocoMacro").value;
+                let phMacro = document.getElementById("phMacro").value;
+
+                let leucocitosQuimicos = document.getElementById("leucocitosQuimico").value;
+                let celulasQuimico = document.getElementById("celulasVegQuimico").value;
+                let almidonesQuimico = document.getElementById("almidonesQuimico").value;
+                let levadurasQuimico = document.getElementById("levadurasQuimico").value;
+                let huevoQuimico = document.getElementById("huevoQuimico").value;
+                let quistesQuimico = document.getElementById("quistesQuimico").value;
+                
+                let eritrocitosMicro = document.getElementById("eritrocitosMicro").value;
+                let grasasMicro = document.getElementById("grasasMicro").value;
+                let jabonMicro = document.getElementById("jabonMicro").value;
+                let bacterias = document.getElementById("bacteriasMicro").value;
+
+                btnGuardarExamenCipro.disabled = true;
+                btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenCipro(F.limpiarTexto(nombreMedico), fechaNacimiento, colorHecesMacro, restoAlimentacionMacro, sangreMacro, consistenciaMacro, mocoMacro, phMacro, leucocitosQuimicos, celulasQuimico, almidonesQuimico, levadurasQuimico, huevoQuimico, quistesQuimico, eritrocitosMicro, grasasMicro, jabonMicro, bacterias)
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    Navegar.laboratorista();
+                    // limpiar_datos_examen_ciprologia();
+                    // document.getElementById("tab-dos").click();
+                    btnGuardarExamenCipro.disabled = false;
+                    btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError("No se pudo guardar el examen" + e);
+                    console.log(e);
+                    btnGuardarExamenCipro.disabled = false;
+                    btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .finally(()=> {
+                    btnGuardarExamenCipro.disabled = false;
+                    btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+            }
+        })
+    })
 
 };
 
@@ -1090,3 +1199,143 @@ function initView(){
 
 };
 
+
+function retrocederVistaLaboratorista() {
+    F.slideAnimationTabs();
+    document.getElementById("tab-uno").click();
+
+    // Verificar si el modal está visible y recargar los datos si es necesario
+    if ($('#modal_catalogo_pacientes').is(':visible')) {
+        modalPacientesCiprologia();
+    }
+}
+
+async function obtenerCatalagoPacientes() {
+    try {
+        const response = await axios.post('/lista_pacientes', {});
+        return response.data; // Devuelve los datos de los pacientes
+    } catch (error) {
+        console.error('Error al obtener los pacientes:', error);
+        return []; // Devuelve un array vacío en caso de error
+    }
+}
+
+async function modalPacientesCiprologia() {
+    const tbody = document.getElementById("tblCatalogoPacientes");
+    tbody.innerHTML = GlobalLoader; // Mostrar un loader mientras se cargan los datos
+
+    try {
+        const pacientesCipro = await obtenerCatalagoPacientes(); // Esperar a que se resuelva la promesa
+
+        let str = '';
+
+        if (Array.isArray(pacientesCipro) && pacientesCipro.length > 0) {
+            pacientesCipro.forEach((pacienteCipro) => {
+                console.log(pacienteCipro);
+                str += `
+                    <tr>
+                        <td>${pacienteCipro.id_paciente}</td>
+                        <td>${pacienteCipro.nombre_paciente}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info btn-rounded" 
+                                    data-nombre="${pacienteCipro.nombre_paciente}" 
+                                    data-id="${pacienteCipro.id}">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        } else {
+            str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+        }
+
+        tbody.innerHTML = str;
+
+        // Agregar evento de clic a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientes .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes").modal('hide');
+                // const modal = bootstrap.Modal.getInstance(document.getElementById('modal_catalogo_pacientes'));
+                // modal.hide();
+
+                // Opcional: Mostrar el ID en consola para verificar
+                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
+            });
+        });
+
+    } catch (error) {
+        console.error('Error al cargar los pacientes:', error);
+        tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
+    }
+}
+
+function limpiar_datos_examen_ciprologia() {
+    document.getElementById("txtMedicoCiprologia").value = '';
+    document.getElementById("fechaNacimientoPacienteCiprologia").value = '';
+    document.getElementById("colorHecesMacroscopio").value = '';
+    document.getElementById("restoAlimenticiosMacro").value = '';
+    document.getElementById("sangreMacro").value = '';
+    document.getElementById("consistenciaMacro").value = '';
+    document.getElementById("mocoMacro").value = '';
+    document.getElementById("phMacro").value = '';
+
+    document.getElementById("leucocitosQuimico").value = '';
+    document.getElementById("celulasVegQuimico").value = '';
+    document.getElementById("almidonesQuimico").value = '';
+    document.getElementById("levadurasQuimico").value = '';
+    document.getElementById("huevoQuimico").value = '';
+    document.getElementById("quistesQuimico").value = '';
+                
+    document.getElementById("eritrocitosMicro").value = '';
+    document.getElementById("grasasMicro").value = '';
+    document.getElementById("jabonMicro").value = '';
+    document.getElementById("bacteriasMicro").value = '';
+}
+
+function insertDatosExamenCipro(medicoTratante, edad, macroscopioColor, macroscopioRestosAlimenticios, macroscopioSangre, macroscopioConsistencia, moco, ph, quimicoLeucocitos, quimicoCelulasVegetales, quimicoAlmidones, quimicoLevaduras, quimicoHuevo, quimicoQuistes, microEritrocitos, microGrasas, microJabon, microBacterias) {
+   
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examen_ciprologia", {
+            paciente_id: GlobalIdPaciente,
+            medico_tratante: medicoTratante,
+            fecha_nacimiento: edad,
+            macroscopio_color: macroscopioColor,
+            macroscopio_restos_alimenticios: macroscopioRestosAlimenticios,
+            macroscopio_sangre: macroscopioSangre,
+            macroscopio_consistencia: macroscopioConsistencia,
+            Moco: moco,
+            PH: ph,
+            quimico_leucocitos: quimicoLeucocitos,
+            quimico_celulas_vegetales: quimicoCelulasVegetales,
+            quimico_almidones: quimicoAlmidones,
+            quimico_levaduras: quimicoLevaduras,
+            quimico_huevo: quimicoHuevo,
+            quimico_quistes: quimicoQuistes,
+            microscopio_eritrocitos: microEritrocitos,
+            microscopio_grasas: microGrasas,
+            microscopio_jabon: microJabon,
+            microscopio_bacterias: microBacterias
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+    })
+
+}

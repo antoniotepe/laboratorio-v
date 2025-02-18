@@ -16,6 +16,7 @@ let GlobalUsuario = '';
 let GlobalPass = '';
 let GlobalNivelUsuario = 0;
 let GlobalRolUsuario = '';
+let GlobalIdPaciente = 0;
 
 
 let selected_codcliente = 0;
