@@ -2,14 +2,14 @@ use db_a6478c_laborat;
 
 CREATE TABLE Empresas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL UNIQUE
+    nombre VARCHAR(255)
 );
 
 
 CREATE TABLE Pacientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_paciente VARCHAR(255) UNIQUE,
-    nombre VARCHAR(255) NOT NULL UNIQUE,
+    id_paciente VARCHAR(255),
+    nombre VARCHAR(255) NOT NULL,
     edad INT NOT NULL,
     empresa_id INT, 
     FOREIGN KEY (empresa_id) REFERENCES Empresas(id)

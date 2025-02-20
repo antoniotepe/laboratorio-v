@@ -306,7 +306,7 @@ function getView(){
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-dismiss="modal">
+                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-bs-dismiss="modal">
                             <i class="fal fa-arrow-left"></i>
                         </button>
                     </div>
@@ -383,7 +383,7 @@ function getView(){
 
                                 <div class="row">
                                     <div class="col-6 text-left">
-                                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-dismiss="modal">
+                                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-bs-dismiss="modal">
                                             <i class="fal fa-arrow-left"></i>
                                         </button>
                                     </div>
@@ -504,7 +504,7 @@ function getView(){
                                
                                 <div class="row">
                                     <div class="col-6 text-left">
-                                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-dismiss="modal">
+                                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-bs-dismiss="modal">
                                             <i class="fal fa-arrow-left"></i>
                                         </button>
                                     </div>

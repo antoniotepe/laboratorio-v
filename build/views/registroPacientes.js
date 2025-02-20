@@ -113,7 +113,7 @@ function getView(){
                                 </div>                               
                             </div>
                             <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
                                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPaciente">
@@ -162,7 +162,7 @@ function getView(){
                                 </div>
                             </div>
                             <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
                                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPaciente">
@@ -341,7 +341,7 @@ function limpiar_datos_empresas(){
     document.getElementById("txtNombreEmpresa").value = '';
 }
 
-function insert_paciente(codPaciente, nombre, fecha_nacimiento, empresa) {
+function insert_paciente(codPaciente = 'Sin codigo', nombre, fecha_nacimiento, empresa) {
     return new Promise((resolve, reject) => {
 
         axios.post("/insert_paciente", {

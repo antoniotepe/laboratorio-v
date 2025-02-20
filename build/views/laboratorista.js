@@ -1042,7 +1042,7 @@ function getView(){
                                 </div>
                             </div>
                             <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
                                 
@@ -1088,7 +1088,7 @@ function getView(){
                                 </div>
                             </div>
                             <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
                                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPaciente">

@@ -108,7 +108,7 @@ function getView(){
                                 
                             </div>
                             <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-times"></i>
                                 </button>
                                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarUsuario">
@@ -168,7 +168,7 @@ function getView(){
                                 
                             </div>
                             <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-dismiss="modal">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-times"></i>
                                 </button>
                                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnEditarUsuario">
