@@ -306,7 +306,7 @@ function get_listado_pacientes() {
             data.map((r) => {
                 str += `
                     <tr class="hand">
-                        <td>${r.id_paciente}</td>
+                        <td>${r.id_paciente || 'Sin codigo paciente'}</td>
                         <td>${r.nombre_paciente}</td>
                         <td>${r.edad}</td>
                         <td>${r.nombre_empresa || 'Sin empresa'}

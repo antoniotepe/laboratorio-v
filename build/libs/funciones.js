@@ -704,6 +704,18 @@ let F = {
               //console.log("No estás usando un móvil");
             return 'pc';
           }
+    },
+    formatearFechaANormal: (fechaISO)=>{
+       // Crear un objeto Date a partir de la fecha ISO
+        const fecha = new Date(fechaISO);
+
+        // Obtener día, mes y año
+        const dia = String(fecha.getDate()).padStart(2, '0'); // Asegura 2 dígitos
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
+        const anio = fecha.getFullYear();
+
+        // Devolver la fecha en formato dd-mm-yyyy
+        return `${dia}/${mes}/${anio}`;
     }
 };
 

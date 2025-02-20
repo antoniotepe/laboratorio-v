@@ -27,6 +27,17 @@ let config = {
     queueLimit: 0
 };
 
+// let config = {
+//     user: 'antonioDB',
+//     password: 'antonio',
+//     host: '127.0.0.1',
+//     port: 3307,
+//     database: 'db_laboratorio_test',
+//     waitForConnections: true,
+//     connectionLimit: 10,  // Ajustar según el límite del servidor
+//     queueLimit: 0
+// };
+
 let configx = {
 	user: 'iEx',
 	password: 'iEx',
@@ -101,7 +112,6 @@ let execute = {
         });
     }
 };
-
 
 module.exports = execute;
 

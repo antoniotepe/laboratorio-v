@@ -119,6 +119,15 @@ function getView(){
                     <div class="row bg-info text-white p-2 align-items-center mb-2 rounded">                        
                         <div class="col-12 col-md-6">
                             <h1 class="mb-0 text-start">COPROLOGÍA</h1>
+                            <div class="row mt-3">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label mb-0 text-white">TIPO:</label>
+                                    <select class="form-control" disabled id="txtTipoExamenCopro">
+                                        <option value="COPROLOGIA">Coprologia</option>
+                                    </select>
+                                </div>
+                            
+                            </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="d-flex flex-column align-items-end">
@@ -128,7 +137,7 @@ function getView(){
                                 </div>
                                 <div>
                                     <label class="form-label mb-0 text-white">Fecha:</label>
-                                    <input type="text" class="form-control" value="6/02/2025" readonly>
+                                    <input type="text" class="form-control" value="${F.getFecha()}" readonly>
                                 </div>
                                 
                             </div>
@@ -142,7 +151,7 @@ function getView(){
                                 <label class="col-sm-3 col-form-label text-info">Nombre:</label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
-                                        <input class="form-control" type="search" placeholder="Buscar paciente" autocomplete="off" id="txtFiltrarPacientesCiprologia">
+                                        <input class="form-control" type="search" placeholder="Buscar paciente" autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled>
                                         <button class="btn btn-info btn-sm hand shadow" id="btnBuscarPaciente" onclick="">
                                             <i class="fal fa-search"></i>
                                         </button>
@@ -150,9 +159,9 @@ function getView(){
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-3 col-form-label text-info">Fecha de nacimiento:</label>
+                                <label class="col-sm-3 col-form-label text-info">Fecha:</label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="fechaNacimientoPacienteCiprologia">
+                                    <input type="date" class="form-control" id="fechaCiprologia">
                                 </div>
                             </div>
                         </div>
@@ -162,6 +171,14 @@ function getView(){
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <input class="form-control" type="text" placeholder="Buscar tratante" autocomplete="off" id="txtMedicoCiprologia">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label text-info">Importe:</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" placeholder="$ Ingreso de importe" autocomplete="off" id="FloatImporteCiprologia">
                                     </div>
                                 </div>
                             </div>
@@ -347,7 +364,7 @@ function getView(){
                             </div>
                             <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="text" class="form-control" value="6/02/2025" readonly>
+                                <input type="text" class="form-control" value="${F.getFecha()}" readonly>
                             </div>
                         </div>
                     </div>
@@ -361,7 +378,7 @@ function getView(){
                             <label class="col-sm-3 col-form-label text-info">Nombre:</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Buscar paciente" autcomplete="off" id="">
+                                    <input class="form-control" type="search" placeholder="Buscar paciente" autcomplete="off" id="" disabled>
                                     <button class="btn btn-info btn-sm hand shadow">
                                         <i class="fal fa-search"></i>
                                     </button>
@@ -1093,7 +1110,6 @@ function addListeners(){
 
     obtenerCatalagoPacientes();
 
-    document.getElementById("fechaNacimientoPacienteCiprologia").value = F.getFecha();
 
     document.getElementById("fechaNacimientoPacienteUrologia").value = F.getFecha();
 
@@ -1123,8 +1139,15 @@ function addListeners(){
         F.slideAnimationTabs();
         Navegar.registroPacientes()
     })
+
+    document.getElementById("card_tbla_examenes").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        Navegar.examenes()
+    })
     
     retrocederVistaLaboratorista();
+
+    
     
 
     document.getElementById("btnBuscarPaciente").addEventListener('click', () => {
@@ -1143,8 +1166,13 @@ function addListeners(){
         .then((value) => {
             if(value == true) {
                 
+                // Fecha base para tomar mes y año 
+                let fechaBaseParaTomarMesYAnio =  new Date(document.getElementById("fechaCiprologia").value);
+                
+                let tipo_examen = document.getElementById("txtTipoExamenCopro").value;
                 let nombreMedico = document.getElementById("txtMedicoCiprologia").value;
-                let fechaNacimiento = document.getElementById("fechaNacimientoPacienteCiprologia").value;
+                let importe = document.getElementById("FloatImporteCiprologia").value;
+                let fecha = F.devuelveFecha("fechaCiprologia");
                 let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value;
                 let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value;
                 let sangreMacro = document.getElementById("sangreMacro").value;
@@ -1163,11 +1191,14 @@ function addListeners(){
                 let grasasMicro = document.getElementById("grasasMicro").value;
                 let jabonMicro = document.getElementById("jabonMicro").value;
                 let bacterias = document.getElementById("bacteriasMicro").value;
+                let anio =  fechaBaseParaTomarMesYAnio.getFullYear();
+                let mes = fechaBaseParaTomarMesYAnio.getUTCMonth()+1;
+
 
                 btnGuardarExamenCipro.disabled = true;
                 btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
 
-                insertDatosExamenCipro(F.limpiarTexto(nombreMedico), fechaNacimiento, colorHecesMacro, restoAlimentacionMacro, sangreMacro, consistenciaMacro, mocoMacro, phMacro, leucocitosQuimicos, celulasQuimico, almidonesQuimico, levadurasQuimico, huevoQuimico, quistesQuimico, eritrocitosMicro, grasasMicro, jabonMicro, bacterias)
+                insertDatosExamenCipro(tipo_examen, importe, nombreMedico, fecha, anio, mes, colorHecesMacro, restoAlimentacionMacro, sangreMacro, consistenciaMacro, mocoMacro, phMacro, leucocitosQuimicos, celulasQuimico, almidonesQuimico, levadurasQuimico, huevoQuimico, quistesQuimico, eritrocitosMicro, grasasMicro, jabonMicro, bacterias)
                 .then(() => {
                     F.Aviso("Examen guardado exitosamente!!!");
                     Navegar.laboratorista();
@@ -1189,6 +1220,8 @@ function addListeners(){
             }
         })
     })
+
+
 
 };
 
@@ -1234,7 +1267,7 @@ async function modalPacientesCiprologia() {
                 console.log(pacienteCipro);
                 str += `
                     <tr>
-                        <td>${pacienteCipro.id_paciente}</td>
+                        <td>${pacienteCipro.id_paciente || 'Sin ID'}</td>
                         <td>${pacienteCipro.nombre_paciente}</td>
                         <td>
                             <button class="btn btn-sm btn-info btn-rounded" 
@@ -1304,29 +1337,33 @@ function limpiar_datos_examen_ciprologia() {
     document.getElementById("bacteriasMicro").value = '';
 }
 
-function insertDatosExamenCipro(medicoTratante, edad, macroscopioColor, macroscopioRestosAlimenticios, macroscopioSangre, macroscopioConsistencia, moco, ph, quimicoLeucocitos, quimicoCelulasVegetales, quimicoAlmidones, quimicoLevaduras, quimicoHuevo, quimicoQuistes, microEritrocitos, microGrasas, microJabon, microBacterias) {
+function insertDatosExamenCipro(tipo_examen, importe, medico_tratante, fecha, anio, mes, copro_macroscopio_color, copro_macroscopio_restos_alimenticios, copro_macroscopio_sangre, copro_macroscopio_consistencia, copro_macroscopio_Moco, copro_macroscopio_PH, copro_quimico_leucocitos, copro_quimico_celulas_vegetales, copro_quimico_almidones, copro_quimico_levaduras, copro_quimico_huevo, copro_quimico_quistes, copro_microscopio_eritrocitos, copro_microscopio_grasas, copro_microscopio_jabon, copro_microscopio_bacterias) {
    
     return new Promise((resolve, reject) => {
         axios.post("/insert_examen_ciprologia", {
+            tipo_examen: tipo_examen,
             paciente_id: GlobalIdPaciente,
-            medico_tratante: medicoTratante,
-            fecha_nacimiento: edad,
-            macroscopio_color: macroscopioColor,
-            macroscopio_restos_alimenticios: macroscopioRestosAlimenticios,
-            macroscopio_sangre: macroscopioSangre,
-            macroscopio_consistencia: macroscopioConsistencia,
-            Moco: moco,
-            PH: ph,
-            quimico_leucocitos: quimicoLeucocitos,
-            quimico_celulas_vegetales: quimicoCelulasVegetales,
-            quimico_almidones: quimicoAlmidones,
-            quimico_levaduras: quimicoLevaduras,
-            quimico_huevo: quimicoHuevo,
-            quimico_quistes: quimicoQuistes,
-            microscopio_eritrocitos: microEritrocitos,
-            microscopio_grasas: microGrasas,
-            microscopio_jabon: microJabon,
-            microscopio_bacterias: microBacterias
+            importe: importe,
+            medico_tratante: medico_tratante,
+            fecha: fecha,
+            anio: anio,
+            mes: mes,
+            copro_macroscopio_color: copro_macroscopio_color,
+            copro_macroscopio_restos_alimenticios: copro_macroscopio_restos_alimenticios,
+            copro_macroscopio_sangre: copro_macroscopio_sangre,
+            copro_macroscopio_consistencia: copro_macroscopio_consistencia,
+            copro_macroscopio_Moco: copro_macroscopio_Moco,
+            copro_macroscopio_PH: copro_macroscopio_PH,
+            copro_quimico_leucocitos: copro_quimico_leucocitos,
+            copro_quimico_celulas_vegetales: copro_quimico_celulas_vegetales,
+            copro_quimico_almidones: copro_quimico_almidones,
+            copro_quimico_levaduras: copro_quimico_levaduras,
+            copro_quimico_huevo: copro_quimico_huevo,
+            copro_quimico_quistes: copro_quimico_quistes,
+            copro_microscopio_eritrocitos: copro_microscopio_eritrocitos,
+            copro_microscopio_grasas: copro_microscopio_grasas,
+            copro_microscopio_jabon: copro_microscopio_jabon,
+            copro_microscopio_bacterias: copro_microscopio_bacterias
         })
         .then((response) => {
             let data = response.data;

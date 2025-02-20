@@ -401,33 +401,59 @@ app.post("/insert_empresa_paciente", (req, res) => {
 
 // Insertar datos de examen ciprologia
 app.post("/insert_examen_ciprologia", function(req, res) {
-  const { paciente_id, medico_tratante, fecha_nacimiento, macroscopio_color, macroscopio_restos_alimenticios, macroscopio_sangre, macroscopio_consistencia, Moco, PH, quimico_leucocitos, quimico_celulas_vegetales, quimico_almidones, quimico_levaduras, quimico_huevo, quimico_quistes, microscopio_eritrocitos, microscopio_grasas, microscopio_jabon, microscopio_bacterias } = req.body;
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, copro_macroscopio_color, copro_macroscopio_restos_alimenticios, copro_macroscopio_sangre, copro_macroscopio_consistencia, copro_macroscopio_Moco, copro_macroscopio_PH, copro_quimico_leucocitos, copro_quimico_celulas_vegetales, copro_quimico_almidones, copro_quimico_levaduras, copro_quimico_huevo, copro_quimico_quistes, copro_microscopio_eritrocitos, copro_microscopio_grasas, copro_microscopio_jabon, copro_microscopio_bacterias } = req.body;
 
-  const calcularEdad = (fecha) => {
-    const nacimiento = new Date(fecha);
-    const hoy = new Date();
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const mes = hoy.getMonth() - nacimiento.getMonth();
-
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
-    return edad;
-  };
-
-  const edad = calcularEdad(fecha_nacimiento);
 
   let qry = `
-      INSERT INTO EXAMENCIPROLOGIA
-      (PACIENTE_ID, MEDICO_TRATANTE, EDAD, MACROSCOPIO_COLOR, MACROSCOPIO_RESTOS_ALIMENTICIOS, MACROSCOPIO_SANGRE, MACROSCOPIO_CONSISTENCIA, MOCO, PH, QUIMICO_LEUCOCITOS, QUIMICO_CELULAS_VEGETALES, QUIMICO_ALMIDONES, QUIMICO_LEVADURAS, QUIMICO_HUEVO, QUIMICO_QUISTES, MICROSCOPIO_ERITROCITOS, MICROSCOPIO_GRASAS, MICROSCOPIO_JABON, MICROSCOPIO_BACTERIAS)
+      INSERT INTO EXAMENES
+      (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, COPRO_MACROSCOPIO_COLOR, COPRO_MACROSCOPIO_RESTOS_ALIMENTICIOS, COPRO_MACROSCOPIO_SANGRE, COPRO_MACROSCOPIO_CONSISTENCIA, COPRO_MACROSCOPIO_MOCO, COPRO_MACROSCOPIO_PH, COPRO_QUIMICO_LEUCOCITOS, COPRO_QUIMICO_CELULAS_VEGETALES, COPRO_QUIMICO_ALMIDONES, COPRO_QUIMICO_LEVADURAS, COPRO_QUIMICO_HUEVO, COPRO_QUIMICO_QUISTES, COPRO_MICROSCOPIO_ERITROCITOS, COPRO_MICROSCOPIO_GRASAS, COPRO_MICROSCOPIO_JABON, COPRO_MICROSCOPIO_BACTERIAS)
         VALUES
-      (${paciente_id}, '${medico_tratante}', ${edad}, '${macroscopio_color}', '${macroscopio_restos_alimenticios}', '${macroscopio_sangre}', '${macroscopio_consistencia}', '${Moco}', '${PH}', '${quimico_leucocitos}', '${quimico_celulas_vegetales}', '${quimico_almidones}', '${quimico_levaduras}', '${quimico_huevo}', '${quimico_quistes}', '${microscopio_eritrocitos}', '${microscopio_grasas}', '${microscopio_jabon}', '${microscopio_bacterias}')
+      ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${copro_macroscopio_color}', '${copro_macroscopio_restos_alimenticios}', '${copro_macroscopio_sangre}', '${copro_macroscopio_consistencia}', '${copro_macroscopio_Moco}', '${copro_macroscopio_PH}', '${copro_quimico_leucocitos}', '${copro_quimico_celulas_vegetales}', '${copro_quimico_almidones}', '${copro_quimico_levaduras}', '${copro_quimico_huevo}', '${copro_quimico_quistes}', '${copro_microscopio_eritrocitos}', '${copro_microscopio_grasas}', '${copro_microscopio_jabon}', '${copro_microscopio_bacterias}')
   `;
 
   execute.Query(res, qry);
   console.log(qry);
 
 })
+
+// Obtener examen ciprologia
+app.post("/obtenerExamenesCoprologia", (req, res) => {
+  const { tipo, mes, anio } = req.body;
+
+  let qry = `
+    SELECT Examenes.*, Pacientes.nombre AS nombre_paciente
+    FROM Examenes
+    INNER JOIN Pacientes ON Examenes.paciente_id = Pacientes.id
+    WHERE tipo_examen = '${tipo}'
+    AND st = 1
+  `;
+
+  if (mes) {
+    qry += ` AND MONTH(fecha) = ${mes}`;
+  }
+
+  if (anio) {
+    qry += ` AND YEAR(fecha) = ${anio}`;
+  }
+
+  execute.Query(res, qry);
+  console.log(qry);
+});
+
+
+app.post("/eliminarExamen", (req, res) => {
+  const { id } = req.body;
+
+  const qry = `
+    UPDATE Examenes
+    SET st = 0
+    WHERE id = ${id};
+  `;
+
+  // Ejecutar la consulta
+  execute.Query(res, qry,);
+  console.log(qry, [id]);
+});
 
 app.use("/",router);
 
