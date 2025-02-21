@@ -455,6 +455,25 @@ app.post("/eliminarExamen", (req, res) => {
   console.log(qry, [id]);
 });
 
+
+// Insertar datos de examen urologia
+app.post("/insert_examen_urologia", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, uro_macro_color, uro_macro_aspecto, uro_macro_densidad, uro_macro_ph, uro_quimico_leucocitos, uro_quimico_glucosa, uro_quimico_proteinas, uro_quimico_cetonas, uro_quimico_hemoglobina, uro_quimico_urobilinogeno, uro_quimico_nitritos, uro_quimico_acido_ascorbico, uro_quimico_bilirrubina, uro_micro_leucocitos, uro_micro_eritocitos, uro_micro_c_epiteliales, uro_micro_bacterias, uro_micro_cristales, uro_micro_cilindros, uro_micro_otros } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, URO_MACRO_COLOR, URO_MACRO_ASPECTO, URO_MACRO_DENSIDAD, URO_MACRO_PH, URO_QUIMICO_LEUCOCITOS, URO_QUIMICO_GLUCOSA, URO_QUIMICO_PROTEINAS, URO_QUIMICO_CETONAS, URO_QUIMICO_HEMOGLOBINA, URO_QUIMICO_UROBILINOGENO, URO_QUIMICO_NITRITOS, URO_QUIMICO_ACIDO_ASCORBICO, URO_QUIMICO_BILIRRUBINA, URO_MICRO_LEUCOCITOS, URO_MICRO_ERITOCITOS, URO_MICRO_C_EPITELIALES, URO_MICRO_BACTERIAS, URO_MICRO_CRISTALES, URO_MICRO_CILINDROS, URO_MICRO_OTROS)
+      VALUES
+    ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${uro_macro_color}', '${uro_macro_aspecto}', '${uro_macro_densidad}', '${uro_macro_ph}', '${uro_quimico_leucocitos}', '${uro_quimico_glucosa}', '${uro_quimico_proteinas}', '${uro_quimico_cetonas}', '${uro_quimico_hemoglobina}', '${uro_quimico_urobilinogeno}', '${uro_quimico_nitritos}', '${uro_quimico_acido_ascorbico}', '${uro_quimico_bilirrubina}', '${uro_micro_leucocitos}', '${uro_micro_eritocitos}', '${uro_micro_c_epiteliales}', '${uro_micro_bacterias}', '${uro_micro_cristales}', '${uro_micro_cilindros}', '${uro_micro_otros}')
+  `;
+
+    execute.Query(res, qry);
+    console.log(qry);
+
+})
+
+
+
 app.use("/",router);
 
 app.use("*",function(req,res){

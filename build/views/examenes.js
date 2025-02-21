@@ -131,6 +131,7 @@ function getView(){
 };
 
 function addListeners(){
+    pintarTablaExamen();
     const tipoSelect = document.getElementById("txtSelectTipo");
     const mesSelect = document.getElementById("txtSelectMes");
     const anioSelect = document.getElementById("txtSelectAnio");
@@ -145,6 +146,7 @@ function addListeners(){
     tipoSelect.addEventListener("change", filtrar);
     mesSelect.addEventListener("change", filtrar);
     anioSelect.addEventListener("change", filtrar);
+
 }
 
 function initView(){
@@ -191,11 +193,11 @@ async function pintarTablaExamen(tipo, mes, anio) {
                   });
                 tbody.innerHTML = str;
             } else {
-                tbody.innerHTML = '<tr><td colspan="3">No hay datos...</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="3">No hay datos de examenes...</td></tr>';
             }
         })
         .catch((error) => {
-            tbody.innerHTML = '<tr><td colspan="3">No hay datos...</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="3">No hay datos de examenes...</td></tr>';
             console.log(error);
         })
 }

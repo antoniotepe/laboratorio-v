@@ -44,7 +44,7 @@ function getView(){
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="table-wrap">
+                                <div class="table-responsive">
                                     <table class="table">
                                         <thead class="thead-primary text-white">
                                             <tr>
@@ -52,7 +52,7 @@ function getView(){
                                                 <td>NOMBRE</td>
                                                 <td>EDAD</td>
                                                 <td>EMPRESA</td>
-                                                <td>ACCIONES</td>
+                                                <td></td>
                                             </tr>
                                             </thead>
                                             <tbody id="tblDePacientes">
@@ -143,7 +143,7 @@ function getView(){
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="table-wrap">
+                                            <div class="table-responsive">
                                             
                                                 <table class="table">
                                                     <thead class="thead-primary">
@@ -182,16 +182,6 @@ function getView(){
 
 function addListeners(){
 
-   // document.getElementById('txtFiltrar').addEventListener('keyup',(e)=>{
-        
-    //     if (e.key === "Enter") {
-    //         document.getElementById("btnBuscarPaciente").click();
-    //     }
-    //     if (e.keycode === 13) {
-    //         document.getElementById("btnBuscarPaciente").click();
-    //     }
-        
-    // })
     get_listado_pacientes();
     obtenerCatalogoEmpresas();
     pintarEmpresasEnSelect();
@@ -207,6 +197,7 @@ function addListeners(){
     // Abrir el modal para guardar nuevo paciente
     document.getElementById("btnAgregarPacienteModal").addEventListener('click', () => {
         $("#modal_agregar_paciente").modal('show');
+        pintarEmpresasEnSelect();
     })
 
     // Logica para guardar pacientes
@@ -224,6 +215,8 @@ function addListeners(){
                 
                 btnGuardarPaciente.disabled = true;
                 btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                console.log(fecha_nacimiento);
                 
 
                 insert_paciente(F.limpiarTexto(codPaciente), F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
@@ -264,6 +257,7 @@ function addListeners(){
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa").modal('hide'); 
                     pintarEmpresasEnSelect();
+                    pintarEmpresasEnTabla();
                     limpiar_datos_empresas();
 
                     btnGuardarEmpresaPaciente.disabled = false;
@@ -285,7 +279,7 @@ function initView(){
 
     getView();
     addListeners();
-
+    get_listado_pacientes();
 };
 
 
@@ -322,7 +316,7 @@ function get_listado_pacientes() {
 
             container.innerHTML = str;
         } else {
-            container.innerHTML = 'No hay datos...';
+            container.innerHTML = 'No hay datos de pacientes...';
         }
     })
     .catch((error) => {

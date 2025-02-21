@@ -9,10 +9,10 @@ function getView(){
                             ${view.vista_listado()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ciproanalisis() + view.vista_modal_pacientes()}
+                            ${view.vista_ciproanalisis() + view.vista_modal_pacientes_copro()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_uroanalisis()}
+                            ${view.vista_uroanalisis() + view.vista_modal_pacientes_urologia()}
                         </div>    
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_enfermedades_infecciosas()}
@@ -141,7 +141,7 @@ function getView(){
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
                                 <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled>
-                                <button class="btn btn-info btn-sm hand shadow" id="btnBuscarPaciente" onclick="">
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalCoprologia()">
                                     <i class="fal fa-search"></i>
                                 </button>
                             </div>
@@ -328,8 +328,8 @@ function getView(){
                 
                 <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
                        <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoExamenUrogolia">
-                                <strong>UROLOGÍA</strong>
+                            <div class="h3" id="txtTipoExamenUrologia">
+                                <strong>UROLOGIA</strong>
                             </div>
                        </div>
                        <div class="col-12 col-md-3">
@@ -346,34 +346,27 @@ function getView(){
                        </div>
                 </div>
                
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-info">Nombre:</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Buscar paciente" autcomplete="off" id="" disabled>
-                                    <button class="btn btn-info btn-sm hand shadow">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label text-info">Fecha nacimiento:</label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" id="fechaNacimientoPacienteUrologia">
-                            </div>
+                <div class="row mb-2 rounded d-flex justify-content-between">
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autcomplete="off" id="txtFiltrarPacientesUrologia" disabled>
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesUrologia()">
+                                <i class="fal fa-search"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-info">Tratante:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Buscar medico" />
-                            </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoUrologia" />
                         </div>
-
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                            <input class="form-control bg-amarillo rounded" type="text" placeholder="$ Ingreso de importe" autocomplete="off" id="FloatImporteUrologia">
+                        </div>
                     </div>
                 </div>
 
@@ -388,7 +381,7 @@ function getView(){
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label class="form-label text-info">Color:</label>
-                                    <input type="search" class="form-control" list="colorHecesListUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="colorHecesMacroUrologia" list="colorHecesListUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="colorHecesListUrologia">
                                         <option value="AMARILLO"/>
                                         <option value="MARRON"/>
@@ -397,7 +390,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Aspecto:</label>
-                                    <input type="search" class="form-control" list="aspectoListUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="aspectoMacroUrologia" list="aspectoListUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="aspectoListUrologia">
                                         <option value="LIGERAMENTE TURBIO"/>
                                         <option value="TURBIO"/>
@@ -406,7 +399,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Densidad:</label>
-                                    <input type="search" class="form-control" list="densidadListUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="densidadMacroUrologia" list="densidadListUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="densidadListUrologia">
                                         <option value="1.000" />
                                         <option value="1.005" />
@@ -419,7 +412,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">PH:</label>
-                                    <input type="search" class="form-control" list="phListUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="phMacroUrologia" list="phListUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="phListUrologia">
                                         <option value="5.0" />
                                         <option value="6.0" />
@@ -442,7 +435,7 @@ function getView(){
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label class="form-label text-info">Leucocitos:</label>
-                                    <input type="search" class="form-control" list="leucocitosListQuimicoUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="leucocitosQuimicoUrologia" list="leucocitosListQuimicoUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="leucocitosListQuimicoUrologia">
                                         <option value="NEGATIVO" />
                                         <option value="+" />
@@ -452,7 +445,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Glucosa:</label>
-                                    <input type="search" class="form-control" list="glucosaListQuimicoUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="glucosaQuimicoUrologia" list="glucosaListQuimicoUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="glucosaListQuimicoUrologia">
                                         <option value="NEGATIVO" />
                                         <option value="+" />
@@ -463,7 +456,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Proteínas:</label>
-                                    <input type="search" class="form-control" list="proteinasQuimicoListUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="proteinasQuimicoUrologia" list="proteinasQuimicoListUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="proteinasQuimicoListUrologia">
                                         <option value="NEGATIVO" />
                                         <option value="+" />
@@ -473,7 +466,7 @@ function getView(){
                                 </div>    
                                 <div class="mb-3">
                                     <label class="form-label text-info">Cetonas:</label>
-                                    <input type="search" class="form-control" list="cetonasQuimicoListUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="cetonasQuimicoUrologia" list="cetonasQuimicoListUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="cetonasQuimicoListUrologia">
                                         <option value="NEGATIVO" />
                                         <option value="0.5 mmol/l" />
@@ -486,7 +479,7 @@ function getView(){
                                 
                                 <div class="mb-3">
                                     <label class="form-label text-info">Hemoglobina:</label>
-                                    <input type="search" class="form-control" list="idHemoglobinaUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="hemoglobinaQuimicoUrologia" list="idHemoglobinaUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idHemoglobinaUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -495,7 +488,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Urobilinógeno:</label>
-                                    <input type="search" class="form-control" list="urobiligenoListQuimicoUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="urobiligenoQuimicoUrologia" list="urobiligenoListQuimicoUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="urobiligenoListQuimicoUrologia">
                                         <option value="NORMAL" />
                                         <option value="+" />
@@ -505,7 +498,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Nitritos:</label>
-                                    <input type="search" class="form-control" list="nitritosListQuimicoUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="nitritoQuimicoUrologia" list="nitritosListQuimicoUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="nitritosListQuimicoUrologia">
                                         <option value="POSITIVO" />
                                         <option value="NEGATIVO" />
@@ -513,7 +506,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Ácido Ascórbico:</label>
-                                    <input type="search" class="form-control" list="idAcidoAscorbicoUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="acidoAscorbicoQuimicoUrologia" list="idAcidoAscorbicoUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idAcidoAscorbicoUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -522,7 +515,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Bilirrubina:</label>
-                                    <input type="search" class="form-control" list="bilirrubinaListQuimicoUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="bilirrubinaQuimicoUrologia" list="bilirrubinaListQuimicoUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="bilirrubinaListQuimicoUrologia">
                                         <option value="NEGATIVO" />
                                         <option value="17 µmol/l" />
@@ -543,7 +536,7 @@ function getView(){
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label class="form-label text-info">Leucocitos:</label>
-                                    <input type="search" class="form-control" list="leucocitosListMicroscopioUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="leucocitosMicroUrologia" list="leucocitosListMicroscopioUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="leucocitosListMicroscopioUrologia">
                                         <option value="NEGATIVO" />
                                         <option value="+" />
@@ -553,7 +546,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Eritocitos:</label>
-                                    <input type="search" class="form-control" list="idEritocitosUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="eritrocitosMicroUrologia" list="idEritocitosUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idEritocitosUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -562,7 +555,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">C. Epiteliales:</label>
-                                    <input type="search" class="form-control" list="idEpitelialesUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="epitelialesMicroUrologia" list="idEpitelialesUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idEpitelialesUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -571,7 +564,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Bacterias:</label>
-                                    <input type="search" class="form-control" list="idBacteriasUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="bacteriasMicroUrologia" list="idBacteriasUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idBacteriasUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -580,8 +573,8 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Cristales:</label>
-                                    <input type="search" class="form-control" list="idCristalesUrologia" placeholder="...." />
-                                    <datalist id="idCristalUrologia">
+                                    <input type="search" class="form-control bg-amarillo" id="cristalesMicroUrologia" list="idCristalesUrologia" placeholder="Ingrese valor..." />
+                                    <datalist id="idCristalesUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -589,7 +582,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Cilindros:</label>
-                                    <input type="search" class="form-control" list="idCilindrosUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="cilindrosMicroUrologia" list="idCilindrosUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idCilindrosUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -598,7 +591,7 @@ function getView(){
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label text-info">Otros:</label>
-                                    <input type="search" class="form-control" list="idOtrosUrologia" placeholder="...." />
+                                    <input type="search" class="form-control bg-amarillo" id="otrosMicroUrologia" list="idOtrosUrologia" placeholder="Ingrese valor..." />
                                     <datalist id="idOtrosUrologia">
                                         <option value="VALOR DE EJEMPLO" />
                                         <option value="VALOR DE EJEMPLO" />
@@ -617,7 +610,7 @@ function getView(){
                 <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
-                    <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="">
+                    <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenUrologia">
                         <i class="fal fa-save"></i>
                     </button>
             </div>
@@ -988,90 +981,78 @@ function getView(){
         vista_examenes:()=> {
             return ``;
         },
-        vista_modal_pacientes() {
+        vista_modal_pacientes_copro() {
             return `
-                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_catalogo_pacientes">
-                    <div class="modal-dialog modal-dialog-right modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-body p-2">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-wrap">
-                                            
-                                                <table class="table">
-                                                    <thead class="thead-primary">
-                                                        <tr>
-                                                            <th>ID PACIENTE</th>
-                                                            <th>NOMBRE</th>
-                                                            <th>ACCIONES</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody id="tblCatalogoPacientes">
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                <div class="modal fade" id="modal_catalogo_pacientes_coprologia">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-wrap">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <th>ID PACIENTE</th>
+                                                        <th>NOMBRE</th>
+                                                        <th>ACCIONES</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesCoprologia">
+                                                    <!-- Aquí se cargarán los datos -->
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
-                                    <i class="fal fa-arrow-left"></i>
-                                </button>
-                                
-                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
             `;
         },
-        vista_modal_tratantes() {
+        vista_modal_pacientes_urologia() {
             return `
-                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_tratantes">
-                    <div class="modal-dialog modal-dialog-right modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-body p-2">
-                                <div class="card card-rounded shadow p-4">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label>Nombre Empresa:</label>
-                                            <input type="text" class="form-control" id="txtNombreEmpresa"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-wrap">
-                                            
-                                                <table class="table">
-                                                    <thead class="thead-primary">
-                                                        <tr>
-                                                            <th>ID EMPRESA</th>
-                                                            <th>NOMBRE</th>
-                                                            <th>ACCIONES</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody id="tblDeEmpresasPacientes">
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                <div class="modal fade" id="modal_catalogo_pacientes_urologia">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-wrap">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <th>ID PACIENTE</th>
+                                                        <th>NOMBRE</th>
+                                                        <th>ACCIONES</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesUrologia">
+                                                   
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer text-center">
-                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
-                                    <i class="fal fa-arrow-left"></i>
-                                </button>
-                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPaciente">
-                                    <i class="fal fa-save"></i>
-                                </button>
-                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
             `;
         },
     }
@@ -1085,7 +1066,7 @@ function addListeners(){
     obtenerCatalagoPacientes();
 
 
-    document.getElementById("fechaNacimientoPacienteUrologia").value = F.getFecha();
+
     document.getElementById("fechaCiprologia").value = F.getFecha();
 
     document.getElementById("fechaUrologia").value = F.getFecha();
@@ -1113,27 +1094,181 @@ function addListeners(){
     });
 
     document.getElementById("card_tbla_pacientes").addEventListener('click', () => {
-        F.slideAnimationTabs();
-        Navegar.registroPacientes()
-    })
+        Navegar.registroPacientes(); 
+    });
 
     document.getElementById("card_tbla_examenes").addEventListener('click', () => {
-        F.slideAnimationTabs();
-        Navegar.examenes()
+        Navegar.examenes();
     })
     
     retrocederVistaLaboratorista();
 
-    
-    
+};
 
-    document.getElementById("btnBuscarPaciente").addEventListener('click', () => {
-        $("#modal_catalogo_pacientes").modal("show");
-    });
+function initView(){
+
+    getView();
+    addListeners();
+
+};
+
+
+function retrocederVistaLaboratorista() {
+    F.slideAnimationTabs();
+    document.getElementById("tab-uno").click();
+
+    // Verificar si el modal está visible y recargar los datos si es necesario
+    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
+        modalPacientesCoprologia();
+    }
+
+    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
+        modalPacientesUrologia();
+    }
+}
+
+async function obtenerCatalagoPacientes() {
+    try {
+        const response = await axios.post('/lista_pacientes', {});
+        return response.data;
+    } catch (error) {
+        console.error('Error al obtener los pacientes:', error);
+        return [];
+    }
+}
+
+async function modalPacientesCoprologia() {
+    const tbody = document.getElementById("tblCatalogoPacientesCoprologia");
+    tbody.innerHTML = GlobalLoader; 
+
+    try {
+        const pacientesUro = await obtenerCatalagoPacientes(); 
+
+        let str = '';
+
+        if (Array.isArray(pacientesUro) && pacientesUro.length > 0) {
+            pacientesUro.forEach((pacientesUro) => {
+                console.log(pacientesUro);
+                str += `
+                    <tr>
+                        <td>${pacientesUro.id_paciente || 'Sin ID'}</td>
+                        <td>${pacientesUro.nombre_paciente}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info btn-rounded" 
+                                    data-nombre="${pacientesUro.nombre_paciente}" 
+                                    data-id="${pacientesUro.id}">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        } else {
+            str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+        }
+
+        tbody.innerHTML = str;
+
+        // Agregar evento de clic a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_coprologia").modal('hide');
+
+
+                // Opcional: Mostrar el ID en consola para verificar
+                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
+            });
+        });
+
+    } catch (error) {
+        console.error('Error al cargar los pacientes:', error);
+        tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
+    }
+}
+
+function limpiar_datos_examen_ciprologia() {
+    document.getElementById("txtMedicoCiprologia").value = '';
+    document.getElementById("fechaNacimientoPacienteCiprologia").value = '';
+    document.getElementById("colorHecesMacroscopio").value = '';
+    document.getElementById("restoAlimenticiosMacro").value = '';
+    document.getElementById("sangreMacro").value = '';
+    document.getElementById("consistenciaMacro").value = '';
+    document.getElementById("mocoMacro").value = '';
+    document.getElementById("phMacro").value = '';
+
+    document.getElementById("leucocitosQuimico").value = '';
+    document.getElementById("celulasVegQuimico").value = '';
+    document.getElementById("almidonesQuimico").value = '';
+    document.getElementById("levadurasQuimico").value = '';
+    document.getElementById("huevoQuimico").value = '';
+    document.getElementById("quistesQuimico").value = '';
+                
+    document.getElementById("eritrocitosMicro").value = '';
+    document.getElementById("grasasMicro").value = '';
+    document.getElementById("jabonMicro").value = '';
+    document.getElementById("bacteriasMicro").value = '';
+}
+
+function insertDatosExamenCipro(tipo_examen, importe, medico_tratante, fecha, anio, mes, copro_macroscopio_color, copro_macroscopio_restos_alimenticios, copro_macroscopio_sangre, copro_macroscopio_consistencia, copro_macroscopio_Moco, copro_macroscopio_PH, copro_quimico_leucocitos, copro_quimico_celulas_vegetales, copro_quimico_almidones, copro_quimico_levaduras, copro_quimico_huevo, copro_quimico_quistes, copro_microscopio_eritrocitos, copro_microscopio_grasas, copro_microscopio_jabon, copro_microscopio_bacterias) {
+   
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examen_ciprologia", {
+            tipo_examen: tipo_examen,
+            paciente_id: GlobalIdPaciente,
+            importe: importe,
+            medico_tratante: medico_tratante,
+            fecha: fecha,
+            anio: anio,
+            mes: mes,
+            copro_macroscopio_color: copro_macroscopio_color,
+            copro_macroscopio_restos_alimenticios: copro_macroscopio_restos_alimenticios,
+            copro_macroscopio_sangre: copro_macroscopio_sangre,
+            copro_macroscopio_consistencia: copro_macroscopio_consistencia,
+            copro_macroscopio_Moco: copro_macroscopio_Moco,
+            copro_macroscopio_PH: copro_macroscopio_PH,
+            copro_quimico_leucocitos: copro_quimico_leucocitos,
+            copro_quimico_celulas_vegetales: copro_quimico_celulas_vegetales,
+            copro_quimico_almidones: copro_quimico_almidones,
+            copro_quimico_levaduras: copro_quimico_levaduras,
+            copro_quimico_huevo: copro_quimico_huevo,
+            copro_quimico_quistes: copro_quimico_quistes,
+            copro_microscopio_eritrocitos: copro_microscopio_eritrocitos,
+            copro_microscopio_grasas: copro_microscopio_grasas,
+            copro_microscopio_jabon: copro_microscopio_jabon,
+            copro_microscopio_bacterias: copro_microscopio_bacterias
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+    })
+
+}
+
+
+function getAbrirModalCoprologia() {
+    
+        $("#modal_catalogo_pacientes_coprologia").modal("show");
+
     
     // Forzar la recarga de datos cuando el modal se muestra
-    $('#modal_catalogo_pacientes').on('shown.bs.modal', function () {
-        modalPacientesCiprologia();
+    $('#modal_catalogo_pacientes_coprologia').on('shown.bs.modal', function () {
+        modalPacientesCoprologia();
     });
 
     // Guardar examen
@@ -1197,41 +1332,87 @@ function addListeners(){
             }
         })
     })
-
-
-
-};
-
-function initView(){
-
-    getView();
-    addListeners();
-
-};
-
-
-function retrocederVistaLaboratorista() {
-    F.slideAnimationTabs();
-    document.getElementById("tab-uno").click();
-
-    // Verificar si el modal está visible y recargar los datos si es necesario
-    if ($('#modal_catalogo_pacientes').is(':visible')) {
-        modalPacientesCiprologia();
-    }
 }
 
-async function obtenerCatalagoPacientes() {
-    try {
-        const response = await axios.post('/lista_pacientes', {});
-        return response.data;
-    } catch (error) {
-        console.error('Error al obtener los pacientes:', error);
-        return [];
-    }
+function getAbrirModalPacientesUrologia() {
+    $("#modal_catalogo_pacientes_urologia").modal("show");
+
+    // Forzar la recarga de datos cuando el modal se muestra
+    $('#modal_catalogo_pacientes_urologia').on('shown.bs.modal', function () {
+        modalPacientesUrologia(); // Llama a la función correcta
+    });
+
+    let btnGuardarExamenUrologia = document.getElementById('btnGuardarExamenUrologia');
+    btnGuardarExamenUrologia.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value == true) {
+
+                let fechaBaseParaTomarMesYAnioUrologia =  new Date(document.getElementById("fechaUrologia").value);
+
+                let tipo_examen_uro = document.getElementById("txtTipoExamenUrologia").querySelector('strong').textContent;
+                let nombreMedicoUro = document.getElementById("txtMedicoUrologia").value;
+                let importeUro = document.getElementById("FloatImporteUrologia").value;
+                let fechaUro = F.devuelveFecha("fechaUrologia");
+                let anioUro = fechaBaseParaTomarMesYAnioUrologia.getFullYear();
+                let mesUro = fechaBaseParaTomarMesYAnioUrologia.getUTCMonth()+1;
+
+                let colorHecesMacroUro = document.getElementById("colorHecesMacroUrologia").value;
+                let aspectoMacroUro = document.getElementById("aspectoMacroUrologia").value;
+                let densidadMacroUro = document.getElementById("densidadMacroUrologia").value;
+                let phMacroUro = document.getElementById("phMacroUrologia").value;
+
+
+                let leucocitosQuimUro = document.getElementById("leucocitosQuimicoUrologia").value;
+                let glucosaQuimUro = document.getElementById("glucosaQuimicoUrologia").value;
+                let proteinasQuimUro = document.getElementById("proteinasQuimicoUrologia").value;
+                let cetonasQuimUro = document.getElementById("cetonasQuimicoUrologia").value;
+                let hemoglobinaQuimUro = document.getElementById("hemoglobinaQuimicoUrologia").value;
+                let urobiligenoQuimUro = document.getElementById("urobiligenoQuimicoUrologia").value;
+                let nitritosQuimUro = document.getElementById("nitritoQuimicoUrologia").value;
+                let acidoAscorbicoQuimUro = document.getElementById("acidoAscorbicoQuimicoUrologia").value;
+                let bilirrubinaQuimUro = document.getElementById("bilirrubinaQuimicoUrologia").value;
+                
+
+                let leucocitosMicroUro = document.getElementById("leucocitosMicroUrologia").value;
+                let eritrocitosMicroUro = document.getElementById("eritrocitosMicroUrologia").value;
+                let epitelialesMicroUro = document.getElementById("epitelialesMicroUrologia").value;
+                let bacteriasMicroUro = document.getElementById("bacteriasMicroUrologia").value;
+                let cristalesMicroUro = document.getElementById("cristalesMicroUrologia").value;
+                let cilindrosMicroUro = document.getElementById("cilindrosMicroUrologia").value;
+                let otroMicroUro = document.getElementById("otrosMicroUrologia").value;
+
+                btnGuardarExamenUrologia.disabled = true;
+                btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenUro(tipo_examen_uro, importeUro, nombreMedicoUro, fechaUro, anioUro, mesUro, colorHecesMacroUro, aspectoMacroUro, densidadMacroUro, phMacroUro, leucocitosQuimUro, glucosaQuimUro, proteinasQuimUro, cetonasQuimUro, hemoglobinaQuimUro, urobiligenoQuimUro, nitritosQuimUro, acidoAscorbicoQuimUro, bilirrubinaQuimUro, leucocitosMicroUro, eritrocitosMicroUro, epitelialesMicroUro, bacteriasMicroUro, cristalesMicroUro, cilindrosMicroUro, otroMicroUro)
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    Navegar.laboratorista();
+
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                })
+                .catch((e) => {
+                    F.AvisoError("No se pudo guardar el examen!!" + e);
+                    console.log(e);
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .finally(() => {
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+
+            }
+        })
+    })
+
 }
 
-async function modalPacientesCiprologia() {
-    const tbody = document.getElementById("tblCatalogoPacientes");
+async function modalPacientesUrologia() {
+    const tbody = document.getElementById("tblCatalogoPacientesUrologia");
     tbody.innerHTML = GlobalLoader; 
 
     try {
@@ -1263,7 +1444,7 @@ async function modalPacientesCiprologia() {
         tbody.innerHTML = str;
 
         // Agregar evento de clic a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientes .btn-rounded");
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesUrologia .btn-rounded");
         botonesAgregar.forEach((boton) => {
             boton.addEventListener("click", () => {
                 const nombrePaciente = boton.getAttribute("data-nombre");
@@ -1273,12 +1454,11 @@ async function modalPacientesCiprologia() {
                 GlobalIdPaciente = idPaciente;
 
                 // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
 
                 // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes").modal('hide');
-                // const modal = bootstrap.Modal.getInstance(document.getElementById('modal_catalogo_pacientes'));
-                // modal.hide();
+                $("#modal_catalogo_pacientes_urologia").modal('hide');
+
 
                 // Opcional: Mostrar el ID en consola para verificar
                 console.log("ID del paciente seleccionado:", GlobalIdPaciente);
@@ -1291,33 +1471,10 @@ async function modalPacientesCiprologia() {
     }
 }
 
-function limpiar_datos_examen_ciprologia() {
-    document.getElementById("txtMedicoCiprologia").value = '';
-    document.getElementById("fechaNacimientoPacienteCiprologia").value = '';
-    document.getElementById("colorHecesMacroscopio").value = '';
-    document.getElementById("restoAlimenticiosMacro").value = '';
-    document.getElementById("sangreMacro").value = '';
-    document.getElementById("consistenciaMacro").value = '';
-    document.getElementById("mocoMacro").value = '';
-    document.getElementById("phMacro").value = '';
+function insertDatosExamenUro(tipo_examen, importe, medico_tratante, fecha, anio, mes, uro_macro_color, uro_macro_aspecto, uro_macro_densidad, uro_macro_ph, uro_quimico_leucocitos, uro_quimico_glucosa, uro_quimico_proteinas, uro_quimico_cetonas, uro_quimico_hemoglobina, uro_quimico_urobilinogeno, uro_quimico_nitritos, uro_quimico_acido_ascorbico, uro_quimico_bilirrubina, uro_micro_leucocitos, uro_micro_eritocitos, uro_micro_c_epiteliales, uro_micro_bacterias, uro_micro_cristales, uro_micro_cilindros, uro_micro_otros) {
 
-    document.getElementById("leucocitosQuimico").value = '';
-    document.getElementById("celulasVegQuimico").value = '';
-    document.getElementById("almidonesQuimico").value = '';
-    document.getElementById("levadurasQuimico").value = '';
-    document.getElementById("huevoQuimico").value = '';
-    document.getElementById("quistesQuimico").value = '';
-                
-    document.getElementById("eritrocitosMicro").value = '';
-    document.getElementById("grasasMicro").value = '';
-    document.getElementById("jabonMicro").value = '';
-    document.getElementById("bacteriasMicro").value = '';
-}
-
-function insertDatosExamenCipro(tipo_examen, importe, medico_tratante, fecha, anio, mes, copro_macroscopio_color, copro_macroscopio_restos_alimenticios, copro_macroscopio_sangre, copro_macroscopio_consistencia, copro_macroscopio_Moco, copro_macroscopio_PH, copro_quimico_leucocitos, copro_quimico_celulas_vegetales, copro_quimico_almidones, copro_quimico_levaduras, copro_quimico_huevo, copro_quimico_quistes, copro_microscopio_eritrocitos, copro_microscopio_grasas, copro_microscopio_jabon, copro_microscopio_bacterias) {
-   
     return new Promise((resolve, reject) => {
-        axios.post("/insert_examen_ciprologia", {
+        axios.post("/insert_examen_urologia", {
             tipo_examen: tipo_examen,
             paciente_id: GlobalIdPaciente,
             importe: importe,
@@ -1325,22 +1482,26 @@ function insertDatosExamenCipro(tipo_examen, importe, medico_tratante, fecha, an
             fecha: fecha,
             anio: anio,
             mes: mes,
-            copro_macroscopio_color: copro_macroscopio_color,
-            copro_macroscopio_restos_alimenticios: copro_macroscopio_restos_alimenticios,
-            copro_macroscopio_sangre: copro_macroscopio_sangre,
-            copro_macroscopio_consistencia: copro_macroscopio_consistencia,
-            copro_macroscopio_Moco: copro_macroscopio_Moco,
-            copro_macroscopio_PH: copro_macroscopio_PH,
-            copro_quimico_leucocitos: copro_quimico_leucocitos,
-            copro_quimico_celulas_vegetales: copro_quimico_celulas_vegetales,
-            copro_quimico_almidones: copro_quimico_almidones,
-            copro_quimico_levaduras: copro_quimico_levaduras,
-            copro_quimico_huevo: copro_quimico_huevo,
-            copro_quimico_quistes: copro_quimico_quistes,
-            copro_microscopio_eritrocitos: copro_microscopio_eritrocitos,
-            copro_microscopio_grasas: copro_microscopio_grasas,
-            copro_microscopio_jabon: copro_microscopio_jabon,
-            copro_microscopio_bacterias: copro_microscopio_bacterias
+            uro_macro_color: uro_macro_color,
+            uro_macro_aspecto: uro_macro_aspecto,
+            uro_macro_densidad: uro_macro_densidad,
+            uro_macro_ph: uro_macro_ph,
+            uro_quimico_leucocitos: uro_quimico_leucocitos,
+            uro_quimico_glucosa: uro_quimico_glucosa,
+            uro_quimico_proteinas: uro_quimico_proteinas,
+            uro_quimico_cetonas: uro_quimico_cetonas,
+            uro_quimico_hemoglobina: uro_quimico_hemoglobina,
+            uro_quimico_urobilinogeno: uro_quimico_urobilinogeno,
+            uro_quimico_nitritos: uro_quimico_nitritos,
+            uro_quimico_acido_ascorbico: uro_quimico_acido_ascorbico,
+            uro_quimico_bilirrubina: uro_quimico_bilirrubina,
+            uro_micro_leucocitos: uro_micro_leucocitos,
+            uro_micro_eritocitos: uro_micro_eritocitos,
+            uro_micro_c_epiteliales: uro_micro_c_epiteliales,
+            uro_micro_bacterias: uro_micro_bacterias,
+            uro_micro_cristales: uro_micro_cristales,
+            uro_micro_cilindros: uro_micro_cilindros,
+            uro_micro_otros: uro_micro_otros
         })
         .then((response) => {
             let data = response.data;
