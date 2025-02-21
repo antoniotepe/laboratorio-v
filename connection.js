@@ -27,13 +27,24 @@
 //     queueLimit: 0
 // };
 
+// let config = {
+//     user: 'antonioDB',
+//     password: 'antonio',
+//     host: '127.0.0.1',
+//     port: 3307,
+//     database: 'db_laboratorio_test',
+//     waitForConnections: true,
+//     connectionLimit: 100,  // Ajustar según el límite del servidor
+//     queueLimit: 0
+// };
+
 let config = {
     user: 'a6478c_laborat',
     password: 'razors1805',
     host: 'mysql5050.site4now.net',
     database: 'db_a6478c_laborat',
     waitForConnections: true,
-    connectionLimit: 10,  // Ajustar según el límite del servidor
+    connectionLimit: 100,  // Ajustar según el límite del servidor
     queueLimit: 0
 };
 

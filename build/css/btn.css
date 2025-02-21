@@ -156,7 +156,8 @@
 
 
 .bg-gris {
-  background-color: #505050 !important; }
+  background-color: #505050 !important; 
+  color: white !important;}
 
 .bg-gris2 {
   background-color: #333333 !important; }
