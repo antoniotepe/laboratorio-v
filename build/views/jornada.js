@@ -2,18 +2,16 @@
 function getView(){
     let view = {
         body:()=>{
-            // ${view.vista_login()}
             return `
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                           ${view.vista_listado()}
-                        </div>
-                        <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_listado() + view.modal_fotos() + view.modal_datos()}
                         </div>
-                        <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_nuevo()}
+                        </div>
+                        <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                         </div>
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -73,7 +71,7 @@ function getView(){
                     </div>
 
                     <br>
-                    <small class="negrita text-naranja">By ${byAuthor} (${versionapp})</small>
+                    <small class="negrita text-naranja">By Alexis Burgos (${versionapp})</small>
 
 
                 </div>
@@ -128,10 +126,6 @@ function getView(){
                     </div>
                 </div>
             </div>
-
-            <button class="btn btn-danger btn-circle btn-xl hand shadow btn-bottom-l" onclick="document.getElementById('tab-uno').click()">
-                <i class="fal fa-lock"></i>
-            </button> 
 
              <button class="btn btn-success btn-circle btn-xl hand shadow btn-bottom-r" id="btnNuevo">
                 <i class="fal fa-plus"></i>
@@ -263,7 +257,7 @@ function getView(){
                 </div>
             </div>
 
-            <button class="btn btn-secondary btn-circle btn-xl hand shadow btn-bottom-l" onclick="document.getElementById('tab-dos').click()">
+            <button class="btn btn-secondary btn-circle btn-xl hand shadow btn-bottom-l" onclick="document.getElementById('tab-uno').click()">
                 <i class="fal fa-arrow-left"></i>
             </button> 
 
@@ -538,28 +532,28 @@ function getView(){
 
 function addListeners(){
 
-    let btnI = document.getElementById("btnI");
-    btnI.addEventListener('click',()=>{
+    // let btnI = document.getElementById("btnI");
+    // btnI.addEventListener('click',()=>{
 
-        let p = document.getElementById('txtP').value || '';
+    //     let p = document.getElementById('txtP').value || '';
 
-        if(p==''){F.AvisoError('Escriba una clave');return;}
+    //     if(p==''){F.AvisoError('Escriba una clave');return;}
 
-        if(p==GlobalClave){
-            document.getElementById('txtP').value = '';
-            document.getElementById('tab-dos').click();
-            //get_listado();
-        }else{
-            F.AvisoError('Escriba una clave valida');
-            return;
-        }
+    //     if(p==GlobalClave){
+    //         document.getElementById('txtP').value = '';
+    //         document.getElementById('tab-dos').click();
+    //         //get_listado();
+    //     }else{
+    //         F.AvisoError('Escriba una clave valida');
+    //         return;
+    //     }
 
-    })
+    // })
 
 
     document.getElementById('btnNuevo').addEventListener('click',()=>{
         limpiar_datos();
-        document.getElementById('tab-tres').click();
+        document.getElementById('tab-dos').click();
     })
 
 
@@ -622,7 +616,7 @@ function addListeners(){
                         btnGuardar.disabled = false;
                         btnGuardar.innerHTML = `<i class="fal fa-save"></i>`;
     
-                        document.getElementById('tab-dos').click();
+                        document.getElementById('tab-uno').click();
                     
                     })
                     .catch(()=>{

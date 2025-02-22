@@ -1,4 +1,6 @@
 ﻿
+const mysql = require('mysql2');
+
 
 // let config = {
 // 	user: 'db_a6478c_laboratoriov2_admin',
@@ -38,26 +40,6 @@
 //     queueLimit: 0
 // };
 
-let config = {
-    user: 'a6478c_laborat',
-    password: 'razors1805',
-    host: 'mysql5050.site4now.net',
-    database: 'db_a6478c_laborat',
-    waitForConnections: true,
-    connectionLimit: 100,  // Ajustar según el límite del servidor
-    queueLimit: 0
-};
-
-let configx = {
-	user: 'iEx',
-	password: 'iEx',
-	server: 'DESKTOP-3L7R1E4\\SQL22',
-	database: 'laboratorio',
-	pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
-};
-
-
-
 // const sql = require('mssql');
 
 // let execute = {
@@ -90,38 +72,60 @@ let configx = {
 // 	}
 // }
 
+let config = {
+    user: 'a6478c_laborat',
+    password: 'razors1805',
+    host: 'mysql5050.site4now.net',
+    database: 'db_a6478c_laborat',
+    waitForConnections: true,
+    connectionLimit: 100,  // Ajustar según el límite del servidor
+    queueLimit: 0
+};
 
-const mysql = require('mysql2');
+let configx = {
+	user: 'iEx',
+	password: 'iEx',
+	server: 'DESKTOP-3L7R1E4\\SQL22',
+	database: 'laboratorio',
+	pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+};
+
+
+
+
+
+// Crear el pool de conexiones
+const pool = mysql.createPool(config);
 
 let execute = {
     Query: (res, sqlqry) => {
-        const pool = mysql.createPool(config);
-
+        // Obtener una conexión del pool
         pool.getConnection((err, connection) => {
             if (err) {
-                console.log(err.message);
-                res.send('error');
+                console.error('Error al obtener la conexión:', err.message);
+                res.status(500).send('Error al conectar a la base de datos');
                 return;
             }
 
+            // Ejecutar la consulta
             connection.query(sqlqry, (err, results) => {
-                connection.release();  // Liberar la conexión de vuelta al pool
+                // Liberar la conexión de vuelta al pool
+                connection.release();
 
                 if (err) {
-                    console.log(err.message);
-                    res.send('error');
+                    console.error('Error en la consulta:', err.message);
+                    res.status(500).send('Error en la consulta');
                 } else {
                     res.send(results);
                 }
             });
         });
-
-        pool.on('error', (err) => {
-            console.log('error sql = ' + err);
-            res.send('error');
-        });
     }
 };
 
-module.exports = execute;
+// Manejar errores en el pool
+pool.on('error', (err) => {
+    console.error('Error en el pool de conexiones:', err.message);
+});
 
+module.exports = execute;

@@ -40,7 +40,7 @@ function getView(){
             <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-md-6 text-center mt-2">
-                                <h3 class="text-center mt-5">ARCHIVO</h4>
+                                <h3 class="text-center mt-5">ARCHIVO</h3>
                             </div>
                         </div>
                         <div class="row">

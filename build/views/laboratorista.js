@@ -97,7 +97,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_tbla_examenes">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">ARCHIVOS</h5>
-                                    <img src="../img/icon_examen.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Hematología" />
+                                    <img src="../img/carpeta_icon.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Hematología" />
                                 </div>
                             </div>
                         </div>
@@ -990,17 +990,17 @@ function getView(){
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="table-wrap">
+                                        <div class="table-responsive">
                                             <table class="table">
                                                 <thead class="thead-primary">
                                                     <tr>
-                                                        <th>ID PACIENTE</th>
-                                                        <th>NOMBRE</th>
-                                                        <th>ACCIONES</th>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesCoprologia">
-                                                    <!-- Aquí se cargarán los datos -->
+                                                   
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1033,7 +1033,7 @@ function getView(){
                                                     <tr>
                                                         <th>ID PACIENTE</th>
                                                         <th>NOMBRE</th>
-                                                        <th>ACCIONES</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesUrologia">
@@ -1063,7 +1063,7 @@ function getView(){
 
 function addListeners(){
 
-    obtenerCatalagoPacientes();
+  
 
 
 
@@ -1127,74 +1127,68 @@ function retrocederVistaLaboratorista() {
     }
 }
 
-async function obtenerCatalagoPacientes() {
-    try {
-        const response = await axios.post('/lista_pacientes', {});
-        return response.data;
-    } catch (error) {
-        console.error('Error al obtener los pacientes:', error);
-        return [];
-    }
-}
+
 
 async function modalPacientesCoprologia() {
     const tbody = document.getElementById("tblCatalogoPacientesCoprologia");
     tbody.innerHTML = GlobalLoader; 
+    let str = '';
 
-    try {
-        const pacientesUro = await obtenerCatalagoPacientes(); 
+    
 
-        let str = '';
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach((pacientesCopro) => {
+                    console.log(pacientesCopro);
+                    str += `
+                        <tr>
+                            <td>${pacientesCopro.id || 'Sin ID'}</td>
+                            <td>${pacientesCopro.nombre_paciente}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info btn-rounded" 
+                                        data-nombre="${pacientesCopro.nombre_paciente}" 
+                                        data-id="${pacientesCopro.id}">
+                                    <i class="fal fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML = str;
+                    // Agregar evento de clic a los botones de agregar
+                    const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
+                    botonesAgregar.forEach((boton) => {
+                        boton.addEventListener("click", () => {
+                            const nombrePaciente = boton.getAttribute("data-nombre");
+                            const idPaciente = boton.getAttribute("data-id");
 
-        if (Array.isArray(pacientesUro) && pacientesUro.length > 0) {
-            pacientesUro.forEach((pacientesUro) => {
-                console.log(pacientesUro);
-                str += `
-                    <tr>
-                        <td>${pacientesUro.id_paciente || 'Sin ID'}</td>
-                        <td>${pacientesUro.nombre_paciente}</td>
-                        <td>
-                            <button class="btn btn-sm btn-info btn-rounded" 
-                                    data-nombre="${pacientesUro.nombre_paciente}" 
-                                    data-id="${pacientesUro.id}">
-                                <i class="fal fa-plus"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-        } else {
-            str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
-        }
+                            // Guardar el ID del paciente en la variable global
+                            GlobalIdPaciente = idPaciente;
 
-        tbody.innerHTML = str;
+                            // Actualizar el campo de búsqueda con el nombre del paciente
+                            document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
 
-        // Agregar evento de clic a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
-        botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const nombrePaciente = boton.getAttribute("data-nombre");
-                const idPaciente = boton.getAttribute("data-id");
-
-                // Guardar el ID del paciente en la variable global
-                GlobalIdPaciente = idPaciente;
-
-                // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-
-                // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes_coprologia").modal('hide');
+                            // Cerrar el modal (si estás usando Bootstrap)
+                            $("#modal_catalogo_pacientes_coprologia").modal('hide');
 
 
-                // Opcional: Mostrar el ID en consola para verificar
-                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
-            });
-        });
-
-    } catch (error) {
-        console.error('Error al cargar los pacientes:', error);
-        tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
-    }
+                            // Opcional: Mostrar el ID en consola para verificar
+                            console.log("ID del paciente seleccionado:", GlobalIdPaciente);
+                        });
+                    });
+                });
+            } else {
+                str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+            }
+        })
+        .catch((error) => {
+            console.error('Error al cargar los pacientes:', error);
+            tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
+        })
+    
 }
 
 function limpiar_datos_examen_ciprologia() {
@@ -1415,60 +1409,66 @@ async function modalPacientesUrologia() {
     const tbody = document.getElementById("tblCatalogoPacientesUrologia");
     tbody.innerHTML = GlobalLoader; 
 
-    try {
-        const pacientesCipro = await obtenerCatalagoPacientes(); 
-
         let str = '';
 
-        if (Array.isArray(pacientesCipro) && pacientesCipro.length > 0) {
-            pacientesCipro.forEach((pacienteCipro) => {
-                console.log(pacienteCipro);
-                str += `
-                    <tr>
-                        <td>${pacienteCipro.id_paciente || 'Sin ID'}</td>
-                        <td>${pacienteCipro.nombre_paciente}</td>
-                        <td>
-                            <button class="btn btn-sm btn-info btn-rounded" 
-                                    data-nombre="${pacienteCipro.nombre_paciente}" 
-                                    data-id="${pacienteCipro.id}">
-                                <i class="fal fa-plus"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
+        axios.post("/lista_pacientes", {
+            filtro:''
+        })
+        .then((response) => {
+            let data = response.data;
+
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach((pacienteUro) => {
+                    console.log(pacienteUro);
+                    str += `
+                        <tr>
+                            <td>${pacienteUro.id_paciente || 'Sin ID'}</td>
+                            <td>${pacienteUro.nombre_paciente}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info btn-rounded" 
+                                        data-nombre="${pacienteUro.nombre_paciente}" 
+                                        data-id="${pacienteUro.id}">
+                                    <i class="fal fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+    
+                    tbody.innerHTML = str;
+    
+                    // Agregar evento de clic a los botones de agregar
+                    const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesUrologia .btn-rounded");
+                    botonesAgregar.forEach((boton) => {
+                        boton.addEventListener("click", () => {
+                            const nombrePaciente = boton.getAttribute("data-nombre");
+                            const idPaciente = boton.getAttribute("data-id");
+    
+                            // Guardar el ID del paciente en la variable global
+                            GlobalIdPaciente = idPaciente;
+    
+                            // Actualizar el campo de búsqueda con el nombre del paciente
+                            document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
+    
+                            // Cerrar el modal (si estás usando Bootstrap)
+                            $("#modal_catalogo_pacientes_urologia").modal('hide');
+    
+    
+                            // Opcional: Mostrar el ID en consola para verificar
+                            console.log("ID del paciente seleccionado:", GlobalIdPaciente);
+                    });
+                });
             });
-        } else {
-            str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
-        }
+            } else {
+                str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+            }
 
-        tbody.innerHTML = str;
+        })
+        .catch((erorr) => {
+            console.error('Error al cargar los pacientes:', error);
+            tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
 
-        // Agregar evento de clic a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesUrologia .btn-rounded");
-        botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const nombrePaciente = boton.getAttribute("data-nombre");
-                const idPaciente = boton.getAttribute("data-id");
-
-                // Guardar el ID del paciente en la variable global
-                GlobalIdPaciente = idPaciente;
-
-                // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
-
-                // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes_urologia").modal('hide');
-
-
-                // Opcional: Mostrar el ID en consola para verificar
-                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
-            });
-        });
-
-    } catch (error) {
-        console.error('Error al cargar los pacientes:', error);
-        tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
-    }
+        })
+    
 }
 
 function insertDatosExamenUro(tipo_examen, importe, medico_tratante, fecha, anio, mes, uro_macro_color, uro_macro_aspecto, uro_macro_densidad, uro_macro_ph, uro_quimico_leucocitos, uro_quimico_glucosa, uro_quimico_proteinas, uro_quimico_cetonas, uro_quimico_hemoglobina, uro_quimico_urobilinogeno, uro_quimico_nitritos, uro_quimico_acido_ascorbico, uro_quimico_bilirrubina, uro_micro_leucocitos, uro_micro_eritocitos, uro_micro_c_epiteliales, uro_micro_bacterias, uro_micro_cristales, uro_micro_cilindros, uro_micro_otros) {

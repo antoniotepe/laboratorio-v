@@ -34,9 +34,11 @@ Navegar.inicio();
 
 // Navegar.login();
 // Navegar.laboratorista();
-
 // Navegar.registroPacientes();
+// Navegar.jornada();
+
 // Navegar.dashboard();
+
 
 
 

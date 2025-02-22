@@ -6,10 +6,10 @@ function getView(){
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                            ${view.vista_listado() + view.vista_modal_crear_usuario() + view.vista_modal_editar_usuario()}
+                           ${view.vista_inicio_dashboard()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                           
+                            ${view.vista_tabla_usuarios() + view.vista_modal_crear_usuario() + view.vista_modal_editar_usuario()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -35,7 +35,38 @@ function getView(){
                
             `
         },
-        vista_listado:()=>{
+        vista_inicio_dashboard:()=> {
+            return `
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                            <div class="col-md-6 text-center mt-2">
+                                <h3 class="text-center mt-5">ADMINISTRACION</h3>
+                            </div>
+                        </div>
+                    <div class="row text-center">
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_usuarios">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">USUARIOS</h5>
+                                    <img src="../img/usuarios.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="USUARIOS" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_estadistica">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">
+                                        ESTADISTICA
+                                    </h5>
+                                    <img src="../img/estadisticas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ESTADISTICAS" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
+        vista_tabla_usuarios:()=>{
             return `
             <div class="card card-rounded shadow">
                 <div class="card-body p-2">
@@ -52,6 +83,10 @@ function getView(){
                             <tbody id="tblLabUsuarios">
                             </tbody>
                         </table>
+                        
+                        <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="document.getElementById('tab-uno').click()">
+                            <i class="fal fa-arrow-left"></i>
+                        </button>
 
                         <button class="btn btn-circle btn-xl btn-success btn-bottom-r hand shadow" id="btnAgregarUsuario">
                             <i class="fal fa-plus"></i>
@@ -181,7 +216,6 @@ function getView(){
 
             `;
         }
-
     }
 
     root.innerHTML = view.body();
@@ -193,6 +227,11 @@ function addListeners(){
     document.getElementById('btnAgregarUsuario').addEventListener('click', () => {
         $("#modal_nuevo_usuario").modal('show');
     });
+
+    document.getElementById("card_usuarios").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-dos").click();
+    })
 
     get_lista_usuarios();
 

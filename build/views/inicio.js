@@ -39,7 +39,7 @@ function getView(){
             return `
 
                 <div class="container-fluid p-2 mt-5">
-                    <!-- Banner principal -->
+                    
                     <div class="row">
                         <div class="col-12">
                             <div class="card-rounded shadow banner-container">
