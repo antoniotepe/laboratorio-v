@@ -58,7 +58,7 @@ function getView(){
                 </div>
 
 
-                <div class="container my-5">
+                <div class="container my-5" id="servicios-seccion">
                 <h2 class="font-weight-bold text-center mb-4 display-4">Servicios</h2>
                     <div class="row align-items-center">
                         <div class="col-12 col-md-4 col-lg-4">
@@ -870,6 +870,20 @@ function getView(){
 };
 
 function addListeners(){
+
+    document.addEventListener('scroll', () => {
+        const serviciosSection = document.getElementById("servicios-seccion");
+        const serviciosPosition = serviciosSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3; // Ajusta este valor para controlar cuándo se activa la animación
+
+        if (serviciosPosition < screenPosition) {
+            const cards = document.querySelectorAll('#servicios-seccion .card-rounded');
+            cards.forEach(card => {
+                card.classList.add('animate__animated', 'animate__bounceInDown');
+            });
+        }
+
+    })
 
     document.getElementById("btnRegistroUsuarioW").addEventListener("click", () => {
         // Obtener los valores de los campos
