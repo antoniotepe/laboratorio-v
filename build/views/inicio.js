@@ -38,27 +38,19 @@ function getView(){
         vista_listado:()=>{
             return `
 
-                <div class="container-fluid p-2 mt-5">
-                    
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-rounded shadow banner-container">
-                                
-                                <img src="../img/foto_local_1.webp" 
-                                    alt="Imagen" 
-                                    class="img-fluid w-100 banner-image" />
-
-                                <div class="banner-overlay">
-                                    <h1 class="banner-title display-4">Bienvenido a Laboratorio Clínico Bio-Química</h1>
-                                    <p class="banner-subtitle lead">Expertos en análisis clínicos y cuidado de tu salud</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="container text-center animate__animated animate__fadeInDown">
+                    <a href="" >
+                        <img src="../img/favicon.png" class="rounded img-fluid banner-image" />
+                    </a>
+                    <div class="">
+                        <h1 class="banner-title display-4">Laboratorio Clínico Bio-Química</h1>
+                        <p class="banner-subtitle lead">Expertos en análisis clínicos y cuidado de tu salud</p>
+                        <button class="button btn-lg hand shadow" id="btn-servicios">Servicios</button>
                     </div>
                 </div>
 
 
-                <div class="container my-5" id="servicios-seccion">
+                <div class="container my-5" id="seccion-servicios">
                 <h2 class="font-weight-bold text-center mb-4 display-4">Servicios</h2>
                     <div class="row align-items-center">
                         <div class="col-12 col-md-4 col-lg-4">
@@ -722,10 +714,10 @@ function getView(){
                     
 
 
-                <div class="container-fluid fondo-contenedor mt-5">
+                <div class="container-fluid fondo-contenedor mt-5" id ="contacto">
                     <h2 class="font-weight-bold text-center mb-4 display-4">Contacto</h2>
                     <div class="row mt-5">
-                        <!-- Información de contacto -->
+                       
                         <div class="col-12 col-md-6">
                             <div class="card-rounded shadow-lg p-4 bg-white ">
                                 <h3 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">LABORATORIO CLÍNICO BIO-QUÍMICA</h3>
@@ -757,7 +749,7 @@ function getView(){
                             </div>
                         </div>
 
-                        <!-- Formulario de contacto -->
+                       
                         <div class="col-12 col-md-6 mt-3">
                             <div class="card-rounded shadow-lg p-4 bg-white rounded-3">
                                 <h4 class="text-center mb-4" style="color: #0e6ec5; font-weight: bold;">Envíanos un mensaje</h4>
@@ -795,7 +787,7 @@ function getView(){
                     </div>
                 </div>
 
-                <div class="container-fluid">
+                <div class="container-fluid" id="seccion-mision">
                     <div class="row mt-4">
                         <div class="col-12 col-md-6">
                             
@@ -833,11 +825,11 @@ function getView(){
 
                 <!-- Mapa -->
                 <div class="container-fluid mt-5">
-                <div class="row">
-                <div class="col-12 p-0">
-                    <h2 class="font-weight-bold text-center mb-4 display-4">Ubicación</h2>
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <h2 class="font-weight-bold text-center mb-4 display-4">Ubicación</h2>
                     
-                <div class="card-rounded shadow-lg bg-white rounded-3">
+                        <div class="card-rounded shadow-lg bg-white rounded-3">
                                 <iframe 
                                     src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d123552.76564763446!2d-91.736317!3d14.5977125!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1ses-419!2sgt!4v1738532088834!5m2!1ses-419!2sgt" 
                                     width="100%" 
@@ -871,26 +863,71 @@ function getView(){
 
 function addListeners(){
 
+    document.getElementById('btn-servicios').addEventListener('click', function() {
+        // Desplazamiento suave
+        smoothScrollTo('#seccion-servicios', 1000);
+    
+        
+        setTimeout(() => {
+            const cards = document.querySelectorAll('#seccion-servicios .card-rounded');
+            cards.forEach(card => {
+                card.classList.remove('animate__animated', 'animate__fadeInUp');
+                void card.offsetWidth; // Forzar el reinicio de la animación (truco de reflow)
+                card.classList.add('animate__animated', 'animate__fadeInUp');
+                card.style.setProperty('--animated-duration', '2s') 
+            });
+        }, 800); 
+    });
+
     document.addEventListener('scroll', () => {
-        const serviciosSection = document.getElementById("servicios-seccion");
+        const serviciosSection = document.getElementById("seccion-servicios");
         const serviciosPosition = serviciosSection.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3; // Ajusta este valor para controlar cuándo se activa la animación
+        const screenPosition = window.innerHeight / 1.3;
 
         if (serviciosPosition < screenPosition) {
-            const cards = document.querySelectorAll('#servicios-seccion .card-rounded');
+            const cards = document.querySelectorAll("#seccion-servicios");
             cards.forEach(card => {
-                card.classList.add('animate__animated', 'animate__bounceInDown');
-            });
+                card.classList.add('animate__animated', 'animate__fadeInUp');
+            })
+        }
+
+    })
+
+    document.addEventListener('scroll', () => {
+        const contactosSection = document.getElementById("contacto");
+        const contactosPosition = contactosSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+
+        if (contactosPosition < screenPosition) {
+            const cards = document.querySelectorAll('#contacto');
+            cards.forEach(card => {
+                card.classList.add('animate__animated', 'animate__fadeInUp');
+            })
+        }
+
+    })
+
+    document.addEventListener('scroll', () => {
+        const misionSection = document.getElementById("seccion-mision");
+        const misionPosition = misionSection.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+
+
+        if(misionPosition < screenPosition) {
+            const cards = document.querySelectorAll('#seccion-mision');
+            cards.forEach(card => {
+                card.classList.add('animate__animated', 'animate__fadeInUp');
+            })
         }
 
     })
 
     document.getElementById("btnRegistroUsuarioW").addEventListener("click", () => {
-        // Obtener los valores de los campos
+        
         const nombre = document.getElementById("nombreUsuarioW").value.trim();
         const mensaje = document.getElementById("mensajeUsuarioW").value.trim();
         
-        // Validar que los campos no estén vacíos
+        
         if (!nombre || !mensaje) {
             alert("Por favor, ingresa tu nombre y un mensaje.");
             return;
@@ -913,3 +950,33 @@ function initView(){
     addListeners();
 
 };
+
+
+// Funcion para un desplamiento suave
+function smoothScrollTo(target, duration) {
+    const targetElement = document.querySelector(target);
+    const targetPosition = targetElement.getBoundingClientRect().top;
+    const startPosition = window.pageYOffset;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, targetPosition, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+document.getElementById('btn-servicios').addEventListener('click', function() {
+    smoothScrollTo('#seccion-servicios', 1000); 
+});
