@@ -64,6 +64,9 @@ function getView(){
                         </div>
                     </div>
                 </div>
+                <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="Navegar.login()">
+                    <i class="fal fa-lock"></i>
+                </button>
             `;
         },
         vista_tabla_usuarios:()=>{

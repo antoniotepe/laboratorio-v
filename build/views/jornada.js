@@ -127,6 +127,10 @@ function getView(){
                 </div>
             </div>
 
+            <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="Navegar.login()">
+                <i class="fal fa-lock"></i>
+            </button>
+
              <button class="btn btn-success btn-circle btn-xl hand shadow btn-bottom-r" id="btnNuevo">
                 <i class="fal fa-plus"></i>
             </button> 
