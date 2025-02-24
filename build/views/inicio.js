@@ -978,5 +978,5 @@ function smoothScrollTo(target, duration) {
 }
 
 document.getElementById('btn-servicios').addEventListener('click', function() {
-    smoothScrollTo('#seccion-servicios', 1000); 
+    smoothScrollTo('#seccion-servicios', 800); 
 });

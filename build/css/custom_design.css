@@ -234,3 +234,8 @@
   );
   outline: 0;
 }
+
+.button-inicio:hover {
+    border: 1px solid #2196F3;
+    border-radius: 25px;
+}
