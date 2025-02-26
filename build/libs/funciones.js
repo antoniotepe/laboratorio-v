@@ -716,7 +716,35 @@ let F = {
 
         // Devolver la fecha en formato dd-mm-yyyy
         return `${dia}/${mes}/${anio}`;
-    }
+    },
+    convertirFecha:(fechaNoEstandar) => {
+      // Verificar si la fecha tiene el formato no estándar
+      if (fechaNoEstandar.includes('T') && fechaNoEstandar.includes('/')) {
+          // Extraer las partes de la fecha
+          const [dia, resto] = fechaNoEstandar.split('T'); // Separar el día
+          const [mes, anio] = resto.split('/'); // Separar mes y año
+  
+          // Asegurar que el día y el mes tengan 2 dígitos
+          const diaFormateado = dia.padStart(2, '0');
+          const mesFormateado = mes.padStart(2, '0');
+  
+          // Devolver la fecha en formato YYYY-MM-DD
+          return `${anio}-${mesFormateado}-${diaFormateado}`;
+      }
+  
+      // Si la fecha no tiene el formato no estándar, intentar convertirla como fecha ISO
+      const fecha = new Date(fechaNoEstandar);
+      if (isNaN(fecha.getTime())) {
+          throw new Error("Formato de fecha no válido");
+      }
+  
+      // Formatear la fecha en YYYY-MM-DD
+      const dia = String(fecha.getUTCDate()).padStart(2, '0'); // Usar getUTCDate() para evitar problemas de zona horaria
+      const mes = String(fecha.getUTCMonth() + 1).padStart(2, '0'); // Usar getUTCMonth() para evitar problemas de zona horaria
+      const anio = fecha.getUTCFullYear(); // Usar getUTCFullYear() para evitar problemas de zona horaria
+  
+      return `${anio}-${mes}-${dia}`;
+  }
 };
 
 //export default funciones;

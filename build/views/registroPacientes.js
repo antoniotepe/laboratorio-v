@@ -243,26 +243,7 @@ function addListeners(){
 
     document.getElementById("txtFechaNacimiento").value = F.getFecha();
 
-    get_data_empresas_pacientes()
-    .then((data) => {
-        let str = '';
-        data.forEach((r) => {
-            str += `
-                <tr>
-                    <td>${r.ID}</td>
-                    <td>${r.NOMBRE}</td>
-                    <td>
-                        <button class="btn btn-sm btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-            `;
-        });
-        document.getElementById("tblDeEmpresasPacientes").innerHTML = str;
-    })
-    .catch((error) => {
-        console.error("Error al cargar las empresas: ", error);
-        document.getElementById("tblDeEmpresasPacientes").innerHTML = 'No hay datos...';
-    })
+    cargarEmpresas();
 
     get_data_empresas_pacientes()
     .then((data) => {
@@ -312,7 +293,6 @@ function addListeners(){
                 insert_paciente(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                 .then(() => {
                     F.Aviso("Paciente guardado exitosamente!!!");
-                    // document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
                     $("#modal_agregar_paciente").modal('hide');
                     get_listado_pacientes();
                     limpiar_datos_pacientes();
@@ -323,6 +303,10 @@ function addListeners(){
                 .catch((e) => {
                     F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                     console.log(e);
+                    btnGuardarPaciente.disabled = false;
+                    btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .finally(() => {
                     btnGuardarPaciente.disabled = false;
                     btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                 })
@@ -346,7 +330,8 @@ function addListeners(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa").modal('hide'); 
-                                        
+                    cargarEmpresas();
+                    limpiar_input_empresa();
                    
                     btnGuardarEmpresaPaciente.disabled = false;
                     btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
@@ -354,6 +339,10 @@ function addListeners(){
                 .catch((e) => {
                     F.AvisoError("No se puede guardar la empresa" + e);
                     console.log(e);
+                    btnGuardarEmpresaPaciente.disabled = false;
+                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .finally(()=> {
                     btnGuardarEmpresaPaciente.disabled = false;
                     btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                 })
@@ -385,6 +374,7 @@ function addListeners(){
                     btnEditarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
 
                     $("#modal_editar_paciente").modal('hide');
+                    get_listado_pacientes();
                 })
                 .catch((e) => {
                     F.AvisoError('No se pudo actualizar el paciente');
@@ -432,7 +422,7 @@ function get_listado_pacientes() {
                         <td>${r.nombre_empresa || 'Sin empresa'}
                         <td>
                             <br>
-                            <button class="btn btn-info btn-sm btn-circle shadow" onclick="get_datos_paciente('${r.id}')">
+                            <button class="btn btn-info btn-sm btn-circle shadow" onclick="get_datos_paciente('${r.id}','${r.fecha_nacimiento}')">
                                 <i class="fal fa-edit"></i>
                             </button>
                         </td>
@@ -450,6 +440,41 @@ function get_listado_pacientes() {
         console.error(error);
     });
 }
+
+function cargarEmpresas() {
+    get_data_empresas_pacientes()
+        .then((data) => {
+            // Cargar empresas en la tabla
+            let strTable = '';
+            data.forEach((r) => {
+                strTable += `
+                    <tr>
+                        <td>${r.ID}</td>
+                        <td>${r.NOMBRE}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarEmpresaPaciente('${r.ID}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById("tblDeEmpresasPacientes").innerHTML = strTable;
+
+            // Cargar empresas en el selector
+            let strCombo = '<option value="">Seleccione una empresa</option>';
+            data.forEach((r) => {
+                strCombo += `<option value='${r.ID}'>${r.NOMBRE}</option>`;
+            });
+            document.getElementById('cmbEmpresaPaciente').innerHTML = strCombo;
+            document.getElementById('cmbEmpresaPacienteE').innerHTML = strCombo;
+        })
+        .catch((error) => {
+            console.error("Error al cargar las empresas: ", error);
+            document.getElementById("tblDeEmpresasPacientes").innerHTML = 'No hay datos...';
+            document.getElementById('cmbEmpresaPaciente').innerHTML = '<option value="">No hay datos</option>';
+            document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
+        });
+}
+
 function limpiar_datos_pacientes() {
     document.getElementById("txtnoDPI").value = '';
     document.getElementById("txtNombrePaciente").value = '';
@@ -457,6 +482,26 @@ function limpiar_datos_pacientes() {
     document.getElementById("cmbEmpresaPaciente").value = '';
 }
 
+function limpiar_input_empresa() {
+    document.getElementById("txtNombreEmpresa").value = '';
+}
+
+function eliminarEmpresaPaciente(id) {
+    F.Confirmacion("¿Está seguro de eliminar esta empresa?")
+      .then((value) => {
+        if (value == true) {
+          axios.post("/eliminar_empresa", { id: id })
+            .then(() => {
+              F.Aviso("Empresa eliminada exitosamente!!!");
+              cargarEmpresas(); // Recargar la lista de empresas
+            })
+            .catch((error) => {
+              F.AvisoError("No se pudo eliminar la empresa: " + error);
+              console.error(error);
+            });
+        }
+      });
+  }
 
 function insert_paciente(noDPI, nombre, fecha_nacimiento, empresa) {
     return new Promise((resolve, reject) => {
@@ -478,13 +523,14 @@ function insert_paciente(noDPI, nombre, fecha_nacimiento, empresa) {
     })
 }
 
-function get_datos_paciente(id_paciente) {
+function get_datos_paciente(id_paciente, fecha_nacimiento) {
 
     $("#modal_editar_paciente").modal('show');
 
     document.getElementById('lbStatusDatos').innerHTML = '';
     document.getElementById('lbStatusDatos').innerHTML = 'Cargando datos...' + GlobalLoader;
-
+    GlobalIdPaciente = id_paciente;
+    GlobalFechaAActualizar = fecha_nacimiento;
     get_data_datos_paciente(id_paciente)
     .then((data) => {
         console.log(data);
@@ -492,7 +538,7 @@ function get_datos_paciente(id_paciente) {
             document.getElementById("cmbEmpresaPacienteE").value=r.EMPRESA_ID;
             document.getElementById("txtnoDPIUpdate").value=r.NO_DPI;
             document.getElementById("txtNombrePacienteUpdate").value=r.NOMBRE;
-            document.getElementById("txtFechaNacimientoUpdate").value=F.clean_date(r.FECHA_NACIMIENTO);
+            document.getElementById("txtFechaNacimientoUpdate").value=F.convertirFecha(r.FECHA_NACIMIENTO);
         });
         document.getElementById("lbStatusDatos").innerHTML = '';
     })
@@ -502,9 +548,7 @@ function get_datos_paciente(id_paciente) {
         document.getElementById("txtnoDPIUpdate").value='';
         document.getElementById("txtNombrePacienteUpdate").value='';
         document.getElementById("txtFechaNacimientoUpdate").value=F.getFecha();
-    })
-
-    
+    })    
 }
 
 function get_data_empresas_pacientes() {
@@ -515,13 +559,13 @@ function get_data_empresas_pacientes() {
         .then((response) => {
             let data = response.data;
             if (Array.isArray(data) && data.length > 0) {
-                resolve(data); // Resuelve con el array de empresas
+                resolve(data); 
             } else {
                 reject("No hay datos o la respuesta no es un array");
             }
         })
         .catch((error) => {
-            reject(error); // Rechaza si hay un error en la solicitud
+            reject(error);
         });
     });
 }
@@ -564,16 +608,18 @@ function updatePacientes() {
 
     let noDpi = document.getElementById("txtnoDPIUpdate").value;
     let nombrePacienteUpdate = document.getElementById("txtNombrePacienteUpdate").value;
-    let fechaNacimientoUpdate = F.devuelveFecha('txtFechaNacimientoUpdate');
+    let fechaNacimientoUpdate = document.getElementById('txtFechaNacimientoUpdate').value;
     let codEmpresa = document.getElementById("cmbEmpresaPacienteE").value;
+
+    console.log(noDpi, nombrePacienteUpdate, fechaNacimientoUpdate, codEmpresa, F.convertirFecha(GlobalFechaAActualizar));
 
     return new Promise((resolve, reject) => {
 
         axios.post("/update_paciente", {
-            id: id,
+            id: GlobalIdPaciente,
             noDPI: noDpi,
             nombre: nombrePacienteUpdate,
-            fecha_nacimiento: fechaNacimientoUpdate,
+            fecha_nacimiento: F.convertirFecha(fechaNacimientoUpdate) || F.convertirFecha(GlobalFechaAActualizar),
             empresa: codEmpresa
         })
         .then((response) => {

@@ -355,7 +355,7 @@ app.post("/insert_paciente", function(req, res) {
       ('${noDPI}','${nombre}','${fecha_nacimiento}',${empresa})
   `;
   execute.Query(res, qry);
-  console.log(qry);
+  console.log(` Los datos de insert paciente ${noDPI} ${nombre} ${fecha_nacimiento} ${empresa} ${qry}`);
 
 })
 
@@ -405,6 +405,9 @@ app.post("/update_paciente", (req, res) => {
           EMPRESA_ID=${empresa}
       WHERE ID=${id}
   `;
+
+  execute.Query(res, qry);
+  console.log(qry);
 })
 
 // obtener empresas
@@ -412,8 +415,8 @@ app.post("/catalogo_empresas_pacientes", (req, res) => {
   let qry = `
     SELECT ID, NOMBRE 
       FROM EMPRESAS
-  `
-
+      WHERE ST=TRUE
+  `;
   execute.Query(res, qry)
 })
 
@@ -429,6 +432,21 @@ app.post("/insert_empresa_paciente", (req, res) => {
     ('${nombreEmpresa}') `;
 
     execute.Query(res, qry);
+
+})
+
+// Eliminar empresa
+app.post("/eliminar_empresa", (req, res) => {
+  const { id } = req.body;
+
+  let qry = `
+    UPDATE EMPRESAS 
+      SET ST = false
+      WHERE ID=${id}
+  `;
+
+  execute.Query(res, qry);
+  console.log(qry);
 
 })
 
