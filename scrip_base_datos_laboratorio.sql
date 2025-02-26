@@ -1,16 +1,27 @@
-use db_a6478c_laborat;
+USE db_a6478c_laborat;
 
+CREATE TABLE IF NOT EXISTS LAB_USUARIOS (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    no_dpi VARCHAR(255) UNIQUE NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    clave VARCHAR(255) NOT NULL,
+    tipo VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+USE db_a6478c_laborat;
 CREATE TABLE Empresas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255)
+    nombre VARCHAR(255) NOT NULL UNIQUE
 );
 
 
 CREATE TABLE Pacientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_paciente VARCHAR(255),
-    nombre VARCHAR(255) NOT NULL,
-    edad INT NOT NULL,
+    no_dpi VARCHAR(255) NOT NULL UNIQUE,
+    nombre VARCHAR(255),
+    fecha_nacimiento DATE,
     empresa_id INT, 
     FOREIGN KEY (empresa_id) REFERENCES Empresas(id)
 );

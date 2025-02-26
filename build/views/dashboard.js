@@ -320,7 +320,7 @@ function get_lista_usuarios() {
         }
     })
     .catch((error) => {
-        container.innerHTML = 'Error al cargar los datos...';
+        container.innerHTML = 'Error al cargar los datos...' + error;
     });
 }
 

@@ -330,27 +330,29 @@ app.post("/loginLaboratorio", function(req, res) {
 // Pacientes
 app.post("/insert_paciente", function(req, res) {
 
-  const {id_paciente, nombre, fecha_nacimiento, empresa } = req.body;
+  const {noDPI, nombre, fecha_nacimiento, empresa } = req.body;
 
-  const calcularEdad = (fecha) => {
-    const nacimiento = new Date(fecha);
-    const hoy = new Date();
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const mes = hoy.getMonth() - nacimiento.getMonth();
+  // const calcularEdad = (fecha) => {
+  //   const nacimiento = new Date(fecha);
+  //   const hoy = new Date();
+  //   let edad = hoy.getFullYear() - nacimiento.getFullYear();
+  //   const mes = hoy.getMonth() - nacimiento.getMonth();
 
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
-    return edad;
-  };
+  //   if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+  //     edad--;
+  //   }
+  //   return edad;
+  // };
 
-  const edad = calcularEdad(fecha_nacimiento);
+  // const edad = calcularEdad(fecha_nacimiento);
+
+
 
   let qry = `
     INSERT INTO PACIENTES
-      (ID_PACIENTE, NOMBRE, EDAD, EMPRESA_ID)
+      (NO_DPI, NOMBRE, FECHA_NACIMIENTO, EMPRESA_ID)
         VALUES
-      ('${id_paciente}','${nombre}',${edad},${empresa})
+      ('${noDPI}','${nombre}','${fecha_nacimiento}',${empresa})
   `;
   execute.Query(res, qry);
   console.log(qry);
@@ -361,9 +363,10 @@ app.post("/lista_pacientes", function (req, res) {
   let qry = `
       SELECT 
           p.id,
-          p.id_paciente, 
+          p.no_dpi, 
           p.nombre AS nombre_paciente, 
-          p.edad,  
+          p.fecha_nacimiento,  
+          p.empresa_id,
           e.nombre AS nombre_empresa
       FROM Pacientes p
       LEFT JOIN Empresas e ON p.empresa_id = e.id;
@@ -372,6 +375,37 @@ app.post("/lista_pacientes", function (req, res) {
   execute.Query(res, qry);
 });
 
+app.post("/datos_pacientes", (req, res) => {
+
+  const { id } = req.body;
+
+  let qry = `
+      SELECT NO_DPI, NOMBRE,
+             FECHA_NACIMIENTO,
+             EMPRESA_ID
+      FROM PACIENTES
+      WHERE ID=${id};
+  `;
+
+  execute.Query(res, qry);
+  console.log(qry);
+
+})
+
+// Actualizar pacientes
+app.post("/update_paciente", (req, res) => {
+
+  const { id, noDPI, nombre, fecha_nacimiento, empresa } = req.body;
+
+  let qry = `
+    UPDATE PACIENTES
+      SET NO_DPI='${noDPI}',
+          NOMBRE='${nombre}',
+          FECHA_NACIMIENTO='${fecha_nacimiento}',
+          EMPRESA_ID=${empresa}
+      WHERE ID=${id}
+  `;
+})
 
 // obtener empresas
 app.post("/catalogo_empresas_pacientes", (req, res) => {
@@ -471,7 +505,6 @@ app.post("/insert_examen_urologia", (req, res) => {
     console.log(qry);
 
 })
-
 
 
 app.use("/",router);
