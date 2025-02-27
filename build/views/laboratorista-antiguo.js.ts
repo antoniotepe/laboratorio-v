@@ -134,7 +134,7 @@ function getView(){
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaCoprologia">
+                                <input type="date" class="form-control" id="fechaCiprologia">
                             </div>
                        </div>
                     </div>
@@ -316,7 +316,7 @@ function getView(){
                     <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
-                    <button class="btn btn-circle btn-xl btn-referencia btn-bottom-r hand shadow" id="btnGuardarExamenCopro">
+                    <button class="btn btn-circle btn-xl btn-referencia btn-bottom-r hand shadow" id="btnGuardarExamenCipro">
                         <i class="fal fa-save"></i>
                     </button>
                       
@@ -1065,118 +1065,17 @@ function getView(){
 };
 
 function addListeners(){
-    navegacionPage();
-    document.getElementById("fechaCoprologia").value = F.getFecha();
+
+  
+
+
+
+    document.getElementById("fechaCiprologia").value = F.getFecha();
+
     document.getElementById("fechaUrologia").value = F.getFecha();
 
-    catalogoPacientes()
-    .then((data) => {
-        console.log(data)
-        let strTableCopro = '';
-        data.forEach(pacienteCopro => {
-            strTableCopro += `
-                <tr>
-                    <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteCopro.nombre_paciente}</td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded"
-                            data-nombre="${pacienteCopro.nombre_paciente}"
-                            data-id="${pacienteCopro.id}">
-                            <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
-        });
-        document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = strTableCopro;
-        
-        // Agregar evento de click a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
-        botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const nombrePaciente = boton.getAttribute("data-nombre");
-                const idPaciente = boton.getAttribute("data-id");
+    document.getElementById("fechaNacimientoPacienteEnfermedadesInfec").value = F.getFecha();
 
-                // Guardar el ID del paciente en la variable global
-                GlobalIdPaciente = idPaciente;
-
-                // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-
-                // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes_coprologia").modal('hide');
-
-
-                // Opcional: Mostrar el ID en consola para verificar
-                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
-            });
-        });
-    })
-    .catch((error) => {
-        console.error("Error al obtener los pacientes:", error);
-        document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
-    })
-
-
-    // Pacientes en urologia
-    catalogoPacientes()
-    .then((data) => {
-        console.log(data)
-        let strTableUro = '';
-        data.forEach(pacienteUro => {
-            strTableUro += `
-                <tr>
-                    <td>${pacienteUro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteUro.nombre_paciente}</td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded"
-                            data-nombre="${pacienteUro.nombre_paciente}"
-                            data-id="${pacienteUro.id}">
-                            <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
-        });
-        document.getElementById("tblCatalogoPacientesUrologia").innerHTML = strTableUro;
-        
-        // Agregar evento de clic a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesUrologia .btn-rounded");
-        botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const nombrePaciente = boton.getAttribute("data-nombre");
-                const idPaciente = boton.getAttribute("data-id");
-
-                // Guardar el ID del paciente en la variable global
-                GlobalIdPaciente = idPaciente;
-
-                // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
-
-                // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes_urologia").modal('hide');
-
-
-                // Opcional: Mostrar el ID en consola para verificar
-                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
-        });
-    });
-    })
-    .catch((error) => {
-        console.error("Error al obtener los pacientes:", error);
-        document.getElementById("tblCatalogoPacientesUrologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
-    })
-
-};
-
-function initView(){
-
-    getView();
-    addListeners();
-
-};
-
-function navegacionPage() {
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
         document.getElementById("tab-dos").click();
@@ -1204,286 +1103,147 @@ function navegacionPage() {
     document.getElementById("card_tbla_examenes").addEventListener('click', () => {
         Navegar.examenes();
     })
+    
+    retrocederVistaLaboratorista();
+
+};
+
+function initView(){
+
+    getView();
+    addListeners();
+
+};
+
+
+function retrocederVistaLaboratorista() {
+    F.slideAnimationTabs();
+    document.getElementById("tab-uno").click();
+
+    // Verificar si el modal está visible y recargar los datos si es necesario
+    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
+        modalPacientesCoprologia();
+    }
+
+    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
+        modalPacientesUrologia();
+    }
 }
 
-function getAbrirModalCoprologia() {
-    $("#modal_catalogo_pacientes_coprologia").modal("show");
-
-    let btnGuardarExamenCopro = document.getElementById("btnGuardarExamenCopro");
-    btnGuardarExamenCopro.addEventListener('click', () => {
-        F.Confirmacion("¿Esta seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-                
-               
-                let importe = document.getElementById("FloatImporteCiprologia").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor de IMPORTE!!!");return};
-
-                let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value || '';
-                if(colorHecesMacro==''){F.AvisoError("Ingrese el valor en COLOR DE HECES!!!");return;};
-
-                let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value || '';
-                if(restoAlimentacionMacro==''){F.AvisoError("Ingrese el valor en RESTOS DE ALIMENTOS!!!");return;};
-
-                let sangreMacro = document.getElementById("sangreMacro").value || '';
-                if(sangreMacro==''){F.AvisoError("Ingrese el valor en SANGRE!!!");return;};
-
-                let consistenciaMacro = document.getElementById("consistenciaMacro").value || '';
-                if(consistenciaMacro==''){F.AvisoError("Ingrese el valor en CONSISTENCIA!!!");return;};
-
-                let mocoMacro = document.getElementById("mocoMacro").value || '';
-                if(mocoMacro==''){F.AvisoError("Ingrese el valor de MOCO!!!");return;};
-
-                let phMacro = document.getElementById("phMacro").value || '';
-                if(phMacro==''){F.AvisoError("Ingrese el valor en PH!!!");return;};
-
-                let leucocitosQuimicos = document.getElementById("leucocitosQuimico").value || '';
-                if(leucocitosQuimicos==''){F.AvisoError("Ingrese el valor en LEUCOCITOS");return;};
-
-                let celulasQuimico = document.getElementById("celulasVegQuimico").value || '';
-                if(celulasQuimico==''){F.AvisoError("Ingrese el valor en CELULAS");return;};
-
-                let almidonesQuimico = document.getElementById("almidonesQuimico").value || '';
-                if(almidonesQuimico==''){F.AvisoError("Ingrese el valor en ALMIDONES");return;}
-
-                let levadurasQuimico = document.getElementById("levadurasQuimico").value || '';
-                if(levadurasQuimico==''){F.AvisoError("Ingrese el valor en LEVADURAS");return;};
-
-                let huevoQuimico = document.getElementById("huevoQuimico").value || '';
-                if(huevoQuimico==''){F.AvisoError("Ingrese el valor en HUEVO");return;};
-
-                let quistesQuimico = document.getElementById("quistesQuimico").value || '';
-                if(quistesQuimico==''){F.AvisoError("Ingrese el valor en QUISTES");return;};
-
-                let eritrocitosMicro = document.getElementById("eritrocitosMicro").value || '';
-                if(eritrocitosMicro==''){F.AvisoError("Ingrese el valor en ERITROCITOS");return;};
-
-                let grasasMicro = document.getElementById("grasasMicro").value || '';
-                if(grasasMicro==''){F.AvisoError("Ingrese el valor en GRASAS");return;};
-
-                let jabonMicro = document.getElementById("jabonMicro").value || '';
-                if(jabonMicro==''){F.AvisoError("Ingrese el valor en JABON");return;};
-
-                let bacterias = document.getElementById("bacteriasMicro").value || '';
-                if(bacterias==''){F.AvisoError("Ingrese el valor en BACTERIAS");return;};
-
-                btnGuardarExamenCopro.disabled = true;
-                btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                insertDatosExamenCipro()
-                .then(() => {
-                    F.Aviso("Examen guardado con exitosamente!!!");
-                    btnGuardarExamenCopro.disabled = false;
-                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenCopro.disabled = false;
-                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save"></i>`; 
-                })
-            }
-        })
-        .catch((error) => {
-            F.AvisoError("Hubo un error al guardar con la peticion");
-            console.error(error);
-        })
-    })
-}
-
-function getAbrirModalPacientesUrologia() {
-    $("#modal_catalogo_pacientes_urologia").modal("show");
 
 
-    let btnGuardarExamenUrologia = document.getElementById('btnGuardarExamenUrologia');
-    btnGuardarExamenUrologia.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value == true) {
+async function modalPacientesCoprologia() {
+    const tbody = document.getElementById("tblCatalogoPacientesCoprologia");
+    tbody.innerHTML = GlobalLoader; 
+    let str = '';
 
-                
-                let importeUro = document.getElementById("FloatImporteUrologia").value || '';
-                if(importeUro==''){F.AvisoError("Ingrese el valor de IMPORTE!!!");return;};
+    
 
-                let colorHecesMacroUro = document.getElementById("colorHecesMacroUrologia").value || '';
-                if(colorHecesMacroUro==''){F.AvisoError("Ingrese el valor en COLOR DE HECES!!!");return;};
-
-                let aspectoMacroUro = document.getElementById("aspectoMacroUrologia").value || '';
-                if(aspectoMacroUro==''){F.AvisoError("Ingrese el valor de ASPECTO");return;};
-
-                let densidadMacroUro = document.getElementById("densidadMacroUrologia").value || '';
-                if(densidadMacroUro==''){F.AvisoError("Ingrese el valor en DENSIDAD");return;};
-
-                let phMacroUro = document.getElementById("phMacroUrologia").value || '';
-                if(phMacroUro==''){F.AvisoError("Ingrese el valor en PH!!!");return;};
-
-                let leucocitosQuimUro = document.getElementById("leucocitosQuimicoUrologia").value || '';
-                if(leucocitosQuimUro==''){F.AvisoError("Ingrese el valor en LEUCOCITOS");return;};
-
-                let glucosaQuimUro = document.getElementById("glucosaQuimicoUrologia").value || '';
-                if(glucosaQuimUro==''){F.AvisoError("Ingrese el valor en GLUCOSA");return;};
-
-                let proteinasQuimUro = document.getElementById("proteinasQuimicoUrologia").value || '';
-                if(proteinasQuimUro==''){F.AvisoError("Ingrese el valor en PROTEINAS");return;};
-
-                let cetonasQuimUro = document.getElementById("cetonasQuimicoUrologia").value || '';
-                if(cetonasQuimUro==''){F.AvisoError("Ingrese el valor en CETONAS");return;};
-
-                let hemoglobinaQuimUro = document.getElementById("hemoglobinaQuimicoUrologia").value || '';
-                if(hemoglobinaQuimUro==''){F.AvisoError("Ingrese el valor en HEMOGLOBINA");return;};
-
-                let urobiligenoQuimUro = document.getElementById("urobiligenoQuimicoUrologia").value || '';
-                if(urobiligenoQuimUro==''){F.AvisoError("Ingrese el valor en UROBILIGENO");return;};
-
-                let nitritosQuimUro = document.getElementById("nitritoQuimicoUrologia").value || '';
-                if(nitritosQuimUro==''){F.AvisoError("Ingrese el valor en NITRITOS");return;};
-
-                let acidoAscorbicoQuimUro = document.getElementById("acidoAscorbicoQuimicoUrologia").value || '';
-                if(acidoAscorbicoQuimUro==''){F.AvisoError("Ingrese el valor en ACIDO ASCORBICO");return;};
-
-                let bilirrubinaQuimUro = document.getElementById("bilirrubinaQuimicoUrologia").value || '';
-                if(bilirrubinaQuimUro==''){F.AvisoError("Ingrese el valor en BILIRRUBINA");return;};                
-
-                let leucocitosMicroUro = document.getElementById("leucocitosMicroUrologia").value || '';
-                if(leucocitosMicroUro==''){F.AvisoError("Ingrese el valor de LEUCOCITOS");return;};
-
-                let eritrocitosMicroUro = document.getElementById("eritrocitosMicroUrologia").value || '';
-                if(eritrocitosMicroUro==''){F.AvisoError("Ingrese el valor de ERITROCITOS");return;};
-
-                let epitelialesMicroUro = document.getElementById("epitelialesMicroUrologia").value || '';
-                if(epitelialesMicroUro==''){F.AvisoError("Ingrese el valor de EPITELIALES");return;};
-
-                let bacteriasMicroUro = document.getElementById("bacteriasMicroUrologia").value || '';
-                if(bacteriasMicroUro==''){F.AvisoError("Ingrese el valor de BACTERIAS");return;};
-
-                let cristalesMicroUro = document.getElementById("cristalesMicroUrologia").value || '';
-                if(cristalesMicroUro==''){F.AvisoError("Ingrese el valor de CRISTALES");return;};
-
-                let cilindrosMicroUro = document.getElementById("cilindrosMicroUrologia").value || '';
-                if(cilindrosMicroUro==''){F.AvisoError("Ingrese el valor de CILINDROS");return;};
-
-                let otroMicroUro = document.getElementById("otrosMicroUrologia").value || '';
-                if(otroMicroUro==''){F.AvisoError("Ingrese el valor de OTROS");return;};
-
-                btnGuardarExamenUrologia.disabled = true;
-                btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                insertDatosExamenUro()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarExamenUrologia.disabled = false;
-                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenCopro.disabled = false;
-                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save"></i>`; 
-                })
-
-            }
-        })
-        .catch((error) => {
-            F.AvisoError("Hubo un error al guardar con la peticion");
-            console.error(error);
-        })        
-    })
-
-}
-
-function catalogoPacientes() {
-    return new Promise((resolve, reject) => {
         axios.post("/lista_pacientes", {
             filtro: ''
         })
         .then((response) => {
             let data = response.data;
-            if(Array.isArray(data) && data.length > 0){
-                resolve(data); 
-            } else{
-                reject(); 
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach((pacientesCopro) => {
+                    console.log(pacientesCopro);
+                    str += `
+                        <tr>
+                            <td>${pacientesCopro.id || 'Sin ID'}</td>
+                            <td>${pacientesCopro.nombre_paciente}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info btn-rounded" 
+                                        data-nombre="${pacientesCopro.nombre_paciente}" 
+                                        data-id="${pacientesCopro.id}">
+                                    <i class="fal fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML = str;
+                    // Agregar evento de clic a los botones de agregar
+                    const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
+                    botonesAgregar.forEach((boton) => {
+                        boton.addEventListener("click", () => {
+                            const nombrePaciente = boton.getAttribute("data-nombre");
+                            const idPaciente = boton.getAttribute("data-id");
+
+                            // Guardar el ID del paciente en la variable global
+                            GlobalIdPaciente = idPaciente;
+
+                            // Actualizar el campo de búsqueda con el nombre del paciente
+                            document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+
+                            // Cerrar el modal (si estás usando Bootstrap)
+                            $("#modal_catalogo_pacientes_coprologia").modal('hide');
+
+
+                            // Opcional: Mostrar el ID en consola para verificar
+                            console.log("ID del paciente seleccionado:", GlobalIdPaciente);
+                        });
+                    });
+                });
+            } else {
+                str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
             }
         })
         .catch((error) => {
-            console.error(error);
-            reject();
+            console.error('Error al cargar los pacientes:', error);
+            tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
         })
-        .finally(() => {
-            console.log("Catalogo pacientes finalizado");
-        })
-    })
+    
 }
 
-function insertDatosExamenCipro() {
+function limpiar_datos_examen_ciprologia() {
+    document.getElementById("txtMedicoCiprologia").value = '';
+    document.getElementById("fechaNacimientoPacienteCiprologia").value = '';
+    document.getElementById("colorHecesMacroscopio").value = '';
+    document.getElementById("restoAlimenticiosMacro").value = '';
+    document.getElementById("sangreMacro").value = '';
+    document.getElementById("consistenciaMacro").value = '';
+    document.getElementById("mocoMacro").value = '';
+    document.getElementById("phMacro").value = '';
 
-    // Fecha base para tomar mes y año 
-    let fechaBaseParaTomarMesYAnio =  new Date(document.getElementById("fechaCoprologia").value);
+    document.getElementById("leucocitosQuimico").value = '';
+    document.getElementById("celulasVegQuimico").value = '';
+    document.getElementById("almidonesQuimico").value = '';
+    document.getElementById("levadurasQuimico").value = '';
+    document.getElementById("huevoQuimico").value = '';
+    document.getElementById("quistesQuimico").value = '';
                 
-    let tipo_examen_copro =  document.getElementById('txtTipoExamenCopro').querySelector('strong').textContent;
-    let nombreMedico = document.getElementById("txtMedicoCiprologia").value;
-    let importe = document.getElementById("FloatImporteCiprologia").value;
-    let fecha = F.devuelveFecha("fechaCoprologia");
-    let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value;
-    let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value;
-    let sangreMacro = document.getElementById("sangreMacro").value;
-    let consistenciaMacro = document.getElementById("consistenciaMacro").value;
-    let mocoMacro = document.getElementById("mocoMacro").value;
-    let phMacro = document.getElementById("phMacro").value;
+    document.getElementById("eritrocitosMicro").value = '';
+    document.getElementById("grasasMicro").value = '';
+    document.getElementById("jabonMicro").value = '';
+    document.getElementById("bacteriasMicro").value = '';
+}
 
-    let leucocitosQuimicos = document.getElementById("leucocitosQuimico").value;
-    let celulasQuimico = document.getElementById("celulasVegQuimico").value;
-    let almidonesQuimico = document.getElementById("almidonesQuimico").value;
-    let levadurasQuimico = document.getElementById("levadurasQuimico").value;
-    let huevoQuimico = document.getElementById("huevoQuimico").value;
-    let quistesQuimico = document.getElementById("quistesQuimico").value;
-    
-    let eritrocitosMicro = document.getElementById("eritrocitosMicro").value;
-    let grasasMicro = document.getElementById("grasasMicro").value;
-    let jabonMicro = document.getElementById("jabonMicro").value;
-    let bacterias = document.getElementById("bacteriasMicro").value;
-    let anio =  fechaBaseParaTomarMesYAnio.getFullYear();
-    let mes = fechaBaseParaTomarMesYAnio.getUTCMonth()+1;
-
-
+function insertDatosExamenCipro(tipo_examen, importe, medico_tratante, fecha, anio, mes, copro_macroscopio_color, copro_macroscopio_restos_alimenticios, copro_macroscopio_sangre, copro_macroscopio_consistencia, copro_macroscopio_Moco, copro_macroscopio_PH, copro_quimico_leucocitos, copro_quimico_celulas_vegetales, copro_quimico_almidones, copro_quimico_levaduras, copro_quimico_huevo, copro_quimico_quistes, copro_microscopio_eritrocitos, copro_microscopio_grasas, copro_microscopio_jabon, copro_microscopio_bacterias) {
+   
     return new Promise((resolve, reject) => {
         axios.post("/insert_examen_ciprologia", {
-            tipo_examen: tipo_examen_copro,
+            tipo_examen: tipo_examen,
             paciente_id: GlobalIdPaciente,
             importe: importe,
-            medico_tratante: nombreMedico || 'Sin medico referido',
+            medico_tratante: medico_tratante,
             fecha: fecha,
             anio: anio,
             mes: mes,
-            copro_macroscopio_color: colorHecesMacro,
-            copro_macroscopio_restos_alimenticios: restoAlimentacionMacro,
-            copro_macroscopio_sangre: sangreMacro,
-            copro_macroscopio_consistencia: consistenciaMacro,
-            copro_macroscopio_Moco: mocoMacro,
-            copro_macroscopio_PH: phMacro,
-            copro_quimico_leucocitos: leucocitosQuimicos,
-            copro_quimico_celulas_vegetales: celulasQuimico,
-            copro_quimico_almidones: almidonesQuimico,
-            copro_quimico_levaduras: levadurasQuimico,
-            copro_quimico_huevo: huevoQuimico,
-            copro_quimico_quistes: quistesQuimico,
-            copro_microscopio_eritrocitos: eritrocitosMicro,
-            copro_microscopio_grasas: grasasMicro,
-            copro_microscopio_jabon: jabonMicro,
-            copro_microscopio_bacterias: bacterias
+            copro_macroscopio_color: copro_macroscopio_color,
+            copro_macroscopio_restos_alimenticios: copro_macroscopio_restos_alimenticios,
+            copro_macroscopio_sangre: copro_macroscopio_sangre,
+            copro_macroscopio_consistencia: copro_macroscopio_consistencia,
+            copro_macroscopio_Moco: copro_macroscopio_Moco,
+            copro_macroscopio_PH: copro_macroscopio_PH,
+            copro_quimico_leucocitos: copro_quimico_leucocitos,
+            copro_quimico_celulas_vegetales: copro_quimico_celulas_vegetales,
+            copro_quimico_almidones: copro_quimico_almidones,
+            copro_quimico_levaduras: copro_quimico_levaduras,
+            copro_quimico_huevo: copro_quimico_huevo,
+            copro_quimico_quistes: copro_quimico_quistes,
+            copro_microscopio_eritrocitos: copro_microscopio_eritrocitos,
+            copro_microscopio_grasas: copro_microscopio_grasas,
+            copro_microscopio_jabon: copro_microscopio_jabon,
+            copro_microscopio_bacterias: copro_microscopio_bacterias
         })
         .then((response) => {
             let data = response.data;
@@ -1493,81 +1253,258 @@ function insertDatosExamenCipro() {
                 reject();
             }
         })
-        .catch((error) => {
-            console.error(error);
-            reject();
-        })
-        .finally(() => {
-            console.log("Datos de examen copro Finalizados");
+    })
+
+}
+
+
+function getAbrirModalCoprologia() {
+    
+        $("#modal_catalogo_pacientes_coprologia").modal("show");
+
+    
+    // Forzar la recarga de datos cuando el modal se muestra
+    $('#modal_catalogo_pacientes_coprologia').on('shown.bs.modal', function () {
+        modalPacientesCoprologia();
+    });
+
+    // Guardar examen
+    let btnGuardarExamenCipro = document.getElementById('btnGuardarExamenCipro');
+    btnGuardarExamenCipro.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value == true) {
+                
+                // Fecha base para tomar mes y año 
+                let fechaBaseParaTomarMesYAnio =  new Date(document.getElementById("fechaCiprologia").value);
+                
+                let tipo_examen_copro =  document.getElementById('txtTipoExamenCopro').querySelector('strong').textContent;
+                let nombreMedico = document.getElementById("txtMedicoCiprologia").value;
+                let importe = document.getElementById("FloatImporteCiprologia").value;
+                let fecha = F.devuelveFecha("fechaCiprologia");
+                let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value;
+                let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value;
+                let sangreMacro = document.getElementById("sangreMacro").value;
+                let consistenciaMacro = document.getElementById("consistenciaMacro").value;
+                let mocoMacro = document.getElementById("mocoMacro").value;
+                let phMacro = document.getElementById("phMacro").value;
+
+                let leucocitosQuimicos = document.getElementById("leucocitosQuimico").value;
+                let celulasQuimico = document.getElementById("celulasVegQuimico").value;
+                let almidonesQuimico = document.getElementById("almidonesQuimico").value;
+                let levadurasQuimico = document.getElementById("levadurasQuimico").value;
+                let huevoQuimico = document.getElementById("huevoQuimico").value;
+                let quistesQuimico = document.getElementById("quistesQuimico").value;
+                
+                let eritrocitosMicro = document.getElementById("eritrocitosMicro").value;
+                let grasasMicro = document.getElementById("grasasMicro").value;
+                let jabonMicro = document.getElementById("jabonMicro").value;
+                let bacterias = document.getElementById("bacteriasMicro").value;
+                let anio =  fechaBaseParaTomarMesYAnio.getFullYear();
+                let mes = fechaBaseParaTomarMesYAnio.getUTCMonth()+1;
+
+
+                btnGuardarExamenCipro.disabled = true;
+                btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenCipro(tipo_examen_copro, importe, nombreMedico, fecha, anio, mes, colorHecesMacro, restoAlimentacionMacro, sangreMacro, consistenciaMacro, mocoMacro, phMacro, leucocitosQuimicos, celulasQuimico, almidonesQuimico, levadurasQuimico, huevoQuimico, quistesQuimico, eritrocitosMicro, grasasMicro, jabonMicro, bacterias)
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    Navegar.laboratorista();
+                    // limpiar_datos_examen_ciprologia();
+                    // document.getElementById("tab-dos").click();
+                    btnGuardarExamenCipro.disabled = false;
+                    btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError("No se pudo guardar el examen" + e);
+                    console.log(e);
+                    btnGuardarExamenCipro.disabled = false;
+                    btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .finally(()=> {
+                    btnGuardarExamenCipro.disabled = false;
+                    btnGuardarExamenCipro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+            }
         })
     })
 }
 
-function insertDatosExamenUro() {
+function getAbrirModalPacientesUrologia() {
+    $("#modal_catalogo_pacientes_urologia").modal("show");
 
-    let fechaBaseParaTomarMesYAnioUrologia =  new Date(document.getElementById("fechaUrologia").value);
+    // Forzar la recarga de datos cuando el modal se muestra
+    $('#modal_catalogo_pacientes_urologia').on('shown.bs.modal', function () {
+        modalPacientesUrologia(); // Llama a la función correcta
+    });
 
-    let tipo_examen_uro = document.getElementById("txtTipoExamenUrologia").querySelector('strong').textContent;
-    let nombreMedicoUro = document.getElementById("txtMedicoUrologia").value;
-    let importeUro = document.getElementById("FloatImporteUrologia").value;
-    let fechaUro = F.devuelveFecha("fechaUrologia");
-    let anioUro = fechaBaseParaTomarMesYAnioUrologia.getFullYear();
-    let mesUro = fechaBaseParaTomarMesYAnioUrologia.getUTCMonth()+1;
+    let btnGuardarExamenUrologia = document.getElementById('btnGuardarExamenUrologia');
+    btnGuardarExamenUrologia.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value == true) {
 
-    let colorHecesMacroUro = document.getElementById("colorHecesMacroUrologia").value;
-    let aspectoMacroUro = document.getElementById("aspectoMacroUrologia").value;
-    let densidadMacroUro = document.getElementById("densidadMacroUrologia").value;
-    let phMacroUro = document.getElementById("phMacroUrologia").value;
+                let fechaBaseParaTomarMesYAnioUrologia =  new Date(document.getElementById("fechaUrologia").value);
+
+                let tipo_examen_uro = document.getElementById("txtTipoExamenUrologia").querySelector('strong').textContent;
+                let nombreMedicoUro = document.getElementById("txtMedicoUrologia").value;
+                let importeUro = document.getElementById("FloatImporteUrologia").value;
+                let fechaUro = F.devuelveFecha("fechaUrologia");
+                let anioUro = fechaBaseParaTomarMesYAnioUrologia.getFullYear();
+                let mesUro = fechaBaseParaTomarMesYAnioUrologia.getUTCMonth()+1;
+
+                let colorHecesMacroUro = document.getElementById("colorHecesMacroUrologia").value;
+                let aspectoMacroUro = document.getElementById("aspectoMacroUrologia").value;
+                let densidadMacroUro = document.getElementById("densidadMacroUrologia").value;
+                let phMacroUro = document.getElementById("phMacroUrologia").value;
 
 
-    let leucocitosQuimUro = document.getElementById("leucocitosQuimicoUrologia").value;
-    let glucosaQuimUro = document.getElementById("glucosaQuimicoUrologia").value;
-    let proteinasQuimUro = document.getElementById("proteinasQuimicoUrologia").value;
-    let cetonasQuimUro = document.getElementById("cetonasQuimicoUrologia").value;
-    let hemoglobinaQuimUro = document.getElementById("hemoglobinaQuimicoUrologia").value;
-    let urobiligenoQuimUro = document.getElementById("urobiligenoQuimicoUrologia").value;
-    let nitritosQuimUro = document.getElementById("nitritoQuimicoUrologia").value;
-    let acidoAscorbicoQuimUro = document.getElementById("acidoAscorbicoQuimicoUrologia").value;
-    let bilirrubinaQuimUro = document.getElementById("bilirrubinaQuimicoUrologia").value;
+                let leucocitosQuimUro = document.getElementById("leucocitosQuimicoUrologia").value;
+                let glucosaQuimUro = document.getElementById("glucosaQuimicoUrologia").value;
+                let proteinasQuimUro = document.getElementById("proteinasQuimicoUrologia").value;
+                let cetonasQuimUro = document.getElementById("cetonasQuimicoUrologia").value;
+                let hemoglobinaQuimUro = document.getElementById("hemoglobinaQuimicoUrologia").value;
+                let urobiligenoQuimUro = document.getElementById("urobiligenoQuimicoUrologia").value;
+                let nitritosQuimUro = document.getElementById("nitritoQuimicoUrologia").value;
+                let acidoAscorbicoQuimUro = document.getElementById("acidoAscorbicoQuimicoUrologia").value;
+                let bilirrubinaQuimUro = document.getElementById("bilirrubinaQuimicoUrologia").value;
                 
 
-    let leucocitosMicroUro = document.getElementById("leucocitosMicroUrologia").value;
-    let eritrocitosMicroUro = document.getElementById("eritrocitosMicroUrologia").value;
-    let epitelialesMicroUro = document.getElementById("epitelialesMicroUrologia").value;
-    let bacteriasMicroUro = document.getElementById("bacteriasMicroUrologia").value;
-    let cristalesMicroUro = document.getElementById("cristalesMicroUrologia").value;
-    let cilindrosMicroUro = document.getElementById("cilindrosMicroUrologia").value;
-    let otroMicroUro = document.getElementById("otrosMicroUrologia").value;
+                let leucocitosMicroUro = document.getElementById("leucocitosMicroUrologia").value;
+                let eritrocitosMicroUro = document.getElementById("eritrocitosMicroUrologia").value;
+                let epitelialesMicroUro = document.getElementById("epitelialesMicroUrologia").value;
+                let bacteriasMicroUro = document.getElementById("bacteriasMicroUrologia").value;
+                let cristalesMicroUro = document.getElementById("cristalesMicroUrologia").value;
+                let cilindrosMicroUro = document.getElementById("cilindrosMicroUrologia").value;
+                let otroMicroUro = document.getElementById("otrosMicroUrologia").value;
+
+                btnGuardarExamenUrologia.disabled = true;
+                btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenUro(tipo_examen_uro, importeUro, nombreMedicoUro, fechaUro, anioUro, mesUro, colorHecesMacroUro, aspectoMacroUro, densidadMacroUro, phMacroUro, leucocitosQuimUro, glucosaQuimUro, proteinasQuimUro, cetonasQuimUro, hemoglobinaQuimUro, urobiligenoQuimUro, nitritosQuimUro, acidoAscorbicoQuimUro, bilirrubinaQuimUro, leucocitosMicroUro, eritrocitosMicroUro, epitelialesMicroUro, bacteriasMicroUro, cristalesMicroUro, cilindrosMicroUro, otroMicroUro)
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    Navegar.laboratorista();
+
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                })
+                .catch((e) => {
+                    F.AvisoError("No se pudo guardar el examen!!" + e);
+                    console.log(e);
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .finally(() => {
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+
+            }
+        })
+    })
+
+}
+
+async function modalPacientesUrologia() {
+    const tbody = document.getElementById("tblCatalogoPacientesUrologia");
+    tbody.innerHTML = GlobalLoader; 
+
+        let str = '';
+
+        axios.post("/lista_pacientes", {
+            filtro:''
+        })
+        .then((response) => {
+            let data = response.data;
+
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach((pacienteUro) => {
+                    console.log(pacienteUro);
+                    str += `
+                        <tr>
+                            <td>${pacienteUro.id_paciente || 'Sin ID'}</td>
+                            <td>${pacienteUro.nombre_paciente}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info btn-rounded" 
+                                        data-nombre="${pacienteUro.nombre_paciente}" 
+                                        data-id="${pacienteUro.id}">
+                                    <i class="fal fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+    
+                    tbody.innerHTML = str;
+    
+                    // Agregar evento de clic a los botones de agregar
+                    const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesUrologia .btn-rounded");
+                    botonesAgregar.forEach((boton) => {
+                        boton.addEventListener("click", () => {
+                            const nombrePaciente = boton.getAttribute("data-nombre");
+                            const idPaciente = boton.getAttribute("data-id");
+    
+                            // Guardar el ID del paciente en la variable global
+                            GlobalIdPaciente = idPaciente;
+    
+                            // Actualizar el campo de búsqueda con el nombre del paciente
+                            document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
+    
+                            // Cerrar el modal (si estás usando Bootstrap)
+                            $("#modal_catalogo_pacientes_urologia").modal('hide');
+    
+    
+                            // Opcional: Mostrar el ID en consola para verificar
+                            console.log("ID del paciente seleccionado:", GlobalIdPaciente);
+                    });
+                });
+            });
+            } else {
+                str = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+            }
+
+        })
+        .catch((error) => {
+            console.error('Error al cargar los pacientes:', error);
+            tbody.innerHTML = '<tr><td colspan="3">Error al cargar los pacientes</td></tr>';
+
+        })
+    
+}
+
+function insertDatosExamenUro(tipo_examen, importe, medico_tratante='Sin medico', fecha, anio, mes, uro_macro_color, uro_macro_aspecto, uro_macro_densidad, uro_macro_ph, uro_quimico_leucocitos, uro_quimico_glucosa, uro_quimico_proteinas, uro_quimico_cetonas, uro_quimico_hemoglobina, uro_quimico_urobilinogeno, uro_quimico_nitritos, uro_quimico_acido_ascorbico, uro_quimico_bilirrubina, uro_micro_leucocitos, uro_micro_eritocitos, uro_micro_c_epiteliales, uro_micro_bacterias, uro_micro_cristales, uro_micro_cilindros, uro_micro_otros) {
 
     return new Promise((resolve, reject) => {
         axios.post("/insert_examen_urologia", {
-            tipo_examen: tipo_examen_uro,
+            tipo_examen: tipo_examen,
             paciente_id: GlobalIdPaciente,
-            importe: importeUro,
-            medico_tratante: nombreMedicoUro || 'Sin medico referido',
-            fecha: fechaUro,
-            anio: anioUro,
-            mes: mesUro,
-            uro_macro_color: colorHecesMacroUro,
-            uro_macro_aspecto: aspectoMacroUro,
-            uro_macro_densidad: densidadMacroUro,
-            uro_macro_ph: phMacroUro,
-            uro_quimico_leucocitos: leucocitosQuimUro,
-            uro_quimico_glucosa: glucosaQuimUro,
-            uro_quimico_proteinas: proteinasQuimUro,
-            uro_quimico_cetonas: cetonasQuimUro,
-            uro_quimico_hemoglobina: hemoglobinaQuimUro,
-            uro_quimico_urobilinogeno: urobiligenoQuimUro,
-            uro_quimico_nitritos: nitritosQuimUro,
-            uro_quimico_acido_ascorbico: acidoAscorbicoQuimUro,
-            uro_quimico_bilirrubina: bilirrubinaQuimUro,
-            uro_micro_leucocitos: leucocitosMicroUro,
-            uro_micro_eritocitos: eritrocitosMicroUro,
-            uro_micro_c_epiteliales: epitelialesMicroUro,
-            uro_micro_bacterias: bacteriasMicroUro,
-            uro_micro_cristales: cristalesMicroUro,
-            uro_micro_cilindros: cilindrosMicroUro,
-            uro_micro_otros: otroMicroUro
+            importe: importe,
+            medico_tratante: medico_tratante,
+            fecha: fecha,
+            anio: anio,
+            mes: mes,
+            uro_macro_color: uro_macro_color,
+            uro_macro_aspecto: uro_macro_aspecto,
+            uro_macro_densidad: uro_macro_densidad,
+            uro_macro_ph: uro_macro_ph,
+            uro_quimico_leucocitos: uro_quimico_leucocitos,
+            uro_quimico_glucosa: uro_quimico_glucosa,
+            uro_quimico_proteinas: uro_quimico_proteinas,
+            uro_quimico_cetonas: uro_quimico_cetonas,
+            uro_quimico_hemoglobina: uro_quimico_hemoglobina,
+            uro_quimico_urobilinogeno: uro_quimico_urobilinogeno,
+            uro_quimico_nitritos: uro_quimico_nitritos,
+            uro_quimico_acido_ascorbico: uro_quimico_acido_ascorbico,
+            uro_quimico_bilirrubina: uro_quimico_bilirrubina,
+            uro_micro_leucocitos: uro_micro_leucocitos,
+            uro_micro_eritocitos: uro_micro_eritocitos,
+            uro_micro_c_epiteliales: uro_micro_c_epiteliales,
+            uro_micro_bacterias: uro_micro_bacterias,
+            uro_micro_cristales: uro_micro_cristales,
+            uro_micro_cilindros: uro_micro_cilindros,
+            uro_micro_otros: uro_micro_otros
         })
         .then((response) => {
             let data = response.data;
@@ -1580,9 +1517,6 @@ function insertDatosExamenUro() {
         .catch((error) => {
             console.log(error)
             reject(error);
-        })
-        .finally(() => {
-            console.log("Datos de examen uro Finalizados");
         })
     })
 

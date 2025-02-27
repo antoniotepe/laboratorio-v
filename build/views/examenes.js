@@ -48,7 +48,7 @@ function getView(){
                                 <div class="row mt-3 mb-3 d-flex justify-content-between">
                                     <div class="col-12 col-md-6">
                                         <label class="form-label mb-0 text-white">TIPO:</label>
-                                        <select class="form-control" id="txtSelectTipo">
+                                        <select class="form-control negrita" id="txtSelectTipo">
                                             <option value="COPROLOGIA">COPROLOGIA</option>
                                             <option value="UROLOGIA">UROLOGIA</option>
                                             <option value="ENFERMEDADES_INFECCIOSAS">ENFERMEDADES INFECCIOSAS</option>
@@ -57,7 +57,7 @@ function getView(){
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <label class="form-label mb-0 text-white">TIPO:</label>
-                                        <select class="form-control" id="txtSelectMes">
+                                        <select class="form-control negrita" id="txtSelectMes">
                                             <option value='1'>Enero</option>
                                             <option value='2'>Febrero</option>
                                             <option value='3'>Marzo</option>
@@ -74,7 +74,7 @@ function getView(){
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <label class="form-label mb-0 text-white">TIPO:</label>
-                                        <select class="form-control" id="txtSelectAnio">
+                                        <select class="form-control negrita" id="txtSelectAnio">
                                             <option value='2025'>2025</option>
                                             <option value='2026'>2026</option>
                                             <option value='2027'>2027</option>
