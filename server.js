@@ -274,7 +274,7 @@ app.post("/update_fotos_cliente",function(req,res){
 
 app.post("/lista_usuarios", function(req, res) {
 
-  let qry = `SELECT CODUSUARIO, NOMBRE, CLAVE, TIPO
+  let qry = `SELECT NO_DPI, NOMBRE, CLAVE, TIPO
               FROM LAB_USUARIOS`;
               
   execute.Query(res, qry);
@@ -282,13 +282,13 @@ app.post("/lista_usuarios", function(req, res) {
 
 app.post("/crear_usuarios", function(req, res) {
   
-  const { codusuario, nombre, clave, tipo } = req.body;
+  const { no_dpi, nombre, clave, tipo } = req.body;
 
   let qry = `
       INSERT INTO LAB_USUARIOS
         (CODUSUARIO, NOMBRE, CLAVE, TIPO)
         VALUES
-        ('${codusuario}','${nombre}','${clave}','${tipo}')
+        ('${no_dpi}','${nombre}','${clave}','${tipo}')
   `;
   
     execute.Query(res, qry);
@@ -297,14 +297,14 @@ app.post("/crear_usuarios", function(req, res) {
 
 app.post("/update_usuario", function(req, res) {
 
-  const { codusuario, nombre, clave, tipo } = req.body;
+  const { id, nombre, clave, tipo } = req.body;
 
   let qry = `
         UPDATE LAB_USUARIOS
         SET TIPO='${tipo}',
             NOMBRE='${nombre}',
             CLAVE='${clave}'
-          WHERE CODUSUARIO='${codusuario}'
+          WHERE CODUSUARIO='${id}'
   `;
   execute.Query(res, qry);
 
@@ -315,7 +315,7 @@ app.post("/loginLaboratorio", function(req, res) {
   const { nombre, clave } = req.body;
 
   let qry = `
-    SELECT CODUSUARIO, NOMBRE, CLAVE, TIPO FROM LAB_USUARIOS
+    SELECT NO_DPI, NOMBRE, CLAVE, TIPO FROM LAB_USUARIOS
     WHERE NOMBRE='${nombre}' AND CLAVE='${clave}'
   `;
 

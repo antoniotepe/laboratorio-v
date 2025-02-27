@@ -114,8 +114,8 @@ function getView(){
                                        <h1 style="font-size:280%" class="negrita text-left">Agregar Usuario</h1>
 
                                        <div class="form-group">
-                                            <label>CODIGO USUARIO</label>
-                                            <input type="text" class="form-control" id="txtCodigoUsuario">
+                                            <label>NO DPI (DOCUMENTO DE IDENTIFICACION)</label>
+                                            <input type="text" class="form-control" id="txtNoDpiUsuario">
                                        </div>
 
                                         <div class="form-group">
@@ -174,8 +174,8 @@ function getView(){
                                        <h1 style="font-size:280%" class="negrita text-left">Editar Usuario</h1>
 
                                        <div class="form-group">
-                                            <label>CODIGO USUARIO</label>
-                                            <input type="text" class="form-control" id="txtCodigoUsuarioUpdate">
+                                            <label>NO DPI (DOCUMENTO DE IDENTIFICACION)</label>
+                                            <input type="text" class="form-control" id="txtNoDpiUsuarioUpdate">
                                        </div>
 
                                         <div class="form-group">
@@ -244,7 +244,7 @@ function addListeners(){
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
         .then((value) => {
             if(value==true) {
-                let codusuario = document.getElementById('txtCodigoUsuario').value;
+                let no_dpi = document.getElementById('txtNoDpiUsuario').value;
                 let tipo = document.getElementById('cmbTipoUsuario').value;
                 let nombre = document.getElementById('txtNombreUsuario').value;
                 let clave = document.getElementById('txtClaveUsuario').value;
@@ -252,7 +252,7 @@ function addListeners(){
                 btnGuardarUsuario.disabled = true;
                 btnGuardarUsuario.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
 
-                crear_usuarios(codusuario, nombre, clave, tipo)
+                crear_usuarios(no_dpi, nombre, clave, tipo)
                 .then(() => {
 
                     F.Aviso('Usuario creado exitosamente');
@@ -283,7 +283,7 @@ function initView(){
 };
 
 function limpiar_datos_usuario() {
-    document.getElementById('txtCodigoUsuario').value = '';
+    document.getElementById('txtNoDpiUsuario').value = '';
     document.getElementById('cmbTipoUsuario').value = '';
     document.getElementById('txtNombreUsuario').value = '';
     document.getElementById('txtClaveUsuario').value = '';
@@ -307,7 +307,7 @@ function get_lista_usuarios() {
                         <td>${usuario.CLAVE}</td>
                         <td>${usuario.TIPO}</td>
                         <td>
-                            <button class="btn btn-info btn-circle btn-md hand shadow" onclick="get_datos_update_usuario('${usuario.CODUSUARIO}', '${usuario.NOMBRE}', '${usuario.CLAVE}', '${usuario.TIPO}')">
+                            <button class="btn btn-info btn-circle btn-md hand shadow" onclick="get_datos_update_usuario('${usuario.NO_DPI}', '${usuario.NOMBRE}', '${usuario.CLAVE}', '${usuario.TIPO}')">
                                 <i class="fal fa-edit"></i>
                             </button>
                         </td>
@@ -324,11 +324,11 @@ function get_lista_usuarios() {
     });
 }
 
-function get_datos_update_usuario(codusuario, nombre, clave, tipo) {
+function get_datos_update_usuario(no_dpi, nombre, clave, tipo) {
     $("#modal_editar_usuario").modal('show');
 
     // Asignar los valores a los campos del modal
-    document.getElementById('txtCodigoUsuarioUpdate').value = codusuario;
+    document.getElementById('txtNoDpiUsuarioUpdate').value = no_dpi;
     document.getElementById('cmbTipoUsuarioUpdate').value = tipo;
     document.getElementById('txtNombreUsuarioUpdate').value = nombre;
     document.getElementById('txtClaveUsuarioUpdate').value = clave;
@@ -338,7 +338,7 @@ function get_datos_update_usuario(codusuario, nombre, clave, tipo) {
         F.Confirmacion("¿Está seguro que desea editar el usuario?")
         .then((value) => {
             if(value==true) {
-                let codusuarioUpdate = document.getElementById('txtCodigoUsuarioUpdate').value;
+                let no_dpi_update = document.getElementById('txtNoDpiUsuarioUpdate').value;
                 let tipoUpdate = document.getElementById('cmbTipoUsuarioUpdate').value;
                 let nombreUpdate = document.getElementById('txtNombreUsuarioUpdate').value;
                 let claveUpdate = document.getElementById('txtClaveUsuarioUpdate').value;
@@ -346,7 +346,7 @@ function get_datos_update_usuario(codusuario, nombre, clave, tipo) {
                 btnEditarUsuario.disabled = true;
                 btnEditarUsuario.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
 
-                update_usuario(codusuarioUpdate, nombreUpdate, claveUpdate, tipoUpdate)
+                update_usuario(no_dpi_update, nombreUpdate, claveUpdate, tipoUpdate)
                 .then(() => {
                     F.Aviso('Usuario actualizado exitosamente!!!');
                     get_lista_usuarios();
@@ -366,10 +366,10 @@ function get_datos_update_usuario(codusuario, nombre, clave, tipo) {
     });
 }
 
-function crear_usuarios(codusuario ,nombre, clave, tipo) {
+function crear_usuarios(no_dpi ,nombre, clave, tipo) {
     return new Promise((resolve, reject) => {
         axios.post("/crear_usuarios", {
-            codusuario: codusuario,
+            no_dpi: no_dpi,
             nombre: nombre,
             clave: clave,
             tipo: tipo
@@ -389,11 +389,11 @@ function crear_usuarios(codusuario ,nombre, clave, tipo) {
 }
 
 
-function update_usuario(codusuario, nombre, clave, tipo) {
+function update_usuario(id, nombre, clave, tipo) {
     return new Promise((resolve, reject) => {
 
         axios.post('/update_usuario', {
-            codusuario: codusuario,
+            id: id,
             nombre: nombre,
             clave: clave,
             tipo: tipo
